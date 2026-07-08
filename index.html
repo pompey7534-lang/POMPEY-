@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>POMPEY</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+background:#f4f6f8;
+}
+
+/* HEADER */
+
+header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 40px;
+background:#131921;
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+/* LOGO */
+
+.logo{
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+.circle{
+width:120px;
+height:120px;
+border-radius:50%;
+background:linear-gradient(45deg,#00c853,#ff9800,#2962ff);
+display:flex;
+align-items:center;
+justify-content:center;
+color:#fff;
+font-size:22px;
+font-weight:bold;
+animation:spin 6s linear infinite;
+box-shadow:0 0 20px rgba(0,0,0,.3);
+}
+
+@keyframes spin{
+100%{
+transform:rotate(360deg);
+}
+}
+
+.logo h2{
+color:white;
+}
+
+/* MENU */
+
+nav a{
+text-decoration:none;
+color:white;
+margin-left:25px;
+font-weight:bold;
+transition:.3s;
+}
+
+nav a:hover{
+color:#ff9900;
+}
+
+/* HERO */
+
+.hero{
+
+height:500px;
+
+background:
+linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+url("https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1600&q=80");
+
+background-size:cover;
+background-position:center;
+
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+
+text-align:center;
+
+color:white;
+
+}
+
+.hero h1{
+font-size:60px;
+}
+
+.hero p{
+margin-top:15px;
+font-size:22px;
+}
+
+.btn{
+margin-top:25px;
+padding:15px 35px;
+background:#ff9900;
+color:white;
+text-decoration:none;
+border-radius:30px;
+font-size:18px;
+}
+
+/* SERVICES */
+
+.services{
+padding:60px 30px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:25px;
+}
+
+.card{
+
+background:white;
+
+padding:30px;
+
+border-radius:15px;
+
+text-align:center;
+
+box-shadow:0 5px 15px rgba(0,0,0,.15);
+
+transition:.3s;
+
+}
+
+.card:hover{
+transform:translateY(-10px);
+}
+
+.card img{
+width:80px;
+margin-bottom:15px;
+}
+
+.card h3{
+margin-bottom:10px;
+}
+
+/* CONTACT */
+
+.contact{
+background:#131921;
+color:white;
+padding:50px;
+text-align:center;
+}
+
+.contact h2{
+margin-bottom:15px;
+}
+
+footer{
+background:black;
+color:white;
+padding:15px;
+text-align:center;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+
+<div class="circle">
+POMPEY 
+</div>
+
+<h2>POMPEY</h2>
+
+</div>
+
+<nav>
+
+<a href="#">Home</a>
+
+<a href="#">Grocery</a>
+
+<a href="#">Pharmacy</a>
+
+<a href="#">Fresh Vegetables</a>
+
+<a href="#">Fast Food</a>
+
+<a href="#">Clothes</a>
+
+<a href="#">Contact</a>
+
+</nav>
+
+</header>
+
+<section class="hero">
+
+<h1>Welcome to POMPEY</h1>
+
+<p>Your One Stop Online Shopping Destination</p>
+
+<a href="#" class="btn">Shop Now</a>
+
+</section>
+
+<section class="services">
+
+<div class="card">
+<h3>🛒 Home Grocery</h3>
+<p>Daily essentials delivered quickly.</p>
+</div>
+
+<div class="card">
+<h3>💊 🚑🩸👨‍⚕️Pharmacy</h3>
+<p>Healthcare products & medicines.</p>
+</div>
+
+<div class="card">
+<h3>🥬☘️🍆🍅 Fresh Vegetables</h3>
+<p>Farm fresh vegetables every day.</p>
+</div>
+
+<div class="card">
+<h3>🍔 🎂🥮Fast Food</h3>
+<p>Order your favourite meals instantly.</p>
+</div>
+
+<div class="card">
+<h3>👕🧥🩳👙 Clothes</h3>
+<p>Fashion for men, women & kids.</p>
+</div>
+
+<div class="card">
+<h3>📞🔌📟 Electronics</h3>
+<p>Fashion for men, women & kids.</p>
+</div>
+</section>
+
+<section class="contact">
+
+<h2>Contact Us</h2>
+
+<p>Email: pompey7534@gmail.com</p>
+
+<p>Thank you for visiting POMPEY.</p>
+
+</section>
+
+<footer>
+
+© 2026 POMPEY | All Rights Reserved
+
+</footer>
+
+</body>
+</html>
