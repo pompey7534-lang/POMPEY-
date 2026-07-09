@@ -1,61 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
 <title>POMPEY - My Orders</title>
 
-<link rel="stylesheet" href="css/style.css">
-
 <style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
 body{
-    margin:0;
-    font-family:Arial,sans-serif;
-    background:#f4f4f4;
+background:#f2f2f2;
 }
 
 header{
-    background:#0d6efd;
-    color:white;
-    padding:15px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+background:#0d6efd;
+color:white;
+padding:15px 25px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+header a{
+color:white;
+text-decoration:none;
+font-weight:bold;
 }
 
 .container{
-    width:90%;
-    max-width:1000px;
-    margin:30px auto;
-}
-
-.card{
-    background:white;
-    border-radius:10px;
-    padding:20px;
-    box-shadow:0 5px 15px rgba(0,0,0,.1);
+width:95%;
+max-width:1000px;
+margin:30px auto;
 }
 
 .order{
-    border:1px solid #ddd;
-    border-radius:10px;
-    padding:15px;
-    margin:15px 0;
+background:white;
+border-radius:12px;
+padding:20px;
+margin-bottom:20px;
+box-shadow:0 4px 10px rgba(0,0,0,.1);
+}
+
+.order h2{
+color:#0d6efd;
+margin-bottom:10px;
+}
+
+.row{
+margin:8px 0;
+}
+
+.products{
+margin-top:15px;
+padding-top:15px;
+border-top:1px solid #ddd;
+}
+
+.item{
+display:flex;
+justify-content:space-between;
+margin:8px 0;
 }
 
 .status{
-    color:green;
-    font-weight:bold;
+display:inline-block;
+padding:8px 15px;
+background:#28a745;
+color:white;
+border-radius:20px;
+margin-top:15px;
 }
 
-button{
-    padding:10px 20px;
-    border:none;
-    border-radius:6px;
-    cursor:pointer;
-    background:#0d6efd;
-    color:white;
+.empty{
+text-align:center;
+padding:80px;
+font-size:22px;
+color:#777;
 }
+
 </style>
 
 </head>
@@ -66,51 +96,84 @@ button{
 
 <h2>POMPEY Orders</h2>
 
-<button onclick="window.location.href='dashboard.html'">
-Dashboard
-</button>
+<a href="dashboard.html">Dashboard</a>
 
 </header>
 
-<div class="container">
-
-<div class="card">
-
-<h2>My Orders</h2>
-
-<div id="ordersList">
-
-<p>No orders found.</p>
-
-</div>
-
-</div>
+<div class="container" id="ordersContainer">
 
 </div>
 
 <script>
 
-let orders = JSON.parse(localStorage.getItem("orders")) || [];
+const container=document.getElementById("ordersContainer");
 
-const list = document.getElementById("ordersList");
+let orders=JSON.parse(localStorage.getItem("orders"))||[];
 
-if(orders.length>0){
+if(orders.length===0){
 
-list.innerHTML="";
+container.innerHTML=`
+<div class="empty">
+📦<br><br>
+No Orders Yet
+</div>
+`;
 
-orders.forEach((order,index)=>{
+}else{
 
-list.innerHTML += `
+orders.reverse().forEach((order,index)=>{
+
+let products="";
+
+order.items.forEach(item=>{
+
+products+=`
+
+<div class="item">
+
+<span>${item.name} × ${item.qty}</span>
+
+<span>₹${item.price*item.qty}</span>
+
+</div>
+
+`;
+
+});
+
+container.innerHTML+=`
 
 <div class="order">
 
-<h3>Order #${index+1}</h3>
+<h2>Order #${orders.length-index}</h2>
 
-<p><strong>Date:</strong> ${order.date}</p>
+<div class="row"><b>Name :</b> ${order.name}</div>
 
-<p><strong>Total:</strong> ₹${order.total}</p>
+<div class="row"><b>Mobile :</b> ${order.mobile}</div>
 
-<p class="status">Status : Confirmed</p>
+<div class="row"><b>Email :</b> ${order.email}</div>
+
+<div class="row"><b>Address :</b> ${order.address}</div>
+
+<div class="row"><b>Payment :</b> ${order.payment}</div>
+
+<div class="row"><b>Date :</b> ${order.date}</div>
+
+<div class="products">
+
+<h3>Ordered Products</h3>
+
+${products}
+
+</div>
+
+<h3>Total : ₹${order.total}</h3>
+
+<div class="status">
+
+Order Confirmed ✅
+
+</div>
 
 </div>
 
