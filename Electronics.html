@@ -164,7 +164,100 @@ text-align:center;
 
 </head>
 
-<body>
+</html>
+<script>
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+function addToCart(name,price,image){
+
+const product=cart.find(item=>item.name===name);
+
+if(product){
+
+product.qty++;
+
+}else{
+
+cart.push({
+
+name:name,
+
+price:price,
+
+image:image,
+
+qty:1
+
+});
+
+}
+
+localStorage.setItem("cart",JSON.stringify(cart));
+
+updateCart();
+
+alert(name+" Added Successfully");
+
+}
+
+function updateCart(){
+
+let total=0;
+
+cart.forEach(item=>{
+
+total+=item.qty;
+
+});
+
+document.getElementById("cartCount").innerHTML=total;
+
+}
+
+updateCart();
+
+const search=document.getElementById("searchBox");
+
+search.addEventListener("keyup",function(){
+
+const value=this.value.toLowerCase();
+
+const cards=document.querySelectorAll(".card");
+
+cards.forEach(card=>{
+
+const text=card.innerText.toLowerCase();
+
+card.style.display=text.includes(value)?"block":"none";
+
+});
+
+});
+
+function filterCategory(type){
+
+const cards=document.querySelectorAll(".card");
+
+cards.forEach(card=>{
+
+if(card.classList.contains(type)){
+
+card.style.display="block";
+
+}else{
+
+card.style.display="none";
+
+}
+
+});
+
+}
+
+</script>
+
+</body>
 
 <header>
 
@@ -187,8 +280,14 @@ placeholder="Search Electronics...">
 
 <a href="index.html">Home</a>
 
-<a href="cart.html">🛒 Cart</a>
+<a href="cart.html">
 
+🛒 Cart
+
+(<span id="cartCount">0</span>)
+
+</a>
+  
 <a href="dashboard.html">Dashboard</a>
 
 </div>
@@ -213,11 +312,14 @@ placeholder="Search Electronics...">
 
 <button onclick="filterCategory('accessory')">Accessories</button>
 
-</section>
 </div>
+  
+</section>
+
 
 <section class="products">
-<div class="card">
+<div class="card mobile">
+
 <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400">
 <h3>Apple iPhone 16</h3>
 <div class="rating">⭐⭐⭐⭐⭐</div>
@@ -226,7 +328,7 @@ placeholder="Search Electronics...">
 <button class="cart">Add to Cart</button>
 </div>
 
-<div class="card">
+<div class="card mobile">
 <img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=400">
 <h3>Samsung Galaxy S25</h3>
 <div class="rating">⭐⭐⭐⭐⭐</div>
@@ -235,7 +337,7 @@ placeholder="Search Electronics...">
 <button class="cart">Add to Cart</button>
 </div>
 
-<div class="card">
+<div class="card laptop">
 <img src="https://images.unsplash.com/photo-1517336714739-489689fd1ca8?w=400">
 <h3>Dell Inspiron Laptop</h3>
 <div class="rating">⭐⭐⭐⭐⭐</div>
@@ -244,7 +346,7 @@ placeholder="Search Electronics...">
 <button class="cart">Add to Cart</button>
 </div>
 
-<div class="card">
+<div class="card headphone">
 <img src="https://images.unsplash.com/photo-1546054454-aa26e2b734c7?w=400">
 <h3>Apple AirPods</h3>
 <div class="rating">⭐⭐⭐⭐⭐</div>
@@ -253,7 +355,7 @@ placeholder="Search Electronics...">
 <button class="cart">Add to Cart</button>
 </div>
 
-<div class="card">
+<div class="card headphone">
 <img src="https://images.unsplash.com/photo-1585298723682-7115561c51b7?w=400">
 <h3>Boat Airdopes</h3>
 <div class="rating">⭐⭐⭐⭐☆</div>
@@ -262,7 +364,7 @@ placeholder="Search Electronics...">
 <button class="cart">Add to Cart</button>
 </div>
 
-<div class="card">
+<div class="card tv">
 <img src="https://images.unsplash.com/photo-1545454675-3531b543be5d?w=400">
 <h3>Samsung Smart TV</h3>
 <div class="rating">⭐⭐⭐⭐⭐</div>
@@ -271,16 +373,16 @@ placeholder="Search Electronics...">
 <button class="cart">Add to Cart</button>
 </div>
 
-<div class="card">
+<div class="card tv">
 <img src="https://images.unsplash.com/photo-1580894908361-967195033215?w=400">
-<h3>LG Refrigerator</h3>
+<h3>LG desktop</h3>
 <div class="rating">⭐⭐⭐⭐⭐</div>
 <div class="old">₹31,990</div>
 <div class="price">₹27,490</div>
 <button class="cart">Add to Cart</button>
 </div>
 
-<div class="card">
+<div class="card accessory">
 <img src="https://images.unsplash.com/photo-1580894894513-541e068a3e2b?w=400">
 <h3>IFB Washing Machine</h3>
 <div class="rating">⭐⭐⭐⭐⭐</div>
@@ -289,7 +391,7 @@ placeholder="Search Electronics...">
 <button class="cart">Add to Cart</button>
 </div>
 
-<div class="card">
+<div class="card mobile">
 <img src="https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?w=400">
 <h3>Apple iPad</h3>
 <div class="rating">⭐⭐⭐⭐⭐</div>
@@ -298,7 +400,7 @@ placeholder="Search Electronics...">
 <button class="cart">Add to Cart</button>
 </div>
 
-<div class="card">
+<div class="card accessory">
 <img src="https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=400">
 <h3>Mi Power Bank</h3>
 <div class="rating">⭐⭐⭐⭐☆</div>
@@ -306,7 +408,8 @@ placeholder="Search Electronics...">
 <div class="price">₹1,999</div>
 <button class="cart">Add to Cart</button>
 </div>
-<div class="card">
+  
+<div class="card laptop">
 <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=400">
 <h3>HP Pavilion Laptop</h3>
 <div class="rating">⭐⭐⭐⭐⭐</div>
@@ -315,7 +418,7 @@ placeholder="Search Electronics...">
 <button class="cart" onclick="addToCart('HP Pavilion Laptop',62990,'https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=400')">Add to Cart</button>
 </div>
 
-<div class="card">
+<div class="card laptop">
 <img src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=400">
 <h3>Xiaomi Pad 7</h3>
 <div class="rating">⭐⭐⭐⭐⭐</div>
@@ -324,7 +427,7 @@ placeholder="Search Electronics...">
 <button class="cart" onclick="addToCart('Xiaomi Pad 7',26999,'https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=400')">Add to Cart</button>
 </div>
 
-<div class="card">
+<div class="card headphone">
 <img src="https://images.unsplash.com/photo-1527814050087-3793815479db?w=400">
 <h3>Sony Headphones</h3>
 <div class="rating">⭐⭐⭐⭐⭐</div>
@@ -333,7 +436,7 @@ placeholder="Search Electronics...">
 <button class="cart" onclick="addToCart('Sony Headphones',8990,'https://images.unsplash.com/photo-1527814050087-3793815479db?w=400')">Add to Cart</button>
 </div>
 
-<div class="card">
+<div class="card speaker">
 <img src="https://images.unsplash.com/photo-1589003077984-894e133dabab?w=400">
 <h3>JBL Flip Speaker</h3>
 <div class="rating">⭐⭐⭐⭐⭐</div>
@@ -342,7 +445,7 @@ placeholder="Search Electronics...">
 <button class="cart" onclick="addToCart('JBL Flip Speaker',8999,'https://images.unsplash.com/photo-1589003077984-894e133dabab?w=400')">Add to Cart</button>
 </div>
 
-<div class="card">
+<div class="card accessory">
 <img src="https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=400">
 <h3>Logitech Mouse</h3>
 <div class="rating">⭐⭐⭐⭐⭐</div>
@@ -351,7 +454,7 @@ placeholder="Search Electronics...">
 <button class="cart" onclick="addToCart('Logitech Mouse',799,'https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=400')">Add to Cart</button>
 </div>
 
-<div class="card">
+<div class="card accessory">
 <img src="https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=400">
 <h3>HP Wireless Keyboard</h3>
 <div class="rating">⭐⭐⭐⭐☆</div>
@@ -360,7 +463,7 @@ placeholder="Search Electronics...">
 <button class="cart" onclick="addToCart('HP Wireless Keyboard',1299,'https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=400')">Add to Cart</button>
 </div>
 
-<div class="card">
+<div class="card accessory">
 <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400">
 <h3>65W Fast Charger</h3>
 <div class="rating">⭐⭐⭐⭐⭐</div>
@@ -369,7 +472,7 @@ placeholder="Search Electronics...">
 <button class="cart" onclick="addToCart('65W Fast Charger',1499,'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400')">Add to Cart</button>
 </div>
 
-<div class="card">
+<div class="card accessory">
 <img src="https://images.unsplash.com/photo-1587033411391-5d9e51cce126?w=400">
 <h3>SanDisk 128GB USB</h3>
 <div class="rating">⭐⭐⭐⭐⭐</div>
@@ -378,7 +481,7 @@ placeholder="Search Electronics...">
 <button class="cart" onclick="addToCart('SanDisk 128GB USB',899,'https://images.unsplash.com/photo-1587033411391-5d9e51cce126?w=400')">Add to Cart</button>
 </div>
 
-<div class="card">
+<div class="card accessory">
 <img src="https://images.unsplash.com/photo-1587614382346-4ec70e388b28?w=400">
 <h3>Canon PIXMA Printer</h3>
 <div class="rating">⭐⭐⭐⭐⭐</div>
@@ -387,7 +490,7 @@ placeholder="Search Electronics...">
 <button class="cart" onclick="addToCart('Canon PIXMA Printer',6999,'https://images.unsplash.com/photo-1587614382346-4ec70e388b28?w=400')">Add to Cart</button>
 </div>
 
-<div class="card">
+<div class="card mobile">
 <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400">
 <h3>OnePlus 13</h3>
 <div class="rating">⭐⭐⭐⭐⭐</div>
