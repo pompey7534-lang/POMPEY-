@@ -115,10 +115,10 @@ grid-template-columns:1fr;
 <option>Net Banking</option>
 </select>
 
-<button type="submit">
-Place Order
+<button type="button" onclick="payNow()">
+Pay Now
 </button>
-
+  
 </form>
 
 </div>
@@ -137,81 +137,47 @@ Grand Total ₹<span id="grandTotal">0</span>
 
 </div>
 
+
+<script src="https://checkout.razorpay.com/v1/checkout.js">
+
 <script>
 
-let cart=JSON.parse(localStorage.getItem("cart"))||[];
+let total = 500; // Replace this with your actual cart total
 
-let summary=document.getElementById("summary");
+function payNow(){
 
-let total=0;
+const options = {
 
-cart.forEach(item=>{
+key:"YOUR_RAZORPAY_KEY_ID",
 
-let subtotal=item.price*item.qty;
+amount: total * 100,
 
-total+=subtotal;
+currency:"INR",
 
-summary.innerHTML+=`
+name:"POMPEY",
 
-<div class="order-item">
+description:"Order Payment",
 
-<span>${item.name} × ${item.qty}</span>
+handler:function(response){
 
-<span>₹${subtotal}</span>
-
-</div>
-
-`;
-
-});
-
-document.getElementById("grandTotal").innerHTML=total;
-
-document.getElementById("checkoutForm").addEventListener("submit",function(e){
-
-e.preventDefault();
-
-let orders=JSON.parse(localStorage.getItem("orders"))||[];
-
-orders.push({
-
-name:document.getElementById("name").value,
-
-mobile:document.getElementById("mobile").value,
-
-email:document.getElementById("email").value,
-
-address:document.getElementById("address").value,
-
-city:document.getElementById("city").value,
-
-state:document.getElementById("state").value,
-
-pincode:document.getElementById("pincode").value,
-
-payment:document.getElementById("payment").value,
-
-items:cart,
-
-total:total,
-
-date:new Date().toLocaleString(),
-
-status:"Confirmed"
-
-});
-
-localStorage.setItem("orders",JSON.stringify(orders));
-
-localStorage.removeItem("cart");
-
-alert("Order Placed Successfully!");
+alert("Payment Successful");
 
 window.location.href="orders.html";
 
-});
+}
+
+};
+
+const rzp = new Razorpay(options);
+
+rzp.open();
+
+}
 
 </script>
-
+  
+  
+</script>
+  
 </body>
 </html>
