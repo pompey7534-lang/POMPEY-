@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>POMPEY Checkout</title>
+<title>POMPEY Secure Checkout</title>
 
 <style>
 
@@ -15,19 +15,21 @@ font-family:Arial,sans-serif;
 }
 
 body{
-background:#f3f3f3;
+background:#f5f5f5;
 }
 
 header{
 background:#0d6efd;
-color:#fff;
-padding:15px;
+color:white;
+padding:18px;
 text-align:center;
+font-size:24px;
+font-weight:bold;
 }
 
 .container{
 width:95%;
-max-width:1100px;
+max-width:1200px;
 margin:25px auto;
 display:grid;
 grid-template-columns:2fr 1fr;
@@ -37,12 +39,13 @@ gap:20px;
 .card{
 background:#fff;
 padding:20px;
-border-radius:10px;
+border-radius:12px;
 box-shadow:0 5px 15px rgba(0,0,0,.1);
 }
 
 h2{
 margin-bottom:15px;
+color:#0d6efd;
 }
 
 input,
@@ -52,12 +55,13 @@ width:100%;
 padding:12px;
 margin:10px 0;
 border:1px solid #ccc;
-border-radius:6px;
+border-radius:8px;
 font-size:16px;
 }
 
 textarea{
 height:90px;
+resize:none;
 }
 
 .order-item{
@@ -77,8 +81,9 @@ font-size:17px;
 .summary h3{
 display:flex;
 justify-content:space-between;
-margin-top:15px;
+margin-top:20px;
 color:#0d6efd;
+font-size:22px;
 }
 
 button{
@@ -100,9 +105,7 @@ background:#218838;
 @media(max-width:768px){
 
 .container{
-
 grid-template-columns:1fr;
-
 }
 
 }
@@ -115,11 +118,13 @@ grid-template-columns:1fr;
 
 <header>
 
-<h1>POMPEY Secure Checkout</h1>
+POMPEY Secure Checkout
 
 </header>
 
 <div class="container">
+
+<!-- LEFT SIDE -->
 
 <div class="card">
 
@@ -127,27 +132,54 @@ grid-template-columns:1fr;
 
 <form id="checkoutForm">
 
-<input type="text" id="name" placeholder="Full Name" required>
+<input
+type="text"
+id="name"
+placeholder="Full Name"
+required>
 
-<input type="tel" id="mobile" placeholder="Mobile Number" required>
+<input
+type="tel"
+id="mobile"
+placeholder="Mobile Number"
+required>
 
-<input type="email" id="email" placeholder="Email Address" required>
+<input
+type="email"
+id="email"
+placeholder="Email Address"
+required>
 
-<textarea id="address" placeholder="Complete Address" required></textarea>
+<textarea
+id="address"
+placeholder="Complete Address"
+required></textarea>
 
-<input type="text" id="city" placeholder="City" required>
+<input
+type="text"
+id="city"
+placeholder="City"
+required>
 
-<input type="text" id="state" placeholder="State" required>
+<input
+type="text"
+id="state"
+placeholder="State"
+required>
 
-<input type="text" id="pincode" placeholder="Pincode" required>
+<input
+type="text"
+id="pincode"
+placeholder="Pincode"
+required>
 
 <h2>Payment Method</h2>
 
-<select id="rzp_test_TBXDEp17mpy2hf">
+<select id="payment">
 
 <option>Cash on Delivery</option>
 
-<option>UPI</option>
+<option>UPI (Razorpay)</option>
 
 <option>Credit Card</option>
 
@@ -155,8 +187,9 @@ grid-template-columns:1fr;
 
 <option>Net Banking</option>
 
+<option>Wallet</option>
+
 </select>
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
 <button type="submit">
 
@@ -168,21 +201,49 @@ Place Order
 
 </div>
 
+<!-- RIGHT SIDE -->
+
 <div class="card">
 
 <h2>Order Summary</h2>
 
-<div id="summary"></div>
+<div id="summary">
+
+<!-- Products will appear here -->
+
+</div>
 
 <hr><br>
 
 <div class="summary">
 
-<p><span>Products Total</span><span>₹<span id="subtotal">0</span></span></p>
+<p>
 
-<p><span>Delivery Charge</span><span>₹20</span></p>
+<span>Products Total</span>
 
-<p><span>GST (2%)</span><span>₹<span id="gst">0</span></span></p>
+<span>
+₹<span id="subtotal">0</span>
+</span>
+
+</p>
+
+<p>
+
+<span>Delivery Charge</span>
+
+<span>₹20</span>
+
+</p>
+
+<p>
+
+<span>GST (2%)</span>
+
+<span>
+₹<span id="gst">0</span>
+</span>
+
+</p>
 
 <hr><br>
 
@@ -190,115 +251,155 @@ Place Order
 
 <span>Grand Total</span>
 
-<span>₹<span id="grandTotal">0</span></span>
+<span>
+₹<span id="grandTotal">0</span>
+</span>
 
 </h3>
 
 </div>
 
-
-    
 </div>
+
+</div>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
 <script>
 
-let cart=JSON.parse(localStorage.getItem("cart"))||[];
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-let summary=document.getElementById("summary");
+let subtotal = 0;
 
-let subtotal=0;
+cart.forEach(item=>{
+    subtotal += item.price * item.qty;
+});
+
+const deliveryCharge = 20;
+const gst = subtotal * 0.02;
+const grandTotal = subtotal + deliveryCharge + gst;
+
+document.getElementById("subtotal").innerHTML = subtotal.toFixed(2);
+document.getElementById("gst").innerHTML = gst.toFixed(2);
+document.getElementById("grandTotal").innerHTML = grandTotal.toFixed(2);
+
+// Display products
+let summary = document.getElementById("summary");
 
 cart.forEach(item=>{
 
-let itemTotal=item.price*item.qty;
-
-subtotal+=itemTotal;
-
-summary.innerHTML+=`
-
+summary.innerHTML += `
 <div class="order-item">
-
 <span>${item.name} × ${item.qty}</span>
-
-<span>₹${itemTotal}</span>
-
+<span>₹${item.price * item.qty}</span>
 </div>
-
 `;
 
 });
 
-const deliveryCharge=20;
+document.getElementById("checkoutForm").addEventListener("submit",function(e){
 
-const gst=subtotal*0.02;
-
-const grandTotal=subtotal+deliveryCharge+gst;
-
-document.getElementById("subtotal").innerHTML=subtotal.toFixed(2);
-
-document.getElementById("gst").innerHTML=gst.toFixed(2);
-
-document.getElementById("grandTotal").innerHTML=grandTotal.toFixed(2);
-
-document.getElementById("checkoutForm").addEventListener("submit", function(e){
 e.preventDefault();
 
-const options = {
-    key: "rzp_test_TBXDEp17mpy2hf",
-    amount: Math.round(grandTotal * 100),
-    currency: "INR",
-    name: "POMPEY",
-    description: "Order Payment",
+const paymentMethod =
+document.getElementById("payment").value;
 
-    handler: function (response) {
+if(paymentMethod=="Cash on Delivery"){
 
-        let orders = JSON.parse(localStorage.getItem("orders")) || [];
+saveOrder("Cash on Delivery");
 
-        orders.push({
-            paymentId: response.razorpay_payment_id,
-            name: document.getElementById("name").value,
-            mobile: document.getElementById("mobile").value,
-            email: document.getElementById("email").value,
-            address: document.getElementById("address").value,
-            city: document.getElementById("city").value,
-            state: document.getElementById("state").value,
-            pincode: document.getElementById("pincode").value,
-            payment: "Razorpay",
-            items: cart,
-            subtotal: subtotal,
-            delivery: deliveryCharge,
-            gst: gst,
-            total: grandTotal,
-            date: new Date().toLocaleString(),
-            status: "Paid"
-        });
+return;
 
-        localStorage.setItem("orders", JSON.stringify(orders));
-        localStorage.removeItem("cart");
+}
 
-        alert("Payment Successful!");
+const options={
 
-        window.location.href = "orders.html";
-    },
+key:"rzp_test_TBXDEp17mpy2hf",
 
-    prefill: {
-        name: document.getElementById("name").value,
-        email: document.getElementById("email").value,
-        contact: document.getElementById("mobile").value
-    },
+amount:Math.round(grandTotal*100),
 
-    theme: {
-        color: "#0d6efd"
-    }
+currency:"INR",
+
+name:"POMPEY",
+
+description:"Shopping Order",
+
+handler:function(response){
+
+saveOrder("Razorpay",response.razorpay_payment_id);
+
+},
+
+prefill:{
+
+name:document.getElementById("name").value,
+
+email:document.getElementById("email").value,
+
+contact:document.getElementById("mobile").value
+
+},
+
+theme:{
+color:"#0d6efd"
+}
+
 };
 
-var rzp = new Razorpay(options);
+const rzp=new Razorpay(options);
+
 rzp.open();
 
 });
 
+function saveOrder(payment,paymentId=""){
 
-</script>
-    
-</body>
-  </html>
+let orders =
+JSON.parse(localStorage.getItem("orders")) || [];
+
+orders.push({
+
+paymentId:paymentId,
+
+name:document.getElementById("name").value,
+
+mobile:document.getElementById("mobile").value,
+
+email:document.getElementById("email").value,
+
+address:document.getElementById("address").value,
+
+city:document.getElementById("city").value,
+
+state:document.getElementById("state").value,
+
+pincode:document.getElementById("pincode").value,
+
+payment:payment,
+
+items:cart,
+
+subtotal:subtotal,
+
+delivery:deliveryCharge,
+
+gst:gst,
+
+total:grandTotal,
+
+status:"Confirmed",
+
+date:new Date().toLocaleString()
+
+});
+
+localStorage.setItem("orders",JSON.stringify(orders));
+
+localStorage.removeItem("cart");
+
+alert("Order Placed Successfully!");
+
+window.location.href="orders.html";
+
+}
+
+    </script>
