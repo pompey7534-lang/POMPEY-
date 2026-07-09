@@ -117,8 +117,51 @@ margin-top:30px;
 </style>
 
 </head>
+<script>
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-<body>
+function addToCart(name, price, image) {
+
+    const existingProduct = cart.find(product => product.name === name);
+
+    if (existingProduct) {
+        existingProduct.qty += 1;
+    } else {
+        cart.push({
+            name: name,
+            price: price,
+            image: image,
+            qty: 1
+        });
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    updateCartCount();
+
+    alert(name + " added to cart!");
+}
+
+function updateCartCount() {
+
+    let total = 0;
+
+    cart.forEach(item => {
+        total += item.qty;
+    });
+
+    const count = document.getElementById("cartCount");
+
+    if (count) {
+        count.innerHTML = total;
+    }
+
+}
+
+updateCartCount();
+</script>
+  
+</body>
 
 <header>
 
@@ -128,8 +171,9 @@ margin-top:30px;
 
 <a href="index.html">Home</a>
 
-<a href="cart.html">Cart</a>
-
+<a href="cart.html">
+🛒 Cart (<span id="cartCount">0</span>)
+</a>
 <a href="dashboard.html">Dashboard</a>
 
 </div>
@@ -144,7 +188,7 @@ id="search"
 placeholder="Search Fast Food...">
 
 </div>
-
+<section> 
 <div class="products">
 
 <div class="card">
@@ -236,6 +280,7 @@ placeholder="Search Fast Food...">
 <div class="price">₹249</div>
 <button>Add to Cart</button>
 </div>
+  
 <div class="card">
 <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=400" alt="Taco">
 <h3>Mexican Taco</h3>
@@ -326,7 +371,7 @@ placeholder="Search Fast Food...">
 <button onclick="addToCart('Chocolate Donut',79,'https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=400')">Add to Cart</button>
   </div>
 </div>
-
+</section>
 <footer>
 
 © 2026 POMPEY Fast Food Store
