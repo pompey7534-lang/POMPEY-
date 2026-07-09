@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>POMPEY Electronics</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f5f5f5;
+}
+
+header{
+background:#0d47a1;
+padding:15px 30px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+color:white;
+position:sticky;
+top:0;
+z-index:999;
+}
+
+.logo{
+font-size:30px;
+font-weight:bold;
+}
+
+.search{
+width:45%;
+display:flex;
+}
+
+.search input{
+width:100%;
+padding:12px;
+border:none;
+border-radius:6px 0 0 6px;
+}
+
+.search button{
+padding:12px 20px;
+background:#ff9800;
+border:none;
+cursor:pointer;
+border-radius:0 6px 6px 0;
+}
+
+.menu a{
+color:white;
+text-decoration:none;
+margin-left:20px;
+font-weight:bold;
+}
+
+.banner{
+height:280px;
+background:linear-gradient(90deg,#1976d2,#42a5f5);
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+color:white;
+}
+
+.banner h1{
+font-size:50px;
+}
+
+.banner p{
+font-size:22px;
+margin-top:15px;
+}
+
+.categories{
+display:flex;
+justify-content:center;
+gap:20px;
+padding:20px;
+background:white;
+overflow-x:auto;
+}
+
+.categories button{
+padding:12px 20px;
+border:none;
+background:#1976d2;
+color:white;
+border-radius:25px;
+cursor:pointer;
+}
+
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+padding:25px;
+}
+
+.card{
+background:white;
+border-radius:12px;
+padding:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+text-align:center;
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+}
+
+.card img{
+width:180px;
+height:180px;
+object-fit:contain;
+}
+
+.rating{
+color:#ff9800;
+margin:8px;
+}
+
+.price{
+font-size:22px;
+font-weight:bold;
+color:#1976d2;
+}
+
+.old{
+text-decoration:line-through;
+color:gray;
+}
+
+button.cart{
+width:100%;
+margin-top:12px;
+padding:12px;
+background:#ff9800;
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
+}
+
+footer{
+background:#111;
+color:white;
+padding:20px;
+text-align:center;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+📱 POMPEY
+</div>
+
+<div class="search">
+
+<input
+type="text"
+id="searchBox"
+placeholder="Search Electronics...">
+
+<button>🔍</button>
+
+</div>
+
+<div class="menu">
+
+<a href="index.html">Home</a>
+
+<a href="cart.html">🛒 Cart</a>
+
+<a href="dashboard.html">Dashboard</a>
+
+</div>
+
+</header>
+
+<section class="banner">
+
+<h1>Electronics Mega Sale</h1>
+
+<p>Up to 60% OFF on Top Brand</p>
+
+<button onclick="filterCategory('mobile')">Mobiles</button>
+
+<button onclick="filterCategory('laptop')">Laptops</button>
+
+<button onclick="filterCategory('tv')">TV</button>
+
+<button onclick="filterCategory('headphone')">Headphones</button>
+
+<button onclick="filterCategory('speaker')">Speakers</button>
+
+<button onclick="filterCategory('accessory')">Accessories</button>
+
+  
+</div>
+
+<section class="products">
+<div class="card">
+<img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400">
+<h3>Apple iPhone 16</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹84,900</div>
+<div class="price">₹79,900</div>
+<button class="cart">Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=400">
+<h3>Samsung Galaxy S25</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹79,999</div>
+<div class="price">₹74,999</div>
+<button class="cart">Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1517336714739-489689fd1ca8?w=400">
+<h3>Dell Inspiron Laptop</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹59,990</div>
+<div class="price">₹54,990</div>
+<button class="cart">Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1546054454-aa26e2b734c7?w=400">
+<h3>Apple AirPods</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹13,900</div>
+<div class="price">₹12,900</div>
+<button class="cart">Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1585298723682-7115561c51b7?w=400">
+<h3>Boat Airdopes</h3>
+<div class="rating">⭐⭐⭐⭐☆</div>
+<div class="old">₹1,999</div>
+<div class="price">₹1,499</div>
+<button class="cart">Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1545454675-3531b543be5d?w=400">
+<h3>Samsung Smart TV</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹34,990</div>
+<div class="price">₹29,990</div>
+<button class="cart">Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1580894908361-967195033215?w=400">
+<h3>LG Refrigerator</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹31,990</div>
+<div class="price">₹27,490</div>
+<button class="cart">Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1580894894513-541e068a3e2b?w=400">
+<h3>IFB Washing Machine</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹34,990</div>
+<div class="price">₹29,990</div>
+<button class="cart">Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?w=400">
+<h3>Apple iPad</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹39,900</div>
+<div class="price">₹34,900</div>
+<button class="cart">Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=400">
+<h3>Mi Power Bank</h3>
+<div class="rating">⭐⭐⭐⭐☆</div>
+<div class="old">₹2,499</div>
+<div class="price">₹1,999</div>
+<button class="cart">Add to Cart</button>
+</div>
+<div class="card">
+<img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=400">
+<h3>HP Pavilion Laptop</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹67,990</div>
+<div class="price">₹62,990</div>
+<button class="cart" onclick="addToCart('HP Pavilion Laptop',62990,'https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=400')">Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=400">
+<h3>Xiaomi Pad 7</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹29,999</div>
+<div class="price">₹26,999</div>
+<button class="cart" onclick="addToCart('Xiaomi Pad 7',26999,'https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=400')">Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1527814050087-3793815479db?w=400">
+<h3>Sony Headphones</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹9,990</div>
+<div class="price">₹8,990</div>
+<button class="cart" onclick="addToCart('Sony Headphones',8990,'https://images.unsplash.com/photo-1527814050087-3793815479db?w=400')">Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1589003077984-894e133dabab?w=400">
+<h3>JBL Flip Speaker</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹9,999</div>
+<div class="price">₹8,999</div>
+<button class="cart" onclick="addToCart('JBL Flip Speaker',8999,'https://images.unsplash.com/photo-1589003077984-894e133dabab?w=400')">Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=400">
+<h3>Logitech Mouse</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹999</div>
+<div class="price">₹799</div>
+<button class="cart" onclick="addToCart('Logitech Mouse',799,'https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=400')">Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=400">
+<h3>HP Wireless Keyboard</h3>
+<div class="rating">⭐⭐⭐⭐☆</div>
+<div class="old">₹1,699</div>
+<div class="price">₹1,299</div>
+<button class="cart" onclick="addToCart('HP Wireless Keyboard',1299,'https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?w=400')">Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400">
+<h3>65W Fast Charger</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹1,899</div>
+<div class="price">₹1,499</div>
+<button class="cart" onclick="addToCart('65W Fast Charger',1499,'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400')">Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1587033411391-5d9e51cce126?w=400">
+<h3>SanDisk 128GB USB</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹1,199</div>
+<div class="price">₹899</div>
+<button class="cart" onclick="addToCart('SanDisk 128GB USB',899,'https://images.unsplash.com/photo-1587033411391-5d9e51cce126?w=400')">Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1587614382346-4ec70e388b28?w=400">
+<h3>Canon PIXMA Printer</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹7,999</div>
+<div class="price">₹6,999</div>
+<button class="cart" onclick="addToCart('Canon PIXMA Printer',6999,'https://images.unsplash.com/photo-1587614382346-4ec70e388b28?w=400')">Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400">
+<h3>OnePlus 13</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹74,999</div>
+<div class="price">₹69,999</div>
+<button class="cart" onclick="addToCart('OnePlus 13',69999,'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400')">Add to Cart</button>
+  </div>
+</section>
+
+<footer>
+© 2026 POMPEY Electronics Store
+</footer>
+
+  
+                            
