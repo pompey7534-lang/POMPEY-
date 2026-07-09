@@ -38,10 +38,10 @@ font-weight:bold;
 }
 
 .circle{
-width:120px;
-height:120px;
+width:60px;
+height:60px;
 border-radius:50%;
-background:red;
+background:white;
 color:#0f9d58;
 display:flex;
 justify-content:center;
@@ -162,273 +162,138 @@ padding:30px;
 text-align:center;
 margin-top:40px;
 }
-
-.cart-box{
-    background:#ffffff;
-    color:#0f9d58;
-    padding:10px 15px;
-    border-radius:25px;
-    font-weight:bold;
-}
-
-.wishlist{
-    cursor:pointer;
-    font-size:24px;
-    color:#bbb;
-    margin:10px 0;
-    transition:.3s;
-}
-
-.wishlist:hover{
-    color:red;
-}
-
 </style>
 
 </head>
 
 <body>
 
-<!-- TOP HEADER -->
-
-<header class="top-header">
+<header>
 
 <div class="logo">
-
-<h2>🛒 POMPEY</h2>
-
+<div class="circle">P</div>
+POMPEY
 </div>
 
-<div class="search-box">
-
-<input
-type="text"
-placeholder="Search Grocery, Vegetables, Fruits, Snacks...">
-
-<button>🔍</button>
-
+<div class="search">
+<input type="text" placeholder="Search Grocery Products...">
 </div>
 
-<div class="header-menu">
-
-<a href="dashboard.html">👤 Account</a>
-
-<a href="orders.html">📦 Orders</a>
-
-<a href="cart.html">🛒 Cart</a>
-
-</div>
+<nav>
+<a href="#">Home</a>
+<a href="#">Grocery</a>
+<a href="#">Offers</a>
+<a href="#">Cart</a>
+</nav>
 
 </header>
 
-
-<!-- CATEGORY BAR -->
-
-<div class="category-bar">
-
-<a href="#">All</a>
-
-<a href="#">Fresh Vegetables</a>
-
-<a href="#">Fruits</a>
-
-<a href="#">Dairy</a>
-
-<a href="#">Rice</a>
-
-<a href="#">Atta</a>
-
-<a href="#">Oil</a>
-
-<a href="#">Snacks</a>
-
-<a href="#">Beverages</a>
-
-<a href="#">Cleaning</a>
-
-<a href="#">Personal Care</a>
-
-</div>
-
-
-<!-- HERO -->
-
 <section class="hero">
 
-<div class="hero-text">
+<h1>Welcome to POMPEY Grocery</h1>
 
-<h1>Fresh Grocery Delivered in Minutes</h1>
-
-<p>
-
-Flat <b>50% OFF</b>
-
-on your first order
-
-</p>
-
-<a href="#products">
-
-<button>
-
-Shop Now
-
-</button>
-
-</a>
-
-</div>
+<p>Fast Delivery • Best Prices • Fresh Products</p>
 
 </section>
 
+<div class="offer">
+🔥 Super Sale - Up to 50% OFF Today 🔥
+</div>
 
-<!-- OFFER CARDS -->
+<div class="categories">
 
-<section class="offers">
+<div class="cat">Vegetables</div>
 
-<div class="offer-card">
+<div class="cat">Fruits</div>
 
-<h3>🥬 Fresh Vegetables</h3>
+<div class="cat">Dairy</div>
 
-<p>Up to 40% OFF</p>
+<div class="cat">Snacks</div>
+
+<div class="cat">Beverages</div>
+
+<div class="cat">Bakery</div>
+
+<div class="cat">Rice</div>
+
+<div class="cat">Atta</div>
 
 </div>
 
-<div class="offer-card">
+<section class="products">
 
-<h3>🥛 Dairy Products</h3>
-
-<p>Buy 2 Get 1 Free</p>
-
-</div>
-
-<div class="offer-card">
-
-<h3>🍎 Fresh Fruits</h3>
-
-<p>Starting ₹29</p>
-
-</div>
-
-<div class="offer-card">
-
-<h3>🍪 Snacks</h3>
-
-<p>Flat 30% OFF</p>
-
-</div>
-
-</section>
-
-<!-- PRODUCT SECTION -->
-
-<section id="products">
-
-<h2 class="title">
-
-Today's Best Deals
-
-</h2>
-
-<div class="products">
- <div class="product-card">
-<img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400" alt="Rice">
+<div class="card">
+<img src="https://via.placeholder.com/150" alt="Rice">
 <h3>Basmati Rice 5kg</h3>
-<p class="rating">⭐⭐⭐⭐⭐ (245)</p>
-<p><del>₹799</del> <b>₹599</b></p>
+<div class="price">₹499</div>
 <button>Add to Cart</button>
 </div>
 
-<div class="product-card">
-<img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400" alt="Atta">
-<h3>Aashirvaad Atta 10kg</h3>
-<p class="rating">⭐⭐⭐⭐☆ (189)</p>
-<p><del>₹650</del> <b>₹499</b></p>
+<div class="card">
+<img src="https://via.placeholder.com/150" alt="Oil">
+<h3>Fortune Oil 1L</h3>
+<div class="price">₹165</div>
 <button>Add to Cart</button>
 </div>
 
-<div class="product-card">
-<img src="https://images.unsplash.com/photo-1626201850125-4b22b8b9d5f8?w=400" alt="Oil">
-<h3>Fortune Sunflower Oil 1L</h3>
-<p class="rating">⭐⭐⭐⭐⭐ (320)</p>
-<p><del>₹220</del> <b>₹189</b></p>
+<div class="card">
+<img src="https://via.placeholder.com/150" alt="Milk">
+<h3>Fresh Milk 1L</h3>
+<div class="price">₹68</div>
 <button>Add to Cart</button>
 </div>
 
-<div class="product-card">
-<img src="https://images.unsplash.com/photo-1550583724-b2692b85b150?w=400" alt="Milk">
-<h3>Amul Milk 1L</h3>
-<p class="rating">⭐⭐⭐⭐⭐ (520)</p>
-<p><del>₹72</del> <b>₹68</b></p>
+<div class="card">
+<img src="https://via.placeholder.com/150" alt="Sugar">
+<h3>Sugar 1kg</h3>
+<div class="price">₹52</div>
 <button>Add to Cart</button>
 </div>
 
-<div class="product-card">
-<img src="https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?w=400" alt="Apple">
+<div class="card">
+<img src="https://via.placeholder.com/150" alt="Salt">
+<h3>Tata Salt 1kg</h3>
+<div class="price">₹30</div>
+<button>Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://via.placeholder.com/150" alt="Tea">
+<h3>Tata Tea 500g</h3>
+<div class="price">₹240</div>
+<button>Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://via.placeholder.com/150" alt="Biscuits">
+<h3>Parle-G Pack</h3>
+<div class="price">₹20</div>
+<button>Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://via.placeholder.com/150" alt="Eggs">
+<h3>Farm Eggs (12)</h3>
+<div class="price">₹90</div>
+<button>Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://via.placeholder.com/150" alt="Apple">
 <h3>Fresh Apples 1kg</h3>
-<p class="rating">⭐⭐⭐⭐☆ (175)</p>
-<p><del>₹220</del> <b>₹179</b></p>
+<div class="price">₹180</div>
 <button>Add to Cart</button>
 </div>
 
-<div class="product-card">
-<img src="https://images.unsplash.com/photo-1447175008436-054170c2e979?w=400" alt="Banana">
-<h3>Banana (12 pcs)</h3>
-<p class="rating">⭐⭐⭐⭐⭐ (298)</p>
-<p><del>₹70</del> <b>₹59</b></p>
+<div class="card">
+<img src="https://via.placeholder.com/150" alt="Tomato">
+<h3>Tomato 1kg</h3>
+<div class="price">₹40</div>
 <button>Add to Cart</button>
 </div>
 
-<div class="product-card">
-<img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400" alt="Tomato">
-<h3>Fresh Tomato 1kg</h3>
-<p class="rating">⭐⭐⭐⭐⭐ (411)</p>
-<p><del>₹60</del> <b>₹45</b></p>
-<button>Add to Cart</button>
-</div>
+</section>
 
-<div class="product-card">
-<img src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=400" alt="Potato">
-<h3>Potato 2kg</h3>
-<p class="rating">⭐⭐⭐⭐☆ (202)</p>
-<p><del>₹90</del> <b>₹70</b></p>
-<button>Add to Cart</button>
-</div>
-
-<div class="product-card">
-<img src="https://images.unsplash.com/photo-1606787366850-de6330128bfc?w=400" alt="Biscuits">
-<h3>Britannia Biscuits</h3>
-<p class="rating">⭐⭐⭐⭐⭐ (190)</p>
-<p><del>₹45</del> <b>₹35</b></p>
-<button>Add to Cart</button>
-</div>
-
-<div class="product-card">
-<img src="https://images.unsplash.com/photo-1622484212850-eb596d769edc?w=400" alt="Tea">
-<h3>Tata Tea Gold 1kg</h3>
-<p class="rating">⭐⭐⭐⭐⭐ (610)</p>
-<p><del>₹690</del> <b>₹620</b></p>
-<button>Add to Cart</button>
-</div>
-
-<div class="product-card">
-<img src="https://images.unsplash.com/photo-1580910051074-3eb694886505?w=400" alt="Sugar">
-<h3>Sugar 5kg</h3>
-<p class="rating">⭐⭐⭐⭐☆ (280)</p>
-<p><del>₹320</del> <b>₹280</b></p>
-<button>Add to Cart</button>
-</div>
-
-<div class="product-card">
-<img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400" alt="Vegetables">
-<h3>Mixed Vegetables Pack</h3>
-<p class="rating">⭐⭐⭐⭐⭐ (355)</p>
-<p><del>₹199</del> <b>₹149</b></p>
-<button>Add to Cart</button>
-</div>
-    
-</div></section>
-    
 <footer>
 
 <h2>POMPEY Grocery</h2>
@@ -441,3 +306,5 @@ Today's Best Deals
 
 </body>
 </html>
+
+
