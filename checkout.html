@@ -239,57 +239,62 @@ document.getElementById("gst").innerHTML=gst.toFixed(2);
 
 document.getElementById("grandTotal").innerHTML=grandTotal.toFixed(2);
 
-document.getElementById("checkoutForm").addEventListener("submit",function(e){
-
+document.getElementById("checkoutForm").addEventListener("submit", function(e){
 e.preventDefault();
 
-let orders=JSON.parse(localStorage.getItem("orders"))||[];
+const options = {
+    key: "rzp_live_TBXDEp17mpy2hf",
+    amount: Math.round(grandTotal * 100),
+    currency: "INR",
+    name: "POMPEY",
+    description: "Order Payment",
 
-orders.push({
+    handler: function (response) {
 
-name:document.getElementById("name").value,
+        let orders = JSON.parse(localStorage.getItem("orders")) || [];
 
-mobile:document.getElementById("mobile").value,
+        orders.push({
+            paymentId: response.razorpay_payment_id,
+            name: document.getElementById("name").value,
+            mobile: document.getElementById("mobile").value,
+            email: document.getElementById("email").value,
+            address: document.getElementById("address").value,
+            city: document.getElementById("city").value,
+            state: document.getElementById("state").value,
+            pincode: document.getElementById("pincode").value,
+            payment: "Razorpay",
+            items: cart,
+            subtotal: subtotal,
+            delivery: deliveryCharge,
+            gst: gst,
+            total: grandTotal,
+            date: new Date().toLocaleString(),
+            status: "Paid"
+        });
 
-email:document.getElementById("email").value,
+        localStorage.setItem("orders", JSON.stringify(orders));
+        localStorage.removeItem("cart");
 
-address:document.getElementById("address").value,
+        alert("Payment Successful!");
 
-city:document.getElementById("city").value,
+        window.location.href = "orders.html";
+    },
 
-state:document.getElementById("state").value,
+    prefill: {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        contact: document.getElementById("mobile").value
+    },
 
-pincode:document.getElementById("pincode").value,
+    theme: {
+        color: "#0d6efd"
+    }
+};
 
-payment:document.getElementById("payment").value,
-
-items:cart,
-
-subtotal:subtotal,
-
-delivery:deliveryCharge,
-
-gst:gst,
-
-total:grandTotal,
-
-date:new Date().toLocaleString(),
-
-status:"Confirmed"
+var rzp = new Razorpay(options);
+rzp.open();
 
 });
-
-localStorage.setItem("orders",JSON.stringify(orders));
-
-localStorage.removeItem("cart");
-
-alert("🎉 Order Placed Successfully!");
-
-window.location.href="orders.html";
-
-});
-
-</script>
 
 </body>
   </html>
