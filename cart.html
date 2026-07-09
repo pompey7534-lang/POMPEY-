@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>POMPEY - Shopping Cart</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+body{
+    font-family:Arial,sans-serif;
+    background:#f4f4f4;
+    margin:0;
+}
+
+header{
+    background:#0d6efd;
+    color:white;
+    padding:15px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.container{
+    width:90%;
+    max-width:1000px;
+    margin:30px auto;
+}
+
+.cart-box{
+    background:white;
+    border-radius:10px;
+    padding:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th,td{
+    padding:12px;
+    border-bottom:1px solid #ddd;
+    text-align:center;
+}
+
+img{
+    width:70px;
+}
+
+button{
+    background:#0d6efd;
+    color:white;
+    border:none;
+    padding:10px 20px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.remove{
+    background:red;
+}
+
+.total{
+    text-align:right;
+    font-size:22px;
+    margin-top:20px;
+}
+
+.checkout{
+    margin-top:20px;
+    text-align:right;
+}
+
+.back{
+    margin-top:20px;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h2>POMPEY Cart</h2>
+
+<button onclick="window.location.href='dashboard.html'">
+Dashboard
+</button>
+
+</header>
+
+<div class="container">
+
+<div class="cart-box">
+
+<h2>Your Shopping Cart</h2>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Product</th>
+
+<th>Name</th>
+
+<th>Price</th>
+
+<th>Qty</th>
+
+<th>Total</th>
+
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody id="cartItems">
+
+<tr>
+
+<td colspan="6">
+Your cart is empty.
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+<div class="total">
+
+Grand Total :
+₹<span id="grandTotal">0</span>
+
+</div>
+
+<div class="checkout">
+
+<button onclick="checkout()">
+Proceed to Checkout
+</button>
+
+</div>
+
+<div class="back">
+
+<button onclick="window.location.href='Grocery.html'">
+Continue Shopping
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+let cart=JSON.parse(localStorage.getItem("cart"))||[];
+
+function loadCart(){
+
+const tbody=document.getElementById("cartItems");
+
+tbody.innerHTML="";
+
+let total=0;
+
+if(cart.length===0){
+
+tbody.innerHTML="<tr><td colspan='6'>Your cart is empty.</td></tr>";
+
+document.getElementById("grandTotal").innerHTML=0;
+
+return;
+
+}
+
+cart.forEach((item,index)=>{
+
+let subtotal=item.price*item.qty;
+
+total+=subtotal;
+
+tbody.innerHTML+=`
+
+<tr>
+
+<td><img src="${item.image}" alt=""></td>
+
+<td>${item.name}</td>
+
+<td>₹${item.price}</td>
+
+<td>${item.qty}</td>
+
+<td>₹${subtotal}</td>
+
+<td>
+
+<button class="remove"
+
+onclick="removeItem(${index})">
+
+Remove
+
+</button>
+
+</td>
+
+</tr>
+
+`;
+
+});
+
+document.getElementById("grandTotal").innerHTML=total;
+
+}
+
+function removeItem(index){
+
+cart.splice(index,1);
+
+localStorage.setItem("cart",JSON.stringify(cart));
+
+loadCart();
+
+}
+
+function checkout(){
+
+if(cart.length===0){
+
+alert("Your cart is empty.");
+
+return;
+
+}
+
+alert("Checkout feature coming soon!");
+
+}
+
+loadCart();
+
+</script>
+
+</body>
+</html>
