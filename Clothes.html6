@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>POMPEY Pharmacy</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f5f5f5;
+}
+
+header{
+
+background:#00897b;
+
+padding:15px 30px;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+position:sticky;
+
+top:0;
+
+z-index:1000;
+
+}
+
+.logo{
+
+font-size:30px;
+
+font-weight:bold;
+
+color:white;
+
+}
+
+.search{
+
+width:45%;
+
+display:flex;
+
+}
+
+.search input{
+
+width:100%;
+
+padding:12px;
+
+border:none;
+
+border-radius:5px 0 0 5px;
+
+}
+
+.search button{
+
+padding:12px 20px;
+
+background:#ff9800;
+
+border:none;
+
+cursor:pointer;
+
+color:white;
+
+}
+
+.menu a{
+
+color:white;
+
+text-decoration:none;
+
+margin-left:20px;
+
+font-weight:bold;
+
+}
+
+.banner{
+
+height:280px;
+
+background:linear-gradient(90deg,#009688,#4db6ac);
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+flex-direction:column;
+
+color:white;
+
+}
+
+.banner h1{
+
+font-size:50px;
+
+}
+
+.banner p{
+
+font-size:22px;
+
+margin-top:15px;
+
+}
+
+.categories{
+
+display:flex;
+
+overflow-x:auto;
+
+gap:15px;
+
+padding:20px;
+
+background:white;
+
+}
+
+.categories button{
+
+padding:10px 18px;
+
+background:#00897b;
+
+color:white;
+
+border:none;
+
+border-radius:25px;
+
+cursor:pointer;
+
+}
+
+.products{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+
+gap:20px;
+
+padding:25px;
+
+}
+
+.card{
+
+background:white;
+
+padding:15px;
+
+border-radius:12px;
+
+text-align:center;
+
+box-shadow:0 5px 15px rgba(0,0,0,.12);
+
+transition:.3s;
+
+}
+
+.card:hover{
+
+transform:translateY(-8px);
+
+}
+
+.card img{
+
+width:180px;
+
+height:180px;
+
+object-fit:contain;
+
+}
+
+.rating{
+
+color:#ff9800;
+
+margin:8px;
+
+}
+
+.old{
+
+text-decoration:line-through;
+
+color:gray;
+
+}
+
+.price{
+
+font-size:22px;
+
+font-weight:bold;
+
+color:#00897b;
+
+}
+
+.cart{
+
+width:100%;
+
+padding:12px;
+
+margin-top:10px;
+
+background:#ff9800;
+
+color:white;
+
+border:none;
+
+border-radius:8px;
+
+cursor:pointer;
+
+}
+
+footer{
+
+background:#222;
+
+color:white;
+
+text-align:center;
+
+padding:20px;
+
+margin-top:30px;
+
+}
+
+</style>
+
+</head>
+
+</html>
+
+<script>
+
+// Load cart
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+// Add product
+function addToCart(name, price, image) {
+
+    let item = cart.find(product => product.name === name);
+
+    if (item) {
+        item.qty++;
+    } else {
+        cart.push({
+            name: name,
+            price: price,
+            image: image,
+            qty: 1
+        });
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    updateCart();
+
+    alert(name + " added to cart.");
+}
+
+// Update cart count
+function updateCart() {
+
+    let total = 0;
+
+    cart.forEach(product => {
+        total += product.qty;
+    });
+
+    document.getElementById("cartCount").textContent = total;
+}
+
+updateCart();
+
+// Live Search
+document.getElementById("searchBox").addEventListener("keyup", function () {
+
+    const value = this.value.toLowerCase();
+
+    document.querySelectorAll(".card").forEach(card => {
+
+        if (card.innerText.toLowerCase().includes(value)) {
+            card.style.display = "block";
+        } else {
+            card.style.display = "none";
+        }
+
+    });
+
+});
+
+// Category Filter
+function filterCategory(category) {
+
+    document.querySelectorAll(".card").forEach(card => {
+
+        if (category === "all" || card.classList.contains(category)) {
+            card.style.display = "block";
+        } else {
+            card.style.display = "none";
+        }
+
+    });
+
+}
+
+      </script>
+  </body>
+
+<header>
+
+<div class="logo">
+
+💊 POMPEY Pharmacy
+
+</div>
+
+<div class="search">
+
+<input
+type="text"
+id="searchBox"
+placeholder="Search Medicines & Healthcare">
+
+<button>🔍</button>
+
+</div>
+
+<div class="menu">
+
+<a href="index.html">Home</a>
+
+<a href="cart.html">
+🛒 Cart (<span id="cartCount">0</span>)
+</a>
+
+<a href="dashboard.html">Dashboard</a>
+
+</div>
+
+</header>
+
+<section class="banner">
+
+<h1>Healthcare Store</h1>
+
+<p>Medicines, Wellness & Healthcare Products</p>
+
+</section>
+
+<div class="categories">
+
+<div class="categories">
+
+<button onclick="filterCategory('all')">All</button>
+
+<button onclick="filterCategory('medicine')">Medicines</button>
+
+<button onclick="filterCategory('vitamin')">Vitamins</button>
+
+<button onclick="filterCategory('firstaid')">First Aid</button>
+
+<button onclick="filterCategory('device')">Health Devices</button>
+
+<button onclick="filterCategory('care')">Personal Care</button>
+
+</div>
+</div></section 
+  
+<section class="products">
+<div class="card medicine">
+<img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400">
+<h3>Paracetamol 650mg</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹45</div>
+<div class="price">₹35</div>
+<button class="cart">Add to Cart</button>
+</div>
+
+<div class="card vitamin ">
+<img src="https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=400">
+<h3>Vitamin C Tablets</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹350</div>
+<div class="price">₹299</div>
+<button class="cart">Add to Cart</button>
+</div>
+
+<div class="card medicine">
+<img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=400">
+<h3>ORS Powder</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹35</div>
+<div class="price">₹25</div>
+<button class="cart">Add to Cart</button>
+</div>
+
+<div class="card device ">
+<img src="https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?w=400">
+<h3>Digital Thermometer</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹399</div>
+<div class="price">₹299</div>
+<button class="cart">Add to Cart</button>
+</div>
+
+<div class="card care ">
+<img src="https://images.unsplash.com/photo-1584744982491-665216d95f8b?w=400">
+<h3>Hand Sanitizer</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹199</div>
+<div class="price">₹149</div>
+<button class="cart">Add to Cart</button>
+</div>
+
+<div class="card care">
+<img src="https://images.unsplash.com/photo-1584634731339-252c581abfc5?w=400">
+<h3>Face Mask (Pack of 10)</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹199</div>
+<div class="price">₹149</div>
+<button class="cart">Add to Cart</button>
+</div>
+
+<div class="card firstaid ">
+<img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400">
+<h3>Bandage Roll</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹70</div>
+<div class="price">₹55</div>
+<button class="cart">Add to Cart</button>
+</div>
+
+<div class="card medicine">
+<img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=400">
+<h3>Antiseptic Liquid</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹145</div>
+<div class="price">₹120</div>
+<button class="cart">Add to Cart</button>
+</div>
+
+<div class="card medicine">
+<img src="https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?w=400">
+<h3>Pain Relief Spray</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹220</div>
+<div class="price">₹180</div>
+<button class="cart">Add to Cart</button>
+</div>
+
+<div class="card medicine">
+<img src="https://images.unsplash.com/photo-1582719367118-3c0f4b7dbf74?w=400">
+<h3>Glucose Powder</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹180</div>
+<div class="price">₹150</div>
+<button class="cart">Add to Cart</button>
+</div>
+<div class="card device">
+<img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400">
+<h3>Blood Pressure Monitor</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹2,499</div>
+<div class="price">₹1,999</div>
+<button class="cart" onclick="addToCart('Blood Pressure Monitor',1999,'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400')">Add to Cart</button>
+</div>
+
+<div class="card care">
+<img src="https://images.unsplash.com/photo-1582719478185-6db6e2d0d7d6?w=400">
+<h3>Pulse Oximeter</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹1,499</div>
+<div class="price">₹999</div>
+<button class="cart" onclick="addToCart('Pulse Oximeter',999,'https://images.unsplash.com/photo-1582719478185-6db6e2d0d7d6?w=400')">Add to Cart</button>
+</div>
+
+<div class="card care">
+<img src="https://images.unsplash.com/photo-1584515933487-779824d29309?w=400">
+<h3>First Aid Kit</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹899</div>
+<div class="price">₹699</div>
+<button class="cart" onclick="addToCart('First Aid Kit',699,'https://images.unsplash.com/photo-1584515933487-779824d29309?w=400')">Add to Cart</button>
+</div>
+
+<div class="card medicine product">
+<img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=400">
+<h3>Medical Cotton Roll</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹120</div>
+<div class="price">₹89</div>
+<button class="cart" onclick="addToCart('Medical Cotton Roll',89,'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=400')">Add to Cart</button>
+</div>
+
+<div class="card care">
+<img src="https://images.unsplash.com/photo-1584634731339-252c581abfc5?w=400">
+<h3>Disposable Gloves (100 pcs)</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹499</div>
+<div class="price">₹349</div>
+<button class="cart" onclick="addToCart('Disposable Gloves',349,'https://images.unsplash.com/photo-1584634731339-252c581abfc5?w=400')">Add to Cart</button>
+</div>
+
+<div class="card care">
+<img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=400">
+<h3>Hot Water Bag</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹399</div>
+<div class="price">₹299</div>
+<button class="cart" onclick="addToCart('Hot Water Bag',299,'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=400')">Add to Cart</button>
+</div>
+
+<div class="card care">
+<img src="https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?w=400">
+<h3>Ice Gel Pack</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹299</div>
+<div class="price">₹199</div>
+<button class="cart" onclick="addToCart('Ice Gel Pack',199,'https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?w=400')">Add to Cart</button>
+</div>
+
+<div class="card vitamin">
+<img src="https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=400">
+<h3>Multivitamin Tablets</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹699</div>
+<div class="price">₹549</div>
+<button class="cart" onclick="addToCart('Multivitamin Tablets',549,'https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=400')">Add to Cart</button>
+</div>
+
+<div class="card tablet">
+<img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400">
+<h3>Zinc Tablets</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹299</div>
+<div class="price">₹249</div>
+<button class="cart" onclick="addToCart('Zinc Tablets',249,'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400')">Add to Cart</button>
+</div>
+
+<div class="card medicine">
+<img src="https://images.unsplash.com/photo-1516727003284-a96541e51e9d?w=400">
+<h3>Digital Weighing Scale</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹1,799</div>
+<div class="price">₹1,399</div>
+<button class="cart" onclick="addToCart('Digital Weighing Scale',1399,'https://images.unsplash.com/photo-1516727003284-a96541e51e9d?w=400')">Add to Cart</button>
+</div>
+
+</section>
+
+<footer>
+© 2026 POMPEY Pharmacy | All Rights Reserved
+  </footer>
