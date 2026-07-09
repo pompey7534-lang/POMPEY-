@@ -185,3 +185,18 @@ footer{
 }
 
 }
+.box{
+    text-decoration:none;
+    color:black;
+    display:block;
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    text-align:center;
+    box-shadow:0 5px 10px rgba(0,0,0,.1);
+    transition:.3s;
+}
+
+.box:hover{
+    transform:scale(1.05);
+    }
