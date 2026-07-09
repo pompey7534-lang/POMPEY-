@@ -1,61 +1,30 @@
-import { auth } from "./firebase-config.js";
-
-import {
-  createUserWithEmailAndPassword,
-  updateProfile
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
-import {
-  getFirestore,
-  doc,
-  setDoc
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
+// Firebase App
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
-// Use the same config from firebase-config.js
-const db = getFirestore();
+// Firebase Authentication
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-const signupForm = document.getElementById("signupForm");
+// Firestore Database
+import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-signupForm.addEventListener("submit", async (e) => {
-  e.preventDefault();
+// Your Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyAXvZ3pKpJReUhXPweOEFe09X6-ImhJwzs",
+  authDomain: "pompey-977ea.firebaseapp.com",
+  projectId: "pompey-977ea",
+  storageBucket: "pompey-977ea.firebasestorage.app",
+  messagingSenderId: "607741100294",
+  appId: "1:607741100294:web:3a221386c2155979681e87"
+};
 
-  const name = document.getElementById("name").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const password = document.getElementById("password").value;
-  const confirmPassword = document.getElementById("confirmPassword").value;
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
 
-  if (password !== confirmPassword) {
-    alert("Passwords do not match.");
-    return;
-  }
+// Authentication
+const auth = getAuth(app);
 
-  try {
-    // Create Firebase Auth user
-    const userCredential = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
+// Firestore
+const db = getFirestore(app);
 
-    // Update display name
-    await updateProfile(userCredential.user, {
-      displayName: name
-    });
-
-    // Save user to Firestore
-    await setDoc(doc(db, "users", userCredential.user.uid), {
-      name: name,
-      email: email,
-      createdAt: new Date().toISOString()
-    });
-
-    alert("Account created successfully!");
-
-    window.location.href = "dashboard.html";
-
-  } catch (error) {
-    alert(error.message);
-  }
-});
+// Export
+export { auth, db };
