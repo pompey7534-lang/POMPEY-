@@ -243,7 +243,7 @@ document.getElementById("checkoutForm").addEventListener("submit", function(e){
 e.preventDefault();
 
 const options = {
-    key: "rzp_live_TBXDEp17mpy2hf",
+    key: "rzp_test_TBXDEp17mpy2hf",
     amount: Math.round(grandTotal * 100),
     currency: "INR",
     name: "POMPEY",
@@ -296,5 +296,7 @@ rzp.open();
 
 });
 
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    
 </body>
   </html>
