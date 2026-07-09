@@ -1,29 +1,38 @@
-import { auth } from "./firebase-config.js";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgot Password</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
 
-import {
-sendPasswordResetEmail
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+<div class="login-container">
 
-const resetForm=document.getElementById("resetForm");
+    <h2>Forgot Password</h2>
 
-resetForm.addEventListener("submit",async(e)=>{
+    <form id="resetForm">
 
-e.preventDefault();
+        <input
+            type="email"
+            id="email"
+            placeholder="Enter your email"
+            required>
 
-const email=document.getElementById("email").value;
+        <button type="submit">
+            Send Reset Link
+        </button>
 
-try{
+    </form>
 
-await sendPasswordResetEmail(auth,email);
+    <br>
 
-alert("Password reset email sent successfully.");
+    <a href="login.html">Back to Login</a>
 
-window.location.href="login.html";
+</div>
 
-}catch(error){
+<script type="module" src="js/forgot-password.js"></script>
 
-alert(error.message);
-
-}
-
-});
+</body>
+</html>
