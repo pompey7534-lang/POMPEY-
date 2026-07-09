@@ -145,7 +145,7 @@ Grand Total :
 
 <div class="checkout">
 
-<button onclick="checkout.html()">
+<button onclick="checkout()">
 Proceed to Checkout
 </button>
 
@@ -240,14 +240,11 @@ loadCart();
 function checkout(){
 
 if(cart.length===0){
-
 alert("Your cart is empty.");
-
 return;
-
 }
 
-alert("Checkout feature coming soon!");
+window.location.href="checkout.html";
 
 }
 
