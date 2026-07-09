@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>POMPEY - My Profile</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#f5f5f5;
+}
+
+header{
+background:#0d6efd;
+color:white;
+padding:15px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.container{
+width:90%;
+max-width:700px;
+margin:30px auto;
+}
+
+.card{
+background:white;
+padding:25px;
+border-radius:10px;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.profile{
+text-align:center;
+}
+
+.profile img{
+width:120px;
+height:120px;
+border-radius:50%;
+margin-bottom:15px;
+}
+
+.info{
+margin-top:20px;
+}
+
+.info p{
+padding:12px;
+border-bottom:1px solid #ddd;
+font-size:18px;
+}
+
+button{
+width:100%;
+padding:12px;
+margin-top:15px;
+background:#0d6efd;
+color:white;
+border:none;
+border-radius:8px;
+font-size:17px;
+cursor:pointer;
+}
+
+.logout{
+background:#dc3545;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+<h2>POMPEY Profile</h2>
+
+<button onclick="window.location.href='dashboard.html'">
+Dashboard
+</button>
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<div class="profile">
+
+<img src="https://i.imgur.com/4Z7aJ8T.png">
+
+<h2 id="username">Customer</h2>
+
+</div>
+
+<div class="info">
+
+<p><b>Email:</b> <span id="email"></span></p>
+
+<p><b>Mobile:</b> <span id="mobile">Not Added</span></p>
+
+<p><b>Address:</b> <span id="address">Not Added</span></p>
+
+</div>
+
+<button onclick="window.location.href='orders.html'">
+My Orders
+</button>
+
+<button onclick="window.location.href='cart.html'">
+My Cart
+</button>
+
+<button class="logout" onclick="logout()">
+Logout
+</button>
+
+</div>
+
+</div>
+
+<script>
+document.getElementById("username").innerHTML =
+localStorage.getItem("username") || "Customer";
+
+document.getElementById("email").innerHTML =
+localStorage.getItem("email") || "Not Available";
+
+function logout(){
+localStorage.clear();
+window.location.href="login.html";
+}
+</script>
+
+</body>
+  </html>
