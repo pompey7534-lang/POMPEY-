@@ -103,18 +103,42 @@ Add Product
 <thead>
 
 <tr>
-
 <th>Name</th>
-
 <th>Price</th>
-
+<th>Edit</th>
 <th>Delete</th>
 
 </tr>
 
 </thead>
 
-<tbody id="productTable"></tbody>
+<tbody id="productTable">
+
+<div class="card">
+
+<h3>Customer Orders</h3>
+
+<table>
+
+<thead>
+
+<tr>
+<th>Order ID</th>
+<th>Customer</th>
+<th>Mobile</th>
+<th>Total</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+
+</thead>
+
+<tbody id="ordersTable"></tbody>
+
+</table>
+
+</div>
+</tbody>
 
 </table>
 
@@ -128,23 +152,98 @@ let products = JSON.parse(localStorage.getItem("products")) || [];
 
 function showProducts(){
 
+function loadOrders(){
+
+let orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+const table = document.getElementById("ordersTable");
+
+table.innerHTML = "";
+
+if(orders.length==0){
+
+table.innerHTML="<tr><td colspan='6'>No Orders Found</td></tr>";
+
+return;
+
+}
+
+orders.forEach((order,index)=>{
+
+table.innerHTML += `
+
+<tr>
+
+<td>#${index+1}</td>
+
+<td>${order.name}</td>
+
+<td>${order.mobile}</td>
+
+<td>₹${order.total.toFixed(2)}</td>
+
+<td>${order.status}</td>
+
+<td>
+
+<button onclick="shipOrder(${index})">
+
+Mark Shipped
+
+</button>
+
+</td>
+
+</tr>
+
+`;
+
+});
+
+}
+
+function shipOrder(index){
+
+let orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+orders[index].status="Shipped";
+
+localStorage.setItem("orders",JSON.stringify(orders));
+
+loadOrders();
+
+alert("Order marked as shipped.");
+
+}
+
+loadOrders();
+
 const table=document.getElementById("productTable");
 
 table.innerHTML="";
 
 products.forEach((p,index)=>{
 
-table.innerHTML+=`
+table.innerHTML += `
 <tr>
 <td>${p.name}</td>
 <td>₹${p.price}</td>
+
+<td>
+<button onclick="editProduct(${index})">
+Edit
+</button>
+</td>
+
 <td>
 <button onclick="deleteProduct(${index})">
 Delete
 </button>
 </td>
+
 </tr>
 `;
+
 
 });
 
@@ -170,6 +269,25 @@ alert("Product Added");
 
 function deleteProduct(index){
 
+function editProduct(index){
+
+let newName = prompt("Enter Product Name", products[index].name);
+
+let newPrice = prompt("Enter Product Price", products[index].price);
+
+if(newName && newPrice){
+
+products[index].name = newName;
+
+products[index].price = newPrice;
+
+localStorage.setItem("products", JSON.stringify(products));
+
+showProducts();
+
+}
+
+}
 products.splice(index,1);
 
 localStorage.setItem("products",JSON.stringify(products));
