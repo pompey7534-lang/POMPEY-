@@ -1,38 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forgot Password</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+import { auth } from "./firebase-config.js";
 
-<div class="login-container">
+import {
+  createUserWithEmailAndPassword,
+  updateProfile
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-    <h2>Forgot Password</h2>
+import {
+  getFirestore,
+  doc,
+  setDoc
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-    <form id="resetForm">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
-        <input
-            type="email"
-            id="email"
-            placeholder="Enter your email"
-            required>
+// Use the same config from firebase-config.js
+const db = getFirestore();
 
-        <button type="submit">
-            Send Reset Link
-        </button>
+const signupForm = document.getElementById("signupForm");
 
-    </form>
+signupForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-    <br>
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
+  const confirmPassword = document.getElementById("confirmPassword").value;
 
-    <a href="login.html">Back to Login</a>
+  if (password !== confirmPassword) {
+    alert("Passwords do not match.");
+    return;
+  }
 
-</div>
+  try {
+    // Create Firebase Auth user
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
 
-<script type="module" src="js/forgot-password.js"></script>
+    // Update display name
+    await updateProfile(userCredential.user, {
+      displayName: name
+    });
 
-</body>
-</html>
+    // Save user to Firestore
+    await setDoc(doc(db, "users", userCredential.user.uid), {
+      name: name,
+      email: email,
+      createdAt: new Date().toISOString()
+    });
+
+    alert("Account created successfully!");
+
+    window.location.href = "dashboard.html";
+
+  } catch (error) {
+    alert(error.message);
+  }
+});
