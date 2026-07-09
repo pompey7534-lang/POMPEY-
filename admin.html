@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>POMPEY Admin Panel</title>
+
+<style>
+body{
+font-family:Arial,sans-serif;
+margin:0;
+background:#f4f4f4;
+}
+
+header{
+background:#0d6efd;
+color:white;
+padding:15px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.container{
+width:90%;
+max-width:1000px;
+margin:20px auto;
+}
+
+.card{
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+margin-bottom:20px;
+}
+
+input{
+width:100%;
+padding:10px;
+margin:8px 0;
+border:1px solid #ccc;
+border-radius:5px;
+}
+
+button{
+padding:10px 20px;
+background:#0d6efd;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+}
+
+th,td{
+padding:10px;
+border:1px solid #ddd;
+text-align:center;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h2>POMPEY Admin Panel</h2>
+
+<button onclick="window.location='dashboard.html'">
+Dashboard
+</button>
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<h3>Add Product</h3>
+
+<input id="name" placeholder="Product Name">
+
+<input id="price" type="number" placeholder="Price">
+
+<input id="image" placeholder="Image URL">
+
+<button onclick="addProduct()">
+Add Product
+</button>
+
+</div>
+
+<div class="card">
+
+<h3>Products</h3>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Name</th>
+
+<th>Price</th>
+
+<th>Delete</th>
+
+</tr>
+
+</thead>
+
+<tbody id="productTable"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<script>
+
+let products = JSON.parse(localStorage.getItem("products")) || [];
+
+function showProducts(){
+
+const table=document.getElementById("productTable");
+
+table.innerHTML="";
+
+products.forEach((p,index)=>{
+
+table.innerHTML+=`
+<tr>
+<td>${p.name}</td>
+<td>₹${p.price}</td>
+<td>
+<button onclick="deleteProduct(${index})">
+Delete
+</button>
+</td>
+</tr>
+`;
+
+});
+
+}
+
+function addProduct(){
+
+const product={
+name:document.getElementById("name").value,
+price:document.getElementById("price").value,
+image:document.getElementById("image").value
+};
+
+products.push(product);
+
+localStorage.setItem("products",JSON.stringify(products));
+
+showProducts();
+
+alert("Product Added");
+
+}
+
+function deleteProduct(index){
+
+products.splice(index,1);
+
+localStorage.setItem("products",JSON.stringify(products));
+
+showProducts();
+
+}
+
+showProducts();
+
+</script>
+
+</body>
+</html>
