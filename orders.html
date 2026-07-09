@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>POMPEY - My Orders</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f4f4f4;
+}
+
+header{
+    background:#0d6efd;
+    color:white;
+    padding:15px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.container{
+    width:90%;
+    max-width:1000px;
+    margin:30px auto;
+}
+
+.card{
+    background:white;
+    border-radius:10px;
+    padding:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.order{
+    border:1px solid #ddd;
+    border-radius:10px;
+    padding:15px;
+    margin:15px 0;
+}
+
+.status{
+    color:green;
+    font-weight:bold;
+}
+
+button{
+    padding:10px 20px;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    background:#0d6efd;
+    color:white;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h2>POMPEY Orders</h2>
+
+<button onclick="window.location.href='dashboard.html'">
+Dashboard
+</button>
+
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<h2>My Orders</h2>
+
+<div id="ordersList">
+
+<p>No orders found.</p>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+let orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+const list = document.getElementById("ordersList");
+
+if(orders.length>0){
+
+list.innerHTML="";
+
+orders.forEach((order,index)=>{
+
+list.innerHTML += `
+
+<div class="order">
+
+<h3>Order #${index+1}</h3>
+
+<p><strong>Date:</strong> ${order.date}</p>
+
+<p><strong>Total:</strong> ₹${order.total}</p>
+
+<p class="status">Status : Confirmed</p>
+
+</div>
+
+`;
+
+});
+
+}
+
+</script>
+
+</body>
+</html>
