@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>POMPEY Grocery</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f4f4f4;
+}
+
+header{
+background:#12a150;
+color:white;
+padding:15px 30px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+.logo{
+font-size:30px;
+font-weight:bold;
+}
+
+.search{
+width:45%;
+display:flex;
+}
+
+.search input{
+width:100%;
+padding:12px;
+border:none;
+border-radius:6px 0 0 6px;
+}
+
+.search button{
+padding:12px 20px;
+border:none;
+background:#ffc107;
+cursor:pointer;
+}
+
+.menu a{
+color:white;
+text-decoration:none;
+margin-left:20px;
+font-weight:bold;
+}
+
+.banner{
+height:260px;
+background:linear-gradient(90deg,#12a150,#4caf50);
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+color:white;
+}
+
+.banner h1{
+font-size:52px;
+}
+
+.banner p{
+font-size:22px;
+margin-top:10px;
+}
+
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+padding:25px;
+}
+
+.card{
+background:white;
+padding:15px;
+border-radius:12px;
+text-align:center;
+box-shadow:0 4px 12px rgba(0,0,0,.1);
+}
+
+.card img{
+width:170px;
+height:170px;
+object-fit:contain;
+}
+
+.price{
+color:#12a150;
+font-size:22px;
+font-weight:bold;
+}
+
+.old{
+text-decoration:line-through;
+color:gray;
+}
+
+button{
+width:100%;
+padding:12px;
+margin-top:10px;
+background:#12a150;
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">🛒 POMPEY Grocery</div>
+
+<div class="search">
+
+<input id="searchBox" type="text" placeholder="Search Grocery Products">
+
+<button>🔍</button>
+
+</div>
+
+<div class="menu">
+
+<a href="index.html">Home</a>
+
+<a href="cart.html">Cart</a>
+
+<a href="dashboard.html">Dashboard</a>
+
+</div>
+
+</header>
+
+<section class="banner">
+
+<h1>Fresh Grocery Delivered</h1>
+
+<p>Daily Essentials at Best Prices</p>
+
+</section>
+
+<section class="products">
+  <div class="card Basmati Rice 5kg">
+<img src="https://images.unsplash.com/photo-1586201375761-83865001e31b?w=400">
+<h3>Basmati Rice 5kg</h3>
+<p class="old">₹650</p>
+<p class="price">₹549</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card Wheat Flour (Atta) 10kg">
+<img src="https://images.unsplash.com/photo-1603048297172-c92544798d5a?w=400">
+<h3>Wheat Flour (Atta) 10kg</h3>
+<p class="old">₹520</p>
+<p class="price">₹459</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card Sugar 5kg">
+<img src="https://images.unsplash.com/photo-1587049633312-d628ae50a8ae?w=400">
+<h3>Sugar 5kg</h3>
+<p class="old">₹280</p>
+<p class="price">₹249</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card Salt 1kg">
+<img src="https://images.unsplash.com/photo-1514996937319-344454492b37?w=400">
+<h3>Salt 1kg</h3>
+<p class="old">₹30</p>
+<p class="price">₹25</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card Sunflower Oil 5L">
+<img src="https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=400">
+<h3>Sunflower Oil 5L</h3>
+<p class="old">₹980</p>
+<p class="price">₹899</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card Pure Cow Ghee 1L">
+<img src="https://images.unsplash.com/photo-1625944525533-473f1b3d54b3?w=400">
+<h3>Pure Cow Ghee 1L</h3>
+<p class="old">₹780</p>
+<p class="price">₹699</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card Toor Dal 1kg">
+<img src="https://images.unsplash.com/photo-1515543904379-3d757afe72e3?w=400">
+<h3>Toor Dal 1kg</h3>
+<p class="old">₹180</p>
+<p class="price">₹159</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card Moong Dal 1kg">
+<img src="https://images.unsplash.com/photo-1603048719539-9ecb7a9cf5c1?w=400">
+<h3>Moong Dal 1kg</h3>
+<p class="old">₹170</p>
+<p class="price">₹149</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card Chana Dal 1kg">
+<img src="https://images.unsplash.com/photo-1585238342024-78d387f4a707?w=400">
+<h3>Chana Dal 1kg</h3>
+<p class="old">₹160</p>
+<p class="price">₹139</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card Masoor Dal 1kg">
+<img src="https://images.unsplash.com/photo-1615486363973-f79e6d8f72d5?w=400">
+<h3>Masoor Dal 1kg</h3>
+<p class="old">₹155</p>
+<p class="price">₹135</p>
+<button>Add to Cart</button>
+                  </div>
+<div class="card Brown Rice 5kg">
+<img src="https://images.unsplash.com/photo-1515543904379-3d757afe72e3?w=400">
+<h3>Brown Rice 5kg</h3>
+<p>⭐⭐⭐⭐⭐</p>
+<p class="old">₹620</p>
+<p class="price">₹549</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card Poha 1kg">
+<img src="https://images.unsplash.com/photo-1603048719539-9ecb7a9cf5c1?w=400">
+<h3>Poha 1kg</h3>
+<p>⭐⭐⭐⭐⭐</p>
+<p class="old">₹90</p>
+<p class="price">₹75</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card Suji (Rava) 1kg">
+<img src="https://images.unsplash.com/photo-1585238342024-78d387f4a707?w=400">
+<h3>Suji (Rava) 1kg</h3>
+<p>⭐⭐⭐⭐⭐</p>
+<p class="old">₹70</p>
+<p class="price">₹59</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card Besan 1kg">
+<img src="https://images.unsplash.com/photo-1615486363973-f79e6d8f72d5?w=400">
+<h3>Besan 1kg</h3>
+<p>⭐⭐⭐⭐⭐</p>
+<p class="old">₹120</p>
+<p class="price">₹99</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card Corn Flour 500g">
+<img src="https://images.unsplash.com/photo-1514996937319-344454492b37?w=400">
+<h3>Corn Flour 500g</h3>
+<p>⭐⭐⭐⭐⭐</p>
+<p class="old">₹80</p>
+<p class="price">₹65</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card Tata Tea Gold 1kg">
+<img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400">
+<h3>Tata Tea Gold 1kg</h3>
+<p>⭐⭐⭐⭐⭐</p>
+<p class="old">₹720</p>
+<p class="price">₹649</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card Nescafe Coffee 200g">
+<img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400">
+<h3>Nescafe Coffee 200g</h3>
+<p>⭐⭐⭐⭐⭐</p>
+<p class="old">₹420</p>
+<p class="price">₹379</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card Good Day Biscuits">
+<img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=400">
+<h3>Good Day Biscuits</h3>
+<p>⭐⭐⭐⭐⭐</p>
+<p class="old">₹40</p>
+<p class="price">₹35</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card Whole Wheat Bread<">
+<img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400">
+<h3>Whole Wheat Bread</h3>
+<p>⭐⭐⭐⭐⭐</p>
+<p class="old">₹55</p>
+<p class="price">₹45</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card Amul Butter 500g">
+<img src="https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=400">
+<h3>Amul Butter 500g</h3>
+<p>⭐⭐⭐⭐⭐</p>
+<p class="old">₹310</p>
+<p class="price">₹279</p>
+<button>Add to Cart</button>
+  </div>
+<div class="card Amul Milk 1L">
+<img src="https://images.unsplash.com/photo-1550583724-b2692b85b150?w=400">
+<h3>Amul Milk 1L</h3>
+<p>⭐⭐⭐⭐⭐</p>
+<p class="old">₹72</p>
+<p class="price">₹68</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card Amul Cheese Slices">
+<img src="https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=400">
+<h3>Amul Cheese Slices</h3>
+<p>⭐⭐⭐⭐⭐</p>
+<p class="old">₹160</p>
+<p class="price">₹145</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card Farm Fresh Eggs (12)">
+<img src="https://images.unsplash.com/photo-1506976785307-8732e854ad03?w=400">
+<h3>Farm Fresh Eggs (12)</h3>
+<p>⭐⭐⭐⭐⭐</p>
+<p class="old">₹95</p>
+<p class="price">₹85</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card Maggi Noodles Pack">
+<img src="https://images.unsplash.com/photo-1617093727343-374698b1b08d?w=400">
+<h3>Maggi Noodles Pack</h3>
+<p>⭐⭐⭐⭐⭐</p>
+<p class="old">₹85</p>
+<p class="price">₹72</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card Pasta 500g">
+<img src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=400">
+<h3>Pasta 500g</h3>
+<p>⭐⭐⭐⭐⭐</p>
+<p class="old">₹120</p>
+<p class="price">₹99</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card Tomato Ketchup 1kg">
+<img src="https://images.unsplash.com/photo-1587049352851-8d4e89133924?w=400">
+<h3>Tomato Ketchup 1kg</h3>
+<p>⭐⭐⭐⭐⭐</p>
+<p class="old">₹180</p>
+<p class="price">₹149</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card Mixed Fruit Jam">
+<img src="https://images.unsplash.com/photo-1471943311424-646960669fbc?w=400">
+<h3>Mixed Fruit Jam</h3>
+<p>⭐⭐⭐⭐⭐</p>
+<p class="old">₹210</p>
+<p class="price">₹179</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card Peanut Butter 1kg">
+<img src="https://images.unsplash.com/photo-1587049633312-d628ae50a8ae?w=400">
+<h3>Peanut Butter 1kg</h3>
+<p>⭐⭐⭐⭐⭐</p>
+<p class="old">₹420</p>
+<p class="price">₹369</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card Kellogg's Corn Flakes">
+<img src="https://images.unsplash.com/photo-1517686469429-8bdb88b9f907?w=400">
+<h3>Kellogg's Corn Flakes</h3>
+<p>⭐⭐⭐⭐⭐</p>
+<p class="old">₹250</p>
+<p class="price">₹219</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card Quaker Oats 1kg">
+<img src="https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?w=400">
+<h3>Quaker Oats 1kg</h3>
+<p>⭐⭐⭐⭐⭐</p>
+<p class="old">₹299</p>
+<p class="price">₹259</p>
+<button>Add to Cart</button>
+                          </div>
+  <div class="card Pure Honey 500g">
+<img src="https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=400">
+<h3>Pure Honey 500g</h3>
+<p>⭐⭐⭐⭐⭐</p>
+<p class="old">₹399</p>
+<p class="price">₹349</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card Premium Almonds 500g">
+<img src="https://images.unsplash.com/photo-1508747703725-719777637510?w=400">
+<h3>Premium Almonds 500g</h3>
+<p>⭐⭐⭐⭐⭐</p>
+<p class="old">₹599</p>
+<p class="price">₹529</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card Premium Cashews 500g">
+<img src="https://images.unsplash.com/photo-1599599810694-b5b37304c041?w=400">
+<h3>Premium Cashews 500g</h3>
+<p>⭐⭐⭐⭐⭐</p>
+<p class="old">₹699</p>
+<p class="price">₹629</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card Raisins 500g">
+<img src="https://images.unsplash.com/photo-1519996529931-28324d5a630e?w=400">
+<h3>Raisins 500g</h3>
+<p>⭐⭐⭐⭐⭐</p>
+<p class="old">₹299</p>
+<p class="price">₹259</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card Black Pepper 100g">
+<img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=400">
+<h3>Black Pepper 100g</h3>
+<p>⭐⭐⭐⭐⭐</p>
+<p class="old">₹199</p>
+<p class="price">₹169</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card Turmeric Powder 500g">
+<img src="https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=400">
+<h3>Turmeric Powder 500g</h3>
+<p>⭐⭐⭐⭐⭐</p>
+<p class="old">₹149</p>
+<p class="price">₹119</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card Red Chilli Powder 500g">
+<img src="https://images.unsplash.com/photo-1599909534037-1f2e6e61d975?w=400">
+<h3>Red Chilli Powder 500g</h3>
+<p>⭐⭐⭐⭐⭐</p>
+<p class="old">₹179</p>
+<p class="price">₹149</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card Coriander Powder 500g">
+<img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=400">
+<h3>Coriander Powder 500g</h3>
+<p>⭐⭐⭐⭐⭐</p>
+<p class="old">₹159</p>
+<p class="price">₹129</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card Cumin Seeds (Jeera) 500g">
+<img src="https://images.unsplash.com/photo-1515543904379-3d757afe72e3?w=400">
+<h3>Cumin Seeds (Jeera) 500g</h3>
+<p>⭐⭐⭐⭐⭐</p>
+<p class="old">₹249</p>
+<p class="price">₹219</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card Mustard Seeds (Rai) 500g">
+<img src="https://images.unsplash.com/photo-1603048297172-c92544798d5a?w=400">
+<h3>Mustard Seeds (Rai) 500g</h3>
+<p>⭐⭐⭐⭐⭐</p>
+<p class="old">₹149</p>
+<p class="price">₹119</p>
+<button>Add to Cart</button>
+  </div>
+<div class="card Green Tea 100 Bags">
+<img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=400">
+<h3>Green Tea 100 Bags</h3>
+<p>⭐⭐⭐⭐⭐</p>
+<p class="old">₹399</p>
+<p class="price">₹349</p>
+<button onclick="addToCart('Green Tea',349,'https://images.unsplash.com/photo-1542838132-92c53300491e?w=400')">Add to Cart</button>
+</div>
+
+<div class="card Coca-Cola">
+<img src="https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=400">
+<h3>Coca-Cola 2L</h3>
+<p>⭐⭐⭐⭐⭐</p>
+<p class="old">₹110</p>
+<p class="price">₹95</p>
+<button onclick="addToCart('Coca-Cola 2L',95,'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=400')">Add to Cart</button>
+</div>
+
+<div class="card Mixed Fruit Juice  ">
+<img src="https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=400">
+<h3>Mixed Fruit Juice 1L</h3>
+<p>⭐⭐⭐⭐⭐</p>
+<p class="old">₹140</p>
+<p class="price">₹120</p>
+<button onclick="addToCart('Mixed Fruit Juice',120,'https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=400')">Add to Cart</button>
+</div>
+
+<div class="card Mineral Water">
+<img src="https://images.unsplash.com/photo-1564419320461-6870880221ad?w=400">
+<h3>Mineral Water 2L</h3>
+<p>⭐⭐⭐⭐⭐</p>
+<p class="old">₹40</p>
+<p class="price">₹30</p>
+<button onclick="addToCart('Mineral Water',30,'https://images.unsplash.com/photo-1564419320461-6870880221ad?w=400')">Add to Cart</button>
+</div>
+
+<div class="card Potato Chips">
+<img src="https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=400">
+<h3>Potato Chips</h3>
+<p>⭐⭐⭐⭐⭐</p>
+<p class="old">₹40</p>
+<p class="price">₹30</p>
+<button onclick="addToCart('Potato Chips',30,'https://images.unsplash.com/photo-1566478989037-eec170784d0b?w=400')">Add to Cart</button>
+</div>
+
+<div class="card Dairy Milk Chocolate">
+<img src="https://images.unsplash.com/photo-1549007994-cb92caebd54b?w=400">
+<h3>Dairy Milk Chocolate</h3>
+<p>⭐⭐⭐⭐⭐</p>
+<p class="old">₹120</p>
+<p class="price">₹99</p>
+<button onclick="addToCart('Dairy Milk Chocolate',99,'https://images.unsplash.com/photo-1549007994-cb92caebd54b?w=400')">Add to Cart</button>
+</div>
+
+<div class="card Vanilla Ice Cream">
+<img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=400">
+<h3>Vanilla Ice Cream</h3>
+<p>⭐⭐⭐⭐⭐</p>
+<p class="old">₹220</p>
+<p class="price">₹189</p>
+<button onclick="addToCart('Vanilla Ice Cream',189,'https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=400')">Add to Cart</button>
+</div>
+
+<div class="cardFresh Apples">
+<img src="https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=400">
+<h3>Fresh Apples 1kg</h3>
+<p>⭐⭐⭐⭐⭐</p>
+<p class="old">₹220</p>
+<p class="price">₹189</p>
+<button onclick="addToCart('Fresh Apples',189,'https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=400')">Add to Cart</button>
+</div>
+
+<div class="card Fresh Bananas 1 Dozen">
+<img src="https://images.unsplash.com/photo-1574226516831-e1dff420e37f?w=400">
+<h3>Fresh Bananas 1 Dozen</h3>
+<p>⭐⭐⭐⭐⭐</p>
+<p class="old">₹80</p>
+<p class="price">₹65</p>
+<button onclick="addToCart('Fresh Bananas',65,'https://images.unsplash.com/photo-1574226516831-e1dff420e37f?w=400')">Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1547514701-42782101795e?w=400">
+<h3>Fresh Oranges 1kg</h3>
+<p>⭐⭐⭐⭐⭐</p>
+<p class="old">₹180</p>
+<p class="price">₹149</p>
+<button onclick="addToCart('Fresh Oranges',149,'https://images.unsplash.com/photo-1547514701-42782101795e?w=400')">Add to Cart</button>
+</div>
+
+</section>
+
+<footer>
+<h3>POMPEY Grocery Store</h3>
+<p>Fast Delivery • Best Prices • Fresh Products</p>
+<p>© 2026 POMPEY. All Rights Reserved.</p>
+  </footer>
+
+  
+
+  
