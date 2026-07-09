@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>POMPEY Fast Food</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f5f5f5;
+}
+
+header{
+background:#ff6f00;
+padding:15px 30px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+color:white;
+}
+
+header a{
+color:white;
+text-decoration:none;
+margin-left:20px;
+font-weight:bold;
+}
+
+.search{
+padding:20px;
+text-align:center;
+}
+
+.search input{
+width:60%;
+padding:12px;
+font-size:18px;
+border-radius:8px;
+border:1px solid #ccc;
+}
+
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+gap:20px;
+padding:20px;
+}
+
+.card{
+background:white;
+padding:15px;
+border-radius:12px;
+box-shadow:0 5px 12px rgba(0,0,0,.15);
+text-align:center;
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-6px);
+}
+
+.card img{
+width:180px;
+height:180px;
+object-fit:cover;
+border-radius:10px;
+}
+
+.rating{
+color:#ff9800;
+margin:8px;
+}
+
+.old{
+text-decoration:line-through;
+color:gray;
+}
+
+.price{
+font-size:22px;
+font-weight:bold;
+color:#ff5722;
+margin:10px;
+}
+
+button{
+width:100%;
+padding:12px;
+background:#ff9800;
+border:none;
+color:white;
+border-radius:8px;
+cursor:pointer;
+font-size:16px;
+}
+
+button:hover{
+background:#e68900;
+}
+
+footer{
+background:#222;
+color:white;
+text-align:center;
+padding:20px;
+margin-top:30px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h2>🍔 POMPEY Fast Food</h2>
+
+<div>
+
+<a href="index.html">Home</a>
+
+<a href="cart.html">Cart</a>
+
+<a href="dashboard.html">Dashboard</a>
+
+</div>
+
+</header>
+
+<div class="search">
+
+<input
+type="text"
+id="search"
+placeholder="Search Fast Food...">
+
+</div>
+
+<div class="products">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400">
+<h3>Cheese Burger</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹199</div>
+<div class="price">₹149</div>
+<button>Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400">
+<h3>Margherita Pizza</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹349</div>
+<div class="price">₹279</div>
+<button>Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=400">
+<h3>French Fries</h3>
+<div class="rating">⭐⭐⭐⭐☆</div>
+<div class="old">₹129</div>
+<div class="price">₹99</div>
+<button>Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1608039755401-742074f0548d?w=400">
+<h3>Veg Sandwich</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹120</div>
+<div class="price">₹89</div>
+<button>Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1562967916-eb82221dfb92?w=400">
+<h3>Hot Dog</h3>
+<div class="rating">⭐⭐⭐⭐☆</div>
+<div class="old">₹180</div>
+<div class="price">₹140</div>
+<button>Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400">
+<h3>Farm Pizza</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹420</div>
+<div class="price">₹349</div>
+<button>Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=400">
+<h3>Chicken Burger</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹249</div>
+<div class="price">₹189</div>
+<button>Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?w=400">
+<h3>Noodles</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹170</div>
+<div class="price">₹130</div>
+<button>Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1585238342024-78d387f4a707?w=400">
+<h3>Pasta</h3>
+<div class="rating">⭐⭐⭐⭐☆</div>
+<div class="old">₹220</div>
+<div class="price">₹179</div>
+<button>Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400">
+<h3>Fried Chicken</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹320</div>
+<div class="price">₹249</div>
+<button>Add to Cart</button>
+</div>
+
+</div>
+
+<footer>
+
+© 2026 POMPEY Fast Food Store
+
+</footer>
+
+</body>
+  </html>
