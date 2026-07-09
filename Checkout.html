@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>POMPEY Checkout</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f5f5f5;
+}
+
+.container{
+max-width:900px;
+margin:30px auto;
+background:#fff;
+padding:25px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,.1);
+}
+
+h1{
+text-align:center;
+color:#0a8f3d;
+margin-bottom:20px;
+}
+
+label{
+display:block;
+margin-top:15px;
+font-weight:bold;
+}
+
+input,textarea,select{
+width:100%;
+padding:12px;
+margin-top:6px;
+border:1px solid #ccc;
+border-radius:6px;
+}
+
+textarea{
+height:100px;
+resize:none;
+}
+
+button{
+width:100%;
+margin-top:25px;
+padding:15px;
+background:#0a8f3d;
+color:white;
+border:none;
+border-radius:8px;
+font-size:18px;
+cursor:pointer;
+}
+
+button:hover{
+background:#087532;
+}
+
+.summary{
+margin-top:25px;
+background:#f8f8f8;
+padding:20px;
+border-radius:8px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>POMPEY Checkout</h1>
+
+<form id="checkoutForm">
+
+<label>Full Name</label>
+<input type="text" id="name" required>
+
+<label>Mobile Number</label>
+<input type="tel" id="mobile" required>
+
+<label>Email Address</label>
+<input type="email" id="email" required>
+
+<label>House No / Flat</label>
+<input type="text" id="house" required>
+
+<label>Street / Area</label>
+<input type="text" id="street" required>
+
+<label>City</label>
+<input type="text" id="city" required>
+
+<label>State</label>
+<input type="text" id="state" required>
+
+<label>Pincode</label>
+<input type="number" id="pincode" required>
+
+<label>Delivery Instructions</label>
+<textarea id="note"></textarea>
+
+<label>Payment Method</label>
+
+<select id="payment">
+
+<option>Cash on Delivery</option>
+
+<option>UPI</option>
+
+<option>Credit Card</option>
+
+<option>Debit Card</option>
+
+<option>Net Banking</option>
+
+</select>
+
+<div class="summary">
+
+<h2>Order Summary</h2>
+
+<p>Total Items :
+<span id="items">
+0
+</span>
+</p>
+
+<p>Total Amount :
+₹<span id="amount">
+0
+</span>
+</p>
+
+</div>
+
+<button type="submit">
+
+Place Order
+
+</button>
+
+</form>
+
+</div>
+
+<script>
+
+let cart=JSON.parse(localStorage.getItem("cart"))||[];
+
+let total=0;
+
+let items=0;
+
+cart.forEach(product=>{
+
+items+=product.qty;
+
+total+=product.price*product.qty;
+
+});
+
+document.getElementById("items").innerHTML=items;
+
+document.getElementById("amount").innerHTML=total;
+
+document.getElementById("checkoutForm").addEventListener("submit",function(e){
+
+e.preventDefault();
+
+alert("🎉 Order Placed Successfully!");
+
+localStorage.removeItem("cart");
+
+window.location.href="index.html";
+
+});
+
+</script>
+
+</body>
+  </html>
