@@ -129,7 +129,34 @@ cursor:pointer;
 
 </head>
 
-<body>
+</html>
+<script>
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+function addToCart(name, price, image) {
+
+    const item = cart.find(p => p.name === name);
+
+    if (item) {
+        item.qty += 1;
+    } else {
+        cart.push({
+            name: name,
+            price: price,
+            image: image,
+            qty: 1
+        });
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    alert(name + " added to cart!");
+}
+
+</script>
+
+</body>
 
 <header>
 
@@ -165,40 +192,53 @@ cursor:pointer;
 
 <section class="products">
   <div class="card Basmati Rice 5kg">
-<img src="https://images.unsplash.com/photo-1586201375761-83865001e31b?w=400">
+<img src="https://share.google/nRebJL8lgiQC4HL4L">
 <h3>Basmati Rice 5kg</h3>
+<p>⭐⭐⭐⭐⭐</p>
 <p class="old">₹650</p>
 <p class="price">₹549</p>
-<button>Add to Cart</button>
+<button onclick="addToCart('Basmati Rice 5kg',549,'https://share.google/nRebJL8lgiQC4HL4L')">
+Add to Cart
+</button>
 </div>
 
 <div class="card Wheat Flour (Atta) 10kg">
-<img src="https://images.unsplash.com/photo-1603048297172-c92544798d5a?w=400">
+<img src="https://share.google/G4kFczKY9Tqtny6O2">
 <h3>Wheat Flour (Atta) 10kg</h3>
+<p>⭐⭐⭐⭐⭐</p>
 <p class="old">₹520</p>
 <p class="price">₹459</p>
-<button>Add to Cart</button>
+<button onclick="addToCart('Wheat Flour (Atta) 10kg ',459;'https://share.google/G4kFczKY9Tqtny6O2 ')">
+Add to Cart
+</button>
 </div>
 
 <div class="card Sugar 5kg">
-<img src="https://images.unsplash.com/photo-1587049633312-d628ae50a8ae?w=400">
+<img src="https://share.google/YbbNAlR93P2Tw2pK7">
 <h3>Sugar 5kg</h3>
+<p>⭐⭐⭐⭐⭐</p>
 <p class="old">₹280</p>
 <p class="price">₹249</p>
-<button>Add to Cart</button>
+<button onclick="addToCart('Sugar 5kg',249;'https://share.google/YbbNAlR93P2Tw2pK7')">
+Add to Cart
+</button>
 </div>
 
 <div class="card Salt 1kg">
-<img src="https://images.unsplash.com/photo-1514996937319-344454492b37?w=400">
+<img src="https://share.google/VTbMNOVWEHax4N4ux">
 <h3>Salt 1kg</h3>
+<p>⭐⭐⭐⭐⭐</p>
 <p class="old">₹30</p>
 <p class="price">₹25</p>
-<button>Add to Cart</button>
+<button onclick="addToCart('Salt 1kg',25;'https://share.google/VTbMNOVWEHax4N4ux')">
+Add to Cart
+</button>
 </div>
 
 <div class="card Sunflower Oil 5L">
 <img src="https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=400">
 <h3>Sunflower Oil 5L</h3>
+<p>⭐⭐⭐⭐⭐</p>
 <p class="old">₹980</p>
 <p class="price">₹899</p>
 <button>Add to Cart</button>
@@ -207,6 +247,7 @@ cursor:pointer;
 <div class="card Pure Cow Ghee 1L">
 <img src="https://images.unsplash.com/photo-1625944525533-473f1b3d54b3?w=400">
 <h3>Pure Cow Ghee 1L</h3>
+<p>⭐⭐⭐⭐⭐</p>
 <p class="old">₹780</p>
 <p class="price">₹699</p>
 <button>Add to Cart</button>
@@ -215,6 +256,7 @@ cursor:pointer;
 <div class="card Toor Dal 1kg">
 <img src="https://images.unsplash.com/photo-1515543904379-3d757afe72e3?w=400">
 <h3>Toor Dal 1kg</h3>
+<p>⭐⭐⭐⭐⭐</p>
 <p class="old">₹180</p>
 <p class="price">₹159</p>
 <button>Add to Cart</button>
@@ -223,6 +265,7 @@ cursor:pointer;
 <div class="card Moong Dal 1kg">
 <img src="https://images.unsplash.com/photo-1603048719539-9ecb7a9cf5c1?w=400">
 <h3>Moong Dal 1kg</h3>
+<p>⭐⭐⭐⭐⭐</p>
 <p class="old">₹170</p>
 <p class="price">₹149</p>
 <button>Add to Cart</button>
@@ -231,6 +274,7 @@ cursor:pointer;
 <div class="card Chana Dal 1kg">
 <img src="https://images.unsplash.com/photo-1585238342024-78d387f4a707?w=400">
 <h3>Chana Dal 1kg</h3>
+  <p>⭐⭐⭐⭐⭐</p>
 <p class="old">₹160</p>
 <p class="price">₹139</p>
 <button>Add to Cart</button>
@@ -239,6 +283,7 @@ cursor:pointer;
 <div class="card Masoor Dal 1kg">
 <img src="https://images.unsplash.com/photo-1615486363973-f79e6d8f72d5?w=400">
 <h3>Masoor Dal 1kg</h3>
+ <p>⭐⭐⭐⭐⭐</p> 
 <p class="old">₹155</p>
 <p class="price">₹135</p>
 <button>Add to Cart</button>
