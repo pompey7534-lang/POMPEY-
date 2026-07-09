@@ -1,0 +1,187 @@
+/* POMPEY Global Styles */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#f4f7fb;
+    color:#333;
+}
+
+/* Navbar */
+
+.navbar{
+    background:#0d6efd;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 40px;
+}
+
+.logo a{
+    color:#fff;
+    text-decoration:none;
+    font-size:28px;
+    font-weight:bold;
+}
+
+.menu{
+    display:flex;
+    list-style:none;
+    gap:20px;
+}
+
+.menu a{
+    color:#fff;
+    text-decoration:none;
+    font-size:17px;
+}
+
+.menu a:hover{
+    color:#ffd700;
+}
+
+/* Login / Signup */
+
+.login-container,
+.container{
+    width:380px;
+    margin:60px auto;
+    background:#fff;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 5px 20px rgba(0,0,0,.15);
+}
+
+.login-container h1,
+.container h1,
+.container h2{
+    text-align:center;
+    color:#0d6efd;
+    margin-bottom:20px;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:16px;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    background:#0d6efd;
+    color:#fff;
+    font-size:16px;
+    cursor:pointer;
+    margin-top:10px;
+}
+
+button:hover{
+    background:#084298;
+}
+
+/* Dashboard */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+    margin-top:30px;
+}
+
+.box{
+    background:#fff;
+    border-radius:12px;
+    padding:20px;
+    text-align:center;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.box h3{
+    color:#0d6efd;
+    margin-bottom:10px;
+}
+
+/* Products */
+
+.products{
+    width:95%;
+    margin:40px auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:25px;
+}
+
+.product{
+    background:#fff;
+    border-radius:12px;
+    padding:15px;
+    text-align:center;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+    transition:.3s;
+}
+
+.product:hover{
+    transform:translateY(-6px);
+}
+
+.product img{
+    width:170px;
+    height:170px;
+    object-fit:cover;
+}
+
+.product h3{
+    margin:12px 0;
+}
+
+.product p{
+    font-size:20px;
+    color:#28a745;
+    font-weight:bold;
+}
+
+/* Footer */
+
+footer{
+    margin-top:50px;
+    background:#0d6efd;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+.navbar{
+    flex-direction:column;
+    gap:15px;
+}
+
+.menu{
+    flex-direction:column;
+    text-align:center;
+}
+
+.login-container,
+.container{
+    width:92%;
+}
+
+.products{
+    grid-template-columns:1fr;
+}
+
+}
