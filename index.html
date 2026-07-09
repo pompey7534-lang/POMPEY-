@@ -212,10 +212,35 @@ POMPEY
 
 <a href="Clothes.html">Clothes</a>
   
-<a href="signup.html">signup</a>
+<div id="userMenu" style="display:flex;align-items:center;gap:15px;color:white;">
 
-<a href="login.html">login </a>
-  
+<a id="loginLink" href="login.html">Login</a>
+
+<a id="signupLink" href="signup.html">Sign Up</a>
+
+<div id="dashboardMenu" style="display:none;position:relative;">
+
+<span id="welcomeUser" style="cursor:pointer;font-weight:bold;">
+Hello, User ▼
+</span>
+
+<div id="dropdown" style="display:none;position:absolute;top:30px;right:0;background:white;border-radius:8px;min-width:180px;box-shadow:0 5px 15px rgba(0,0,0,.2);">
+
+<a href="dashboard.html" style="display:block;padding:10px;color:black;text-decoration:none;">🏠 Dashboard</a>
+
+<a href="profile.html" style="display:block;padding:10px;color:black;text-decoration:none;">👤 Profile</a>
+
+<a href="orders.html" style="display:block;padding:10px;color:black;text-decoration:none;">📦 Orders</a>
+
+<a href="cart.html" style="display:block;padding:10px;color:black;text-decoration:none;">🛒 Cart</a>
+
+<a href="#" id="logoutBtn" style="display:block;padding:10px;color:red;text-decoration:none;">🚪 Logout</a>
+
+</div>
+
+</div>
+
+</div>
 <a href="#">Contact</a>
 
 </nav>
@@ -298,6 +323,56 @@ POMPEY
 © 2026 POMPEY | All Rights Reserved
 
 </footer>
+<script type="module">
 
+import { auth } from "./js/firebase-config.js";
+
+import {
+onAuthStateChanged,
+signOut
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+const loginLink = document.getElementById("loginLink");
+const signupLink = document.getElementById("signupLink");
+const dashboardMenu = document.getElementById("dashboardMenu");
+const welcomeUser = document.getElementById("welcomeUser");
+const dropdown = document.getElementById("dropdown");
+const logoutBtn = document.getElementById("logoutBtn");
+
+onAuthStateChanged(auth,(user)=>{
+
+if(user){
+
+loginLink.style.display="none";
+signupLink.style.display="none";
+
+dashboardMenu.style.display="block";
+
+welcomeUser.textContent="Hello, "+(user.displayName || user.email);
+
+}else{
+
+dashboardMenu.style.display="none";
+
+}
+
+});
+
+welcomeUser.onclick=()=>{
+
+dropdown.style.display=
+dropdown.style.display==="block"?"none":"block";
+
+};
+
+logoutBtn.onclick=async()=>{
+
+await signOut(auth);
+
+window.location.href="login.html";
+
+};
+
+  </script>
 </body>
 </html>
