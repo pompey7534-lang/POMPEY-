@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>POMPEY Fashion</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f5f5f5;
+}
+
+header{
+background:#9c27b0;
+padding:15px 30px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+.logo{
+font-size:30px;
+font-weight:bold;
+color:white;
+}
+
+.search{
+width:45%;
+display:flex;
+}
+
+.search input{
+width:100%;
+padding:12px;
+border:none;
+border-radius:5px 0 0 5px;
+}
+
+.search button{
+padding:12px 18px;
+border:none;
+background:#ff9800;
+color:white;
+cursor:pointer;
+}
+
+.menu a{
+color:white;
+text-decoration:none;
+margin-left:20px;
+font-weight:bold;
+}
+
+.banner{
+height:280px;
+background:linear-gradient(90deg,#9c27b0,#e91e63);
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+color:white;
+}
+
+.banner h1{
+font-size:55px;
+}
+
+.banner p{
+font-size:22px;
+margin-top:15px;
+}
+
+.categories{
+display:flex;
+overflow-x:auto;
+gap:15px;
+padding:20px;
+background:white;
+}
+
+.categories button{
+padding:10px 18px;
+border:none;
+background:#9c27b0;
+color:white;
+border-radius:25px;
+cursor:pointer;
+}
+
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+gap:20px;
+padding:25px;
+}
+
+.card{
+background:white;
+border-radius:12px;
+padding:15px;
+text-align:center;
+box-shadow:0 5px 15px rgba(0,0,0,.12);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+}
+
+.card img{
+width:180px;
+height:220px;
+object-fit:cover;
+border-radius:10px;
+}
+
+.rating{
+color:#ff9800;
+margin:8px;
+}
+
+.price{
+font-size:22px;
+font-weight:bold;
+color:#9c27b0;
+}
+
+.old{
+text-decoration:line-through;
+color:gray;
+}
+
+button.cart{
+width:100%;
+padding:12px;
+margin-top:10px;
+background:#ff9800;
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
+}
+
+</style>
+
+</head>
+
+</html>
+<script>
+
+// Load Cart
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+// Add Product
+function addToCart(name,price,image){
+
+let item=cart.find(product=>product.name===name);
+
+if(item){
+
+item.qty++;
+
+}else{
+
+cart.push({
+
+name:name,
+
+price:price,
+
+image:image,
+
+qty:1
+
+});
+
+}
+
+localStorage.setItem("cart",JSON.stringify(cart));
+
+updateCart();
+
+alert(name+" added to cart.");
+
+}
+
+// Update Cart Count
+
+function updateCart(){
+
+let total=0;
+
+cart.forEach(product=>{
+
+total+=product.qty;
+
+});
+
+document.getElementById("cartCount").innerHTML=total;
+
+}
+
+updateCart();
+
+
+// Search
+
+document.getElementById("searchBox").addEventListener("keyup",function(){
+
+let value=this.value.toLowerCase();
+
+let cards=document.querySelectorAll(".card");
+
+cards.forEach(card=>{
+
+let text=card.innerText.toLowerCase();
+
+card.style.display=text.includes(value)?"block":"none";
+
+});
+
+});
+
+// Category Filter
+
+function filterCategory(category){
+
+const cards=document.querySelectorAll(".card");
+
+cards.forEach(card=>{
+
+if(category==="all"){
+
+card.style.display="block";
+
+}
+
+else if(card.classList.contains(category)){
+
+card.style.display="block";
+
+}
+
+else{
+
+card.style.display="none";
+
+}
+
+});
+
+}
+
+</script>
+
+</body>
+
+<header>
+
+<div class="logo">
+👗 POMPEY Fashion
+</div>
+
+<div class="search">
+
+<input
+type="text"
+id="searchBox"
+placeholder="Search Clothes...">
+
+<button>🔍</button>
+
+</div>
+
+<div class="menu">
+
+<a href="index.html">Home</a>
+
+<a href="cart.html">
+🛒 Cart (<span id="cartCount">0</span>)
+</a>
+  
+<a href="dashboard.html">Dashboard</a>
+
+</div>
+
+</header>
+
+<section class="banner">
+
+<h1>Fashion Sale</h1>
+
+<p>Up to 70% OFF | Trending Styles</p>
+
+</section>
+<section> 
+<div class="categories">
+
+<div class="categories">
+
+<button onclick="filterCategory('all')">All</button>
+
+<button onclick="filterCategory('men')">Men</button>
+
+<button onclick="filterCategory('women')">Women</button>
+
+<button onclick="filterCategory('kids')">Kids</button>
+
+<button onclick="filterCategory('shoes')">Shoes</button>
+
+<button onclick="filterCategory('saree')">Sarees</button>
+
+
+</div>
+</section>
+<section class="products">
+
+<div class="card Men's cotton T-Shirt">
+<img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=400">
+<h3>Men's Cotton T-Shirt</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹799</div>
+<div class="price">₹499</div>
+<button class="cart">Add to Cart</button>
+</div>
+
+<div class="card Men's Casual Shirt">
+<img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=400">
+<h3>Men's Casual Shirt</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹1,299</div>
+<div class="price">₹899</div>
+<button class="cart">Add to Cart</button>
+</div>
+
+<div class="card Women's Kurti">
+<img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=400">
+<h3>Women's Kurti</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹999</div>
+<div class="price">₹699</div>
+<button class="cart">Add to Cart</button>
+</div>
+
+<div class="card Designer Saree">
+<img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400">
+<h3>Designer Saree</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹1,999</div>
+<div class="price">₹1,399</div>
+<button class="cart">Add to Cart</button>
+</div>
+
+<div class="card Women's Dress">
+<img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=400">
+<h3>Women's Dress</h3>
+<div class="rating">⭐⭐⭐⭐☆</div>
+<div class="old">₹1,499</div>
+<div class="price">₹999</div>
+<button class="cart">Add to Cart</button>
+</div>
+
+<div class="card Blue Jeans">
+<img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=400">
+<h3>Blue Jeans</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹1,299</div>
+<div class="price">₹899</div>
+<button class="cart">Add to Cart</button>
+</div>
+
+<div class="card Hoodie">
+<img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=400">
+<h3>Hoodie</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹1,799</div>
+<div class="price">₹1,199</div>
+<button class="cart">Add to Cart</button>
+</div>
+
+<div class="card Leather Jacket">
+<img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=400">
+<h3>Leather Jacket</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹3,499</div>
+<div class="price">₹2,699</div>
+<button class="cart">Add to Cart</button>
+</div>
+
+<div class="card Running Shoes ">
+<img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400">
+<h3>Running Shoes</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹2,499</div>
+<div class="price">₹1,799</div>
+<button class="cart">Add to Cart</button>
+</div>
+
+<div class="card Kids T-Shirt">
+<img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400">
+<h3>Kids T-Shirt</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹699</div>
+<div class="price">₹399</div>
+<button class="cart">Add to Cart</button>
+</div>
+
+<div class="card Women'sPrinted Top ">
+<img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=400">
+<h3>Women's Printed Top</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹899</div>
+<div class="price">₹599</div>
+<button class="cart" onclick="addToCart('Women Printed Top',599,'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=400')">Add to Cart</button>
+</div>
+
+<div class="card Men'spolo T-Shirt">
+<img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400">
+<h3>Men's Polo T-Shirt</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹999</div>
+<div class="price">₹699</div>
+<button class="cart" onclick="addToCart('Men Polo T-Shirt',699,'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400')">Add to Cart</button>
+</div>
+
+<div class="card Women'sparty Gown">
+<img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=400">
+<h3>Women's Party Gown</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹2,499</div>
+<div class="price">₹1,899</div>
+<button class="cart" onclick="addToCart('Women Party Gown',1899,'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=400')">Add to Cart</button>
+</div>
+
+<div class="card women Handbag">
+<img src="https://images.unsplash.com/photo-1506629905607-d405b7a30db9?w=400">
+<h3>Women's Handbag</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹1,999</div>
+<div class="price">₹1,299</div>
+<button class="cart" onclick="addToCart('Women Handbag',1299,'https://images.unsplash.com/photo-1506629905607-d405b7a30db9?w=400')">Add to Cart</button>
+</div>
+
+<div class="card Sports Shoes">
+<img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400">
+<h3>Sports Shoes</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹2,999</div>
+<div class="price">₹2,199</div>
+<button class="cart" onclick="addToCart('Sports Shoes',2199,'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400')">Add to Cart</button>
+</div>
+
+<div class="card mens formal shirt">
+<img src="https://images.unsplash.com/photo-1544441893-675973e31985?w=400">
+<h3>Men's Formal Shirt</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹1,499</div>
+<div class="price">₹999</div>
+<button class="cart" onclick="addToCart('Men Formal Shirt',999,'https://images.unsplash.com/photo-1544441893-675973e31985?w=400')">Add to Cart</button>
+</div>
+
+<div class="card Winter Hoodie">
+<img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=400">
+<h3>Winter Hoodie</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹1,899</div>
+<div class="price">₹1,399</div>
+<button class="cart" onclick="addToCart('Winter Hoodie',1399,'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=400')">Add to Cart</button>
+</div>
+
+<div class="card silk Saree">
+<img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400">
+<h3>Silk Saree</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹2,999</div>
+<div class="price">₹2,299</div>
+<button class="cart" onclick="addToCart('Silk Saree',2299,'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400')">Add to Cart</button>
+</div>
+
+<div class="card Designer Kurti">
+<img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=400">
+<h3>Designer Kurti</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹1,199</div>
+<div class="price">₹799</div>
+<button class="cart" onclick="addToCart('Designer Kurti',799,'https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=400')">Add to Cart</button>
+</div>
+
+<div class="card kids Jacket">
+<img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400">
+<h3>Kids Jacket</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹1,299</div>
+<div class="price">₹899</div>
+<button class="cart" onclick="addToCart('Kids Jacket',899,'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400')">Add to Cart</button>
+  </div>
+</section>
+
+<footer style="background:#222;color:white;text-align:center;padding:20px;margin-top:30px;">
+© 2026 POMPEY Fashion Store | All Rights Reserved
+</footer>
+  
