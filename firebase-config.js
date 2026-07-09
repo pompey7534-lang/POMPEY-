@@ -1,22 +1,38 @@
-// Import Firebase
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgot Password</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
 
-// Your Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyAXvZ3pJReUhXPweOEFe09X6-ImhJwzs",
-  authDomain: "pompey-977ea.firebaseapp.com",
-  projectId: "pompey-977ea",
-  storageBucket: "pompey-977ea.firebasestorage.app",
-  messagingSenderId: "607741100294",
-  appId: "1:607741100294:web:3a221386c2155979681e87"
-};
+<div class="login-container">
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
+    <h2>Forgot Password</h2>
 
-// Initialize Authentication
-const auth = getAuth(app);
+    <form id="resetForm">
 
-// Export auth so other files can use it
-export { auth };
+        <input
+            type="email"
+            id="email"
+            placeholder="Enter your email"
+            required>
+
+        <button type="submit">
+            Send Reset Link
+        </button>
+
+    </form>
+
+    <br>
+
+    <a href="login.html">Back to Login</a>
+
+</div>
+
+<script type="module" src="js/forgot-password.js"></script>
+
+</body>
+</html>
