@@ -1,1 +1,253 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fresh Vegetables | POMPEY</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f5f5f5;
+}
+
+header{
+background:#0B5D1E;
+color:#fff;
+padding:15px 30px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+header h2{
+font-size:28px;
+}
+
+header a{
+color:#fff;
+text-decoration:none;
+margin-left:20px;
+font-weight:bold;
+}
+
+.search{
+padding:20px;
+text-align:center;
+}
+
+.search input{
+width:60%;
+padding:12px;
+font-size:18px;
+border-radius:8px;
+border:1px solid #ccc;
+}
+
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+gap:20px;
+padding:20px;
+}
+
+.card{
+background:#fff;
+border-radius:12px;
+padding:15px;
+text-align:center;
+box-shadow:0 5px 12px rgba(0,0,0,.15);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+}
+
+.card img{
+width:180px;
+height:180px;
+object-fit:cover;
+border-radius:10px;
+}
+
+.price{
+color:#0B5D1E;
+font-size:22px;
+font-weight:bold;
+margin:10px 0;
+}
+
+.old{
+color:#999;
+text-decoration:line-through;
+font-size:16px;
+}
+
+button{
+width:100%;
+padding:12px;
+background:#ff9800;
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-size:16px;
+}
+
+button:hover{
+background:#e68900;
+}
+
+.rating{
+color:#ff9800;
+margin:8px;
+}
+
+footer{
+background:#222;
+color:white;
+padding:20px;
+text-align:center;
+margin-top:40px;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h2>🥬 Fresh Vegetables</h2>
+
+<div>
+
+<a href="index.html">Home</a>
+
+<a href="cart.html">Cart</a>
+
+<a href="dashboard.html">Dashboard</a>
+
+</div>
+
+</header>
+
+<div class="search">
+
+<input
+type="text"
+id="search"
+placeholder="Search Vegetables...">
+
+</div>
+
+<div class="products" id="products">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400">
+<h3>Tomato</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹60/kg</div>
+<div class="price">₹45/kg</div>
+<button>Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=400">
+<h3>Potato</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹50/kg</div>
+<div class="price">₹38/kg</div>
+<button>Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?w=400">
+<h3>Onion</h3>
+<div class="rating">⭐⭐⭐⭐☆</div>
+<div class="old">₹55/kg</div>
+<div class="price">₹42/kg</div>
+<button>Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400">
+<h3>Cabbage</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹40</div>
+<div class="price">₹30</div>
+<button>Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1597362925123-77861d3fbac7?w=400">
+<h3>Cauliflower</h3>
+<div class="rating">⭐⭐⭐⭐☆</div>
+<div class="old">₹70</div>
+<div class="price">₹55</div>
+<button>Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1603048719539-9ecb8b2f0f5b?w=400">
+<h3>Brinjal</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹65/kg</div>
+<div class="price">₹49/kg</div>
+<button>Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=400">
+<h3>Carrot</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹70/kg</div>
+<div class="price">₹55/kg</div>
+<button>Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1601493700631-2b16ec4b4716?w=400">
+<h3>Spinach</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹35</div>
+<div class="price">₹25</div>
+<button>Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=400">
+<h3>Lady Finger</h3>
+<div class="rating">⭐⭐⭐⭐☆</div>
+<div class="old">₹80/kg</div>
+<div class="price">₹60/kg</div>
+<button>Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1582515073490-dc6c1e0d5e58?w=400">
+<h3>Capsicum</h3>
+<div class="rating">⭐⭐⭐⭐⭐</div>
+<div class="old">₹120/kg</div>
+<div class="price">₹95/kg</div>
+<button>Add to Cart</button>
+</div>
+
+</div>
+
+<footer>
+
+© 2026 POMPEY Fresh Vegetables
+
+</footer>
+
+</body>
+  </html>
