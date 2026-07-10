@@ -516,18 +516,6 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT.firebasestorage.app",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-window.db = db;
-const firebaseConfig = {
   apiKey: "AIzaSyAXvZ3pKpJReUhXPweOEFe09X6-ImhJwzs",
   authDomain: "pompey-977ea.firebaseapp.com",
   projectId: "pompey-977ea",
@@ -535,6 +523,10 @@ const firebaseConfig = {
   messagingSenderId: "607741100294",
   appId: "1:607741100294:web:3a221386c2155979681e87"
 };
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+window.db = db;
 
 
 </script>
