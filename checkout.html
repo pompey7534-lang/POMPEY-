@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>POMPEY Secure Checkout</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
 <style>
 
 *{
@@ -20,17 +22,17 @@ background:#f5f5f5;
 
 header{
 background:#0d6efd;
-color:white;
+color:#fff;
 padding:18px;
 text-align:center;
-font-size:24px;
+font-size:28px;
 font-weight:bold;
 }
 
 .container{
 width:95%;
 max-width:1200px;
-margin:25px auto;
+margin:20px auto;
 display:grid;
 grid-template-columns:2fr 1fr;
 gap:20px;
@@ -40,12 +42,7 @@ gap:20px;
 background:#fff;
 padding:20px;
 border-radius:12px;
-box-shadow:0 5px 15px rgba(0,0,0,.1);
-}
-
-h2{
-margin-bottom:15px;
-color:#0d6efd;
+box-shadow:0 5px 15px rgba(0,0,0,.12);
 }
 
 input,
@@ -64,32 +61,9 @@ height:90px;
 resize:none;
 }
 
-.order-item{
-display:flex;
-justify-content:space-between;
-padding:10px 0;
-border-bottom:1px solid #ddd;
-}
-
-.summary p{
-display:flex;
-justify-content:space-between;
-margin:10px 0;
-font-size:17px;
-}
-
-.summary h3{
-display:flex;
-justify-content:space-between;
-margin-top:20px;
-color:#0d6efd;
-font-size:22px;
-}
-
 button{
 width:100%;
 padding:15px;
-margin-top:20px;
 background:#28a745;
 color:white;
 font-size:18px;
@@ -100,6 +74,20 @@ cursor:pointer;
 
 button:hover{
 background:#218838;
+}
+
+.order-item{
+display:flex;
+justify-content:space-between;
+padding:10px 0;
+border-bottom:1px solid #ddd;
+}
+
+.summary p,
+.summary h3{
+display:flex;
+justify-content:space-between;
+margin:10px 0;
 }
 
 @media(max-width:768px){
@@ -117,14 +105,10 @@ grid-template-columns:1fr;
 <body>
 
 <header>
-
 POMPEY Secure Checkout
-
 </header>
 
 <div class="container">
-
-<!-- LEFT SIDE -->
 
 <div class="card">
 
@@ -132,48 +116,21 @@ POMPEY Secure Checkout
 
 <form id="checkoutForm">
 
-<input
-type="text"
-id="name"
-placeholder="Full Name"
-required>
+<input id="name" placeholder="Full Name" required>
 
-<input
-type="tel"
-id="mobile"
-placeholder="Mobile Number"
-required>
+<input id="mobile" placeholder="Mobile Number" required>
 
-<input
-type="email"
-id="email"
-placeholder="Email Address"
-required>
+<input id="email" type="email" placeholder="Email Address" required>
 
-<textarea
-id="address"
-placeholder="Complete Address"
-required></textarea>
+<textarea id="address" placeholder="Complete Address" required></textarea>
 
-<input
-type="text"
-id="city"
-placeholder="City"
-required>
+<input id="city" placeholder="City" required>
 
-<input
-type="text"
-id="state"
-placeholder="State"
-required>
+<input id="state" placeholder="State" required>
 
-<input
-type="text"
-id="pincode"
-placeholder="Pincode"
-required>
+<input id="pincode" placeholder="Pincode" required>
 
-<h2>Payment Method</h2>
+<h2>Payment</h2>
 
 <select id="payment">
 
@@ -181,107 +138,44 @@ required>
 
 <option>UPI (Razorpay)</option>
 
-<option>Credit Card</option>
-
-<option>Debit Card</option>
-
-<option>Net Banking</option>
-
-<option>Wallet</option>
-
 </select>
 
 <button type="submit">
-
 Place Order
-
 </button>
 
 </form>
 
 </div>
 
-<!-- RIGHT SIDE -->
-
 <div class="card">
 
 <h2>Order Summary</h2>
 
-<div id="summary">
+<div id="summary"></div>
 
-<!-- Products will appear here -->
-
-</div>
-
-<hr><br>
+<hr>
 
 <div class="summary">
 
 <p>
-
-<span>Products Total</span>
-
-<span>
-₹<span id="subtotal">0</span>
-</span>
-
+<span>Subtotal</span>
+<span>₹<span id="subtotal">0</span></span>
 </p>
 
 <p>
-
-<span>Delivery Charge</span>
-
+<span>Delivery</span>
 <span>₹20</span>
-
 </p>
 
 <p>
-
-<span>GST (2%)</span>
-
-<span>
-₹<span id="gst">0</span>
-</span>
-
+<span>GST</span>
+<span>₹<span id="gst">0</span></span>
 </p>
-<h3>Apply Coupon</h3>
 
-<input
-type="text"
-id="coupon"
-placeholder="Enter Coupon Code">
-
-<button type="button" onclick="applyCoupon()">
-Apply Coupon
-</button>
-
-<p id="couponMsg" style="color:green;font-weight:bold;"></p>
-<hr><br>
-
-<h3>Check Delivery Availability</h3>
-
-<input
-type="text"
-id="pin"
-placeholder="Enter 6-digit Pincode"
-maxlength="6">
-
-<button type="button" onclick="checkPin()">
-Check Delivery
-</button>
-
-<p id="pinResult" style="margin-top:10px;font-weight:bold;"></p>
-
-<hr><br>
-    
 <h3>
-
-<span>Grand Total</span>
-
-<span>
-₹<span id="grandTotal">0</span>
-</span>
-
+<span>Total</span>
+<span>₹<span id="grandTotal">0</span></span>
 </h3>
 
 </div>
@@ -289,48 +183,47 @@ Check Delivery
 </div>
 
 </div>
+
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
-<script>
+<script type="module">
 
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
-let subtotal = 0;
+import {
+getFirestore,
+collection,
+addDoc,
+serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-cart.forEach(item=>{
-    subtotal += item.price * item.qty;
-});
+const firebaseConfig = {
 
-const deliveryCharge = 20;
-const gst = subtotal * 0.02;
-const grandTotal = subtotal + deliveryCharge + gst;
+apiKey:"AIzaSyAXvZ3pKpJReUhXPweOEFe09X6-ImhJwzs",
 
-document.getElementById("subtotal").innerHTML = subtotal.toFixed(2);
-document.getElementById("gst").innerHTML = gst.toFixed(2);
-document.getElementById("grandTotal").innerHTML = grandTotal.toFixed(2);
+authDomain:"pompey-977ea.firebaseapp.com",
 
-// Display products
-let summary = document.getElementById("summary");
+projectId:"pompey-977ea",
 
-cart.forEach(item=>{
+storageBucket:"pompey-977ea.firebasestorage.app",
 
-summary.innerHTML += `
-<div class="order-item">
-<span>${item.name} × ${item.qty}</span>
-<span>₹${item.price * item.qty}</span>
-</div>
-`;
+messagingSenderId:"607741100294",
 
-});
+appId:"1:607741100294:web:3a221386c2155979681e87"
+
+};
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
 
 document.getElementById("checkoutForm").addEventListener("submit",function(e){
 
 e.preventDefault();
 
-const paymentMethod =
-document.getElementById("payment").value;
+const paymentMethod=document.getElementById("payment").value;
 
-if(paymentMethod=="Cash on Delivery"){
+if(paymentMethod==="Cash on Delivery"){
 
 saveOrder("Cash on Delivery");
 
@@ -340,7 +233,7 @@ return;
 
 const options={
 
-key:"rzp_test_TBXDEp17mpy2hf",
+key:"YOUR_RAZORPAY_KEY",
 
 amount:Math.round(grandTotal*100),
 
@@ -352,7 +245,7 @@ description:"Shopping Order",
 
 handler:function(response){
 
-saveOrder("Razorpay",response.razorpay_payment_id);
+saveOrder("Razorpay",response.razorpay_payment_id);rzp_test_TBXDEp17mpy2hf
 
 },
 
@@ -364,10 +257,6 @@ email:document.getElementById("email").value,
 
 contact:document.getElementById("mobile").value
 
-},
-
-theme:{
-color:"#0d6efd"
 }
 
 };
@@ -377,15 +266,13 @@ const rzp=new Razorpay(options);
 rzp.open();
 
 });
+async function saveOrder(payment,paymentId="rzp_test_TBXDEp17mpy2hf"){
 
-function saveOrder(payment,paymentId=""){
+const order={
 
-let orders =
-JSON.parse(localStorage.getItem("orders")) || [];
+paymentId,
 
-orders.push({
-
-paymentId:paymentId,
+payment,
 
 name:document.getElementById("name").value,
 
@@ -401,25 +288,25 @@ state:document.getElementById("state").value,
 
 pincode:document.getElementById("pincode").value,
 
-payment:payment,
-
 items:cart,
 
-subtotal:subtotal,
+subtotal,
 
 delivery:deliveryCharge,
 
-gst:gst,
+gst,
 
 total:grandTotal,
 
-status:"Confirmed",
+status:"Pending",
 
-date:new Date().toLocaleString()
+createdAt:serverTimestamp()
 
-});
+};
 
-localStorage.setItem("orders",JSON.stringify(orders));
+try{
+
+await addDoc(collection(db,"orders"),order);
 
 localStorage.removeItem("cart");
 
@@ -427,106 +314,44 @@ alert("Order Placed Successfully!");
 
 window.location.href="orders.html";
 
+}catch(error){
+
+alert(error.message);
+
 }
 
+}
     
-function applyCoupon(){
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-let code = document.getElementById("coupon").value.toUpperCase();
+let subtotal = 0;
 
-if(code === "SAVE10"){
+cart.forEach(item=>{
+subtotal += item.price * item.qty;
+});
 
-let discount = grandTotal * 0.10;
+const deliveryCharge = 20;
 
-let newTotal = grandTotal - discount;
+const gst = subtotal * 0.02;
 
-document.getElementById("grandTotal").innerHTML = newTotal.toFixed(2);
+let grandTotal = subtotal + deliveryCharge + gst;
 
-document.getElementById("couponMsg").innerHTML =
-"✅ Coupon Applied! You saved ₹" + discount.toFixed(2);
+document.getElementById("subtotal").innerHTML = subtotal.toFixed(2);
 
-}else{
+document.getElementById("gst").innerHTML = gst.toFixed(2);
 
-document.getElementById("couponMsg").innerHTML =
-"❌ Invalid Coupon Code";
+document.getElementById("grandTotal").innerHTML = grandTotal.toFixed(2);
 
-}
+const summary = document.getElementById("summary");
 
-}
+cart.forEach(item=>{
 
-function checkPin() {
+summary.innerHTML += `
+<div class="order-item">
+<span>${item.name} × ${item.qty}</span>
+<span>₹${item.price * item.qty}</span>
+</div>
+`;
 
-    let pin = document.getElementById("pin").value.trim();
-
-    let result = document.getElementById("pinResult");
-
-    if (pin.length !== 6 || isNaN(pin)) {
-
-        result.style.color = "red";
-        result.innerHTML = "❌ Please enter a valid 6-digit PIN code.";
-        return;
-    }
-
-    const serviceablePins = [
-        "110001",
-        "122001",
-        "201301",
-        "226001",
-        "208001",
-        "302001",
-        "400001",
-        "560001",
-        "700001",
-        "800001"
-    ];
-
-    if (serviceablePins.includes(pin)) {
-
-        let today = new Date();
-        today.setDate(today.getDate() + 2);
-
-        let deliveryDate = today.toLocaleDateString("en-IN", {
-            weekday: "long",
-            day: "numeric",
-            month: "long"
-        });
-
-        result.style.color = "green";
-        result.innerHTML =
-            "✅ Delivery Available<br><b>Expected Delivery:</b> " + deliveryDate;
-
-    } else {
-
-        result.style.color = "red";
-        result.innerHTML =
-            "❌ Sorry! We don't deliver to this PIN code yet.";
-
-    }
-    }
-
-</script>
-<script type="module">
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import {
-  getFirestore,
-  collection,
-  addDoc,
-  serverTimestamp
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyAXvZ3pKpJReUhXPweOEFe09X6-ImhJwzs",
-  authDomain: "pompey-977ea.firebaseapp.com",
-  projectId: "pompey-977ea",
-  storageBucket: "pompey-977ea.firebasestorage.app",
-  messagingSenderId: "607741100294",
-  appId: "1:607741100294:web:3a221386c2155979681e87"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-window.db = db;
-
-
+});    
 </script>
