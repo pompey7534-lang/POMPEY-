@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>POMPEY Grocery Store</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f5f5f5;
+}
+
+header{
+background:#0f9d58;
+padding:15px;
+color:#fff;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.logo{
+font-size:28px;
+font-weight:bold;
+}
+
+.search-box{
+width:45%;
+display:flex;
+}
+
+.search-box input{
+width:100%;
+padding:12px;
+border:none;
+border-radius:5px 0 0 5px;
+}
+
+.search-box button{
+padding:12px 18px;
+border:none;
+background:#ffc107;
+cursor:pointer;
+border-radius:0 5px 5px 0;
+}
+
+.cart{
+font-size:24px;
+cursor:pointer;
+position:relative;
+}
+
+.cart span{
+position:absolute;
+top:-8px;
+right:-10px;
+background:red;
+color:white;
+padding:2px 7px;
+border-radius:50%;
+font-size:12px;
+}
+
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+gap:20px;
+padding:20px;
+}
+
+.card{
+background:white;
+border-radius:10px;
+padding:15px;
+text-align:center;
+box-shadow:0 3px 8px rgba(0,0,0,.15);
+}
+
+.card img{
+width:160px;
+height:160px;
+object-fit:contain;
+}
+
+.price{
+color:#0f9d58;
+font-size:20px;
+font-weight:bold;
+margin:10px 0;
+}
+
+button{
+background:#0f9d58;
+color:white;
+padding:10px 18px;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+
+button:hover{
+background:#087f45;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+POMPEY Grocery
+</div>
+
+<div class="search-box">
+
+<input
+type="text"
+id="search"
+placeholder="Search Grocery...">
+
+<button onclick="searchProduct()">
+<i class="fas fa-search"></i>
+</button>
+
+</div>
+
+<div class="cart">
+
+<i class="fas fa-shopping-cart"></i>
+
+<span id="count">0</span>
+
+</div>
+
+</header>
+
+<section class="products">
+
+<!-- Product 1 -->
+
+<div class="card">
+
+<img src="https://source.unsplash.com/300x300/?rice">
+
+<h3>Basmati Rice 5kg</h3>
+
+<div class="price">₹499</div>
+
+<button onclick="addCart('Basmati Rice',499)">
+Add to Cart
+</button>
+
+</div>
+
+<!-- Product 2 -->
+
+<div class="card">
+
+<img src="https://source.unsplash.com/300x300/?wheat-flour">
+
+<h3>Aashirvaad Atta 10kg</h3>
+
+<div class="price">₹589</div>
+
+<button onclick="addCart('Aashirvaad Atta',589)">
+Add to Cart
+</button>
+
+</div>
+
+<!-- Product 3 -->
+
+<div class="card">
+
+<img src="https://source.unsplash.com/300x300/?milk">
+
+<h3>Amul Milk 1L</h3>
+
+<div class="price">₹68</div>
+
+<button onclick="addCart('Amul Milk',68)">
+Add to Cart
+</button>
+
+  </div>
+
+<!-- Product 4 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?egg" alt="Eggs">
+<h3>Farm Fresh Eggs (12)</h3>
+<div class="price">₹95</div>
+<button onclick="addCart('Farm Fresh Eggs',95)">Add to Cart</button>
+</div>
+
+<!-- Product 5 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?bread" alt="Bread">
+<h3>Brown Bread</h3>
+<div class="price">₹45</div>
+<button onclick="addCart('Brown Bread',45)">Add to Cart</button>
+</div>
+
+<!-- Product 6 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?banana" alt="Banana">
+<h3>Banana (1 Dozen)</h3>
+<div class="price">₹70</div>
+<button onclick="addCart('Banana',70)">Add to Cart</button>
+</div>
+
+<!-- Product 7 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?apple" alt="Apple">
+<h3>Apple (1kg)</h3>
+<div class="price">₹180</div>
+<button onclick="addCart('Apple',180)">Add to Cart</button>
+</div>
+
+<!-- Product 8 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?orange" alt="Orange">
+<h3>Orange (1kg)</h3>
+<div class="price">₹120</div>
+<button onclick="addCart('Orange',120)">Add to Cart</button>
+</div>
+
+<!-- Product 9 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?potato" alt="Potato">
+<h3>Potato (1kg)</h3>
+<div class="price">₹35</div>
+<button onclick="addCart('Potato',35)">Add to Cart</button>
+</div>
+
+<!-- Product 10 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?onion" alt="Onion">
+<h3>Onion (1kg)</h3>
+<div class="price">₹40</div>
+<button onclick="addCart('Onion',40)">Add to Cart</button>
+</div>
+
+<!-- Product 11 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?tomato" alt="Tomato">
+<h3>Tomato (1kg)</h3>
+<div class="price">₹55</div>
+<button onclick="addCart('Tomato',55)">Add to Cart</button>
+</div>
+
+<!-- Product 12 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?sugar" alt="Sugar">
+<h3>Sugar (1kg)</h3>
+<div class="price">₹52</div>
+<button onclick="addCart('Sugar',52)">Add to Cart</button>
+</div>
+
+<!-- Product 13 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?salt" alt="Salt">
+<h3>Tata Salt (1kg)</h3>
+<div class="price">₹30</div>
+<button onclick="addCart('Tata Salt',30)">Add to Cart</button>
+</div>
+
+<!-- Product 14 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?cooking-oil" alt="Oil">
+<h3>Fortune Oil (1L)</h3>
+<div class="price">₹165</div>
+<button onclick="addCart('Fortune Oil',165)">Add to Cart</button>
+</div>
+
+<!-- Product 15 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?tea" alt="Tea">
+<h3>Tata Tea (500g)</h3>
+<div class="price">₹240</div>
+<button onclick="addCart('Tata Tea',240)">Add to Cart</button>
+</div>
+<!-- Product 16 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?coffee" alt="Coffee">
+<h3>Nescafe Coffee 100g</h3>
+<div class="price">₹325</div>
+<button onclick="addCart('Nescafe Coffee',325)">Add to Cart</button>
+</div>
+
+<!-- Product 17 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?biscuits" alt="Biscuits">
+<h3>Parle-G Biscuits</h3>
+<div class="price">₹10</div>
+<button onclick="addCart('Parle-G Biscuits',10)">Add to Cart</button>
+</div>
+
+<!-- Product 18 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?cookies" alt="Cookies">
+<h3>Good Day Cookies</h3>
+<div class="price">₹35</div>
+<button onclick="addCart('Good Day Cookies',35)">Add to Cart</button>
+</div>
+
+<!-- Product 19 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?noodles" alt="Noodles">
+<h3>Maggi Noodles Pack</h3>
+<div class="price">₹16</div>
+<button onclick="addCart('Maggi Noodles',16)">Add to Cart</button>
+</div>
+
+<!-- Product 20 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?pasta" alt="Pasta">
+<h3>Pasta 500g</h3>
+<div class="price">₹75</div>
+<button onclick="addCart('Pasta',75)">Add to Cart</button>
+</div>
+
+<!-- Product 21 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?lentils" alt="Dal">
+<h3>Toor Dal 1kg</h3>
+<div class="price">₹170</div>
+<button onclick="addCart('Toor Dal',170)">Add to Cart</button>
+</div>
+
+<!-- Product 22 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?beans" alt="Rajma">
+<h3>Rajma 1kg</h3>
+<div class="price">₹160</div>
+<button onclick="addCart('Rajma',160)">Add to Cart</button>
+</div>
+
+<!-- Product 23 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?chickpeas" alt="Chana">
+<h3>Kabuli Chana 1kg</h3>
+<div class="price">₹145</div>
+<button onclick="addCart('Kabuli Chana',145)">Add to Cart</button>
+</div>
+
+<!-- Product 24 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?soft-drink" alt="Coke">
+<h3>Coca-Cola 2L</h3>
+<div class="price">₹95</div>
+<button onclick="addCart('Coca-Cola',95)">Add to Cart</button>
+</div>
+
+<!-- Product 25 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?juice" alt="Juice">
+<h3>Real Mixed Fruit Juice 1L</h3>
+<div class="price">₹125</div>
+<button onclick="addCart('Real Juice',125)">Add to Cart</button>
+</div>
+
+<!-- Product 26 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?detergent" alt="Detergent">
+<h3>Surf Excel 1kg</h3>
+<div class="price">₹245</div>
+<button onclick="addCart('Surf Excel',245)">Add to Cart</button>
+</div>
+
+<!-- Product 27 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?soap" alt="Soap">
+<h3>Lux Soap (Pack of 4)</h3>
+<div class="price">₹145</div>
+<button onclick="addCart('Lux Soap',145)">Add to Cart</button>
+</div>
+
+<!-- Product 28 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?shampoo" alt="Shampoo">
+<h3>Clinic Plus Shampoo</h3>
+<div class="price">₹210</div>
+<button onclick="addCart('Clinic Plus Shampoo',210)">Add to Cart</button>
+</div>
+
+<!-- Product 29 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?toothpaste" alt="Toothpaste">
+<h3>Colgate Toothpaste</h3>
+<div class="price">₹120</div>
+<button onclick="addCart('Colgate Toothpaste',120)">Add to Cart</button>
+</div>
+
+<!-- Product 30 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?toothbrush" alt="Toothbrush">
+<h3>Oral-B Toothbrush</h3>
+<div class="price">₹60</div>
+<button onclick="addCart('Oral-B Toothbrush',60)">Add to Cart</button>
+  </div>
+<!-- Product 31 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?turmeric" alt="Turmeric">
+<h3>Turmeric Powder 200g</h3>
+<div class="price">₹65</div>
+<button onclick="addCart('Turmeric Powder',65)">Add to Cart</button>
+</div>
+
+<!-- Product 32 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?red-chilli" alt="Red Chilli">
+<h3>Red Chilli Powder 200g</h3>
+<div class="price">₹80</div>
+<button onclick="addCart('Red Chilli Powder',80)">Add to Cart</button>
+</div>
+
+<!-- Product 33 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?coriander" alt="Coriander">
+<h3>Coriander Powder 200g</h3>
+<div class="price">₹70</div>
+<button onclick="addCart('Coriander Powder',70)">Add to Cart</button>
+</div>
+
+<!-- Product 34 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?garam-masala" alt="Garam Masala">
+<h3>Garam Masala 100g</h3>
+<div class="price">₹95</div>
+<button onclick="addCart('Garam Masala',95)">Add to Cart</button>
+</div>
+
+<!-- Product 35 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?cashew" alt="Cashew">
+<h3>Cashew Nuts 500g</h3>
+<div class="price">₹520</div>
+<button onclick="addCart('Cashew Nuts',520)">Add to Cart</button>
+</div>
+
+<!-- Product 36 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?almonds" alt="Almonds">
+<h3>Almonds 500g</h3>
+<div class="price">₹480</div>
+<button onclick="addCart('Almonds',480)">Add to Cart</button>
+</div>
+
+<!-- Product 37 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?raisins" alt="Raisins">
+<h3>Raisins 250g</h3>
+<div class="price">₹150</div>
+<button onclick="addCart('Raisins',150)">Add to Cart</button>
+</div>
+
+<!-- Product 38 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?chocolate" alt="Chocolate">
+<h3>Dairy Milk Silk</h3>
+<div class="price">₹190</div>
+<button onclick="addCart('Dairy Milk Silk',190)">Add to Cart</button>
+</div>
+
+<!-- Product 39 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?ice-cream" alt="Ice Cream">
+<h3>Vanilla Ice Cream</h3>
+<div class="price">₹220</div>
+<button onclick="addCart('Vanilla Ice Cream',220)">Add to Cart</button>
+</div>
+
+<!-- Product 40 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?frozen-food" alt="Frozen Food">
+<h3>Frozen Green Peas 500g</h3>
+<div class="price">₹95</div>
+<button onclick="addCart('Frozen Green Peas',95)">Add to Cart</button>
+</div>
+
+<!-- Product 41 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?baby-diaper" alt="Diapers">
+<h3>Baby Diapers Pack</h3>
+<div class="price">₹399</div>
+<button onclick="addCart('Baby Diapers',399)">Add to Cart</button>
+</div>
+
+<!-- Product 42 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?baby-lotion" alt="Baby Lotion">
+<h3>Baby Lotion 200ml</h3>
+<div class="price">₹180</div>
+<button onclick="addCart('Baby Lotion',180)">Add to Cart</button>
+</div>
+
+<!-- Product 43 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?tissue-paper" alt="Tissue">
+<h3>Facial Tissue Box</h3>
+<div class="price">₹90</div>
+<button onclick="addCart('Facial Tissue',90)">Add to Cart</button>
+</div>
+
+<!-- Product 44 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?garbage-bag" alt="Garbage Bags">
+<h3>Garbage Bags (30 pcs)</h3>
+<div class="price">₹110</div>
+<button onclick="addCart('Garbage Bags',110)">Add to Cart</button>
+</div>
+
+<!-- Product 45 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?dishwash-liquid" alt="Dishwash">
+<h3>Dishwash Liquid 500ml</h3>
+<div class="price">₹125</div>
+<button onclick="addCart('Dishwash Liquid',125)">Add to Cart</button>
+                       </div>
+<!-- Product 46 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?chips" alt="Lays">
+<h3>Lays Classic Chips</h3>
+<div class="price">₹20</div>
+<button onclick="addCart('Lays Classic Chips',20)">Add to Cart</button>
+</div>
+
+<!-- Product 47 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?nachos" alt="Nachos">
+<h3>Nachos 150g</h3>
+<div class="price">₹85</div>
+<button onclick="addCart('Nachos',85)">Add to Cart</button>
+</div>
+
+<!-- Product 48 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?popcorn" alt="Popcorn">
+<h3>Popcorn 100g</h3>
+<div class="price">₹60</div>
+<button onclick="addCart('Popcorn',60)">Add to Cart</button>
+</div>
+
+<!-- Product 49 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?cornflakes" alt="Cornflakes">
+<h3>Kellogg's Cornflakes</h3>
+<div class="price">₹185</div>
+<button onclick="addCart('Cornflakes',185)">Add to Cart</button>
+</div>
+
+<!-- Product 50 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?oats" alt="Oats">
+<h3>Quaker Oats 1kg</h3>
+<div class="price">₹220</div>
+<button onclick="addCart('Quaker Oats',220)">Add to Cart</button>
+</div>
+
+<!-- Product 51 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?jam" alt="Jam">
+<h3>Kissan Mixed Fruit Jam</h3>
+<div class="price">₹145</div>
+<button onclick="addCart('Kissan Jam',145)">Add to Cart</button>
+</div>
+
+<!-- Product 52 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?peanut-butter" alt="Peanut Butter">
+<h3>Peanut Butter 500g</h3>
+<div class="price">₹260</div>
+<button onclick="addCart('Peanut Butter',260)">Add to Cart</button>
+</div>
+
+<!-- Product 53 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?ketchup" alt="Ketchup">
+<h3>Kissan Tomato Ketchup</h3>
+<div class="price">₹120</div>
+<button onclick="addCart('Kissan Tomato Ketchup',120)">Add to Cart</button>
+</div>
+
+<!-- Product 54 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?mayonnaise" alt="Mayonnaise">
+<h3>Mayonnaise 500g</h3>
+<div class="price">₹180</div>
+<button onclick="addCart('Mayonnaise',180)">Add to Cart</button>
+</div>
+
+<!-- Product 55 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?pickle" alt="Pickle">
+<h3>Mixed Pickle 500g</h3>
+<div class="price">₹160</div>
+<button onclick="addCart('Mixed Pickle',160)">Add to Cart</button>
+</div>
+
+<!-- Product 56 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?butter" alt="Butter">
+<h3>Amul Butter 500g</h3>
+<div class="price">₹285</div>
+<button onclick="addCart('Amul Butter',285)">Add to Cart</button>
+</div>
+
+<!-- Product 57 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?cheese" alt="Cheese">
+<h3>Amul Cheese Slices</h3>
+<div class="price">₹235</div>
+<button onclick="addCart('Amul Cheese',235)">Add to Cart</button>
+</div>
+
+<!-- Product 58 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?yogurt" alt="Curd">
+<h3>Fresh Curd 500g</h3>
+<div class="price">₹55</div>
+<button onclick="addCart('Fresh Curd',55)">Add to Cart</button>
+</div>
+
+<!-- Product 59 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?paneer" alt="Paneer">
+<h3>Fresh Paneer 500g</h3>
+<div class="price">₹210</div>
+<button onclick="addCart('Fresh Paneer',210)">Add to Cart</button>
+</div>
+
+<!-- Product 60 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?mineral-water" alt="Water">
+<h3>Bisleri Water 2L</h3>
+<div class="price">₹40</div>
+<button onclick="addCart('Bisleri Water',40)">Add to Cart</button>
+                                                          </div>
+<!-- Product 61 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?spinach" alt="Spinach">
+<h3>Fresh Spinach 250g</h3>
+<div class="price">₹35</div>
+<button onclick="addCart('Fresh Spinach',35)">Add to Cart</button>
+</div>
+
+<!-- Product 62 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?cabbage" alt="Cabbage">
+<h3>Cabbage 1pc</h3>
+<div class="price">₹40</div>
+<button onclick="addCart('Cabbage',40)">Add to Cart</button>
+</div>
+
+<!-- Product 63 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?cauliflower" alt="Cauliflower">
+<h3>Cauliflower 1pc</h3>
+<div class="price">₹50</div>
+<button onclick="addCart('Cauliflower',50)">Add to Cart</button>
+</div>
+
+<!-- Product 64 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?carrot" alt="Carrot">
+<h3>Carrot 1kg</h3>
+<div class="price">₹60</div>
+<button onclick="addCart('Carrot',60)">Add to Cart</button>
+</div>
+
+<!-- Product 65 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?cucumber" alt="Cucumber">
+<h3>Cucumber 1kg</h3>
+<div class="price">₹45</div>
+<button onclick="addCart('Cucumber',45)">Add to Cart</button>
+</div>
+
+<!-- Product 66 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?capsicum" alt="Capsicum">
+<h3>Capsicum 500g</h3>
+<div class="price">₹70</div>
+<button onclick="addCart('Capsicum',70)">Add to Cart</button>
+</div>
+
+<!-- Product 67 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?broccoli" alt="Broccoli">
+<h3>Broccoli 250g</h3>
+<div class="price">₹95</div>
+<button onclick="addCart('Broccoli',95)">Add to Cart</button>
+</div>
+
+<!-- Product 68 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?mango" alt="Mango">
+<h3>Mango 1kg</h3>
+<div class="price">₹180</div>
+<button onclick="addCart('Mango',180)">Add to Cart</button>
+</div>
+
+<!-- Product 69 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?grapes" alt="Grapes">
+<h3>Black Grapes 500g</h3>
+<div class="price">₹90</div>
+<button onclick="addCart('Black Grapes',90)">Add to Cart</button>
+</div>
+
+<!-- Product 70 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?watermelon" alt="Watermelon">
+<h3>Watermelon 1pc</h3>
+<div class="price">₹120</div>
+<button onclick="addCart('Watermelon',120)">Add to Cart</button>
+</div>
+
+<!-- Product 71 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?pineapple" alt="Pineapple">
+<h3>Pineapple 1pc</h3>
+<div class="price">₹85</div>
+<button onclick="addCart('Pineapple',85)">Add to Cart</button>
+</div>
+
+<!-- Product 72 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?pomegranate" alt="Pomegranate">
+<h3>Pomegranate 1kg</h3>
+<div class="price">₹220</div>
+<button onclick="addCart('Pomegranate',220)">Add to Cart</button>
+</div>
+
+<!-- Product 73 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?green-tea" alt="Green Tea">
+<h3>Green Tea 100g</h3>
+<div class="price">₹195</div>
+<button onclick="addCart('Green Tea',195)">Add to Cart</button>
+</div>
+
+<!-- Product 74 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?energy-drink" alt="Energy Drink">
+<h3>Red Bull 250ml</h3>
+<div class="price">₹125</div>
+<button onclick="addCart('Red Bull',125)">Add to Cart</button>
+</div>
+
+<!-- Product 75 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?muffin" alt="Muffin">
+<h3>Chocolate Muffin</h3>
+<div class="price">₹45</div>
+<button onclick="addCart('Chocolate Muffin',45)">Add to Cart</button>
+  </div>
+
+<!-- Product 76 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?croissant">
+<h3>Butter Croissant</h3>
+<div class="price">₹55</div>
+<button onclick="addCart('Butter Croissant',55)">Add to Cart</button>
+</div>
+
+<!-- Product 77 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?cupcake">
+<h3>Vanilla Cupcake</h3>
+<div class="price">₹40</div>
+<button onclick="addCart('Vanilla Cupcake',40)">Add to Cart</button>
+</div>
+
+<!-- Product 78 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?brownie">
+<h3>Chocolate Brownie</h3>
+<div class="price">₹60</div>
+<button onclick="addCart('Chocolate Brownie',60)">Add to Cart</button>
+</div>
+
+<!-- Product 79 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?pizza">
+<h3>Frozen Pizza</h3>
+<div class="price">₹249</div>
+<button onclick="addCart('Frozen Pizza',249)">Add to Cart</button>
+</div>
+
+<!-- Product 80 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?french-fries">
+<h3>Frozen French Fries</h3>
+<div class="price">₹180</div>
+<button onclick="addCart('Frozen French Fries',180)">Add to Cart</button>
+</div>
+
+<!-- Product 81 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?honey">
+<h3>Dabur Honey 500g</h3>
+<div class="price">₹260</div>
+<button onclick="addCart('Dabur Honey',260)">Add to Cart</button>
+</div>
+
+<!-- Product 82 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?olive-oil">
+<h3>Olive Oil 1L</h3>
+<div class="price">₹699</div>
+<button onclick="addCart('Olive Oil',699)">Add to Cart</button>
+</div>
+
+<!-- Product 83 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?black-pepper">
+<h3>Black Pepper 100g</h3>
+<div class="price">₹140</div>
+<button onclick="addCart('Black Pepper',140)">Add to Cart</button>
+</div>
+
+<!-- Product 84 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?cumin">
+<h3>Cumin Seeds 200g</h3>
+<div class="price">₹95</div>
+<button onclick="addCart('Cumin Seeds',95)">Add to Cart</button>
+</div>
+
+<!-- Product 85 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?mustard-seeds">
+<h3>Mustard Seeds 200g</h3>
+<div class="price">₹65</div>
+<button onclick="addCart('Mustard Seeds',65)">Add to Cart</button>
+</div>
+
+<!-- Product 86 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?green-peas">
+<h3>Fresh Green Peas 1kg</h3>
+<div class="price">₹90</div>
+<button onclick="addCart('Fresh Green Peas',90)">Add to Cart</button>
+</div>
+
+<!-- Product 87 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?beetroot">
+<h3>Beetroot 1kg</h3>
+<div class="price">₹55</div>
+<button onclick="addCart('Beetroot',55)">Add to Cart</button>
+</div>
+
+<!-- Product 88 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?radish">
+<h3>Radish 1kg</h3>
+<div class="price">₹40</div>
+<button onclick="addCart('Radish',40)">Add to Cart</button>
+</div>
+
+<!-- Product 89 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?guava">
+<h3>Guava 1kg</h3>
+<div class="price">₹110</div>
+<button onclick="addCart('Guava',110)">Add to Cart</button>
+</div>
+
+<!-- Product 90 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?kiwi">
+<h3>Kiwi (4 pcs)</h3>
+<div class="price">₹199</div>
+<button onclick="addCart('Kiwi',199)">Add to Cart</button>
+</div>
+
+<!-- Product 91 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?pear">
+<h3>Pear 1kg</h3>
+<div class="price">₹170</div>
+<button onclick="addCart('Pear',170)">Add to Cart</button>
+</div>
+
+<!-- Product 92 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?coconut">
+<h3>Fresh Coconut</h3>
+<div class="price">₹55</div>
+<button onclick="addCart('Fresh Coconut',55)">Add to Cart</button>
+</div>
+
+<!-- Product 93 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?lemon">
+<h3>Lemon (1kg)</h3>
+<div class="price">₹80</div>
+<button onclick="addCart('Lemon',80)">Add to Cart</button>
+</div>
+
+<!-- Product 94 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?garlic">
+<h3>Garlic 500g</h3>
+<div class="price">₹110</div>
+<button onclick="addCart('Garlic',110)">Add to Cart</button>
+</div>
+
+<!-- Product 95 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?ginger">
+<h3>Ginger 500g</h3>
+<div class="price">₹95</div>
+<button onclick="addCart('Ginger',95)">Add to Cart</button>
+</div>
+
+<!-- Product 96 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?green-chilli">
+<h3>Green Chilli 250g</h3>
+<div class="price">₹35</div>
+<button onclick="addCart('Green Chilli',35)">Add to Cart</button>
+</div>
+
+<!-- Product 97 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?mint">
+<h3>Fresh Mint</h3>
+<div class="price">₹20</div>
+<button onclick="addCart('Fresh Mint',20)">Add to Cart</button>
+</div>
+
+<!-- Product 98 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?coriander-leaves">
+<h3>Coriander Leaves</h3>
+<div class="price">₹25</div>
+<button onclick="addCart('Coriander Leaves',25)">Add to Cart</button>
+</div>
+
+<!-- Product 99 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?cola">
+<h3>Pepsi 2L</h3>
+<div class="price">₹99</div>
+<button onclick="addCart('Pepsi 2L',99)">Add to Cart</button>
+</div>
+
+<!-- Product 100 -->
+<div class="card">
+<img src="https://source.unsplash.com/300x300/?orange-juice">
+<h3>Tropicana Orange Juice 1L</h3>
+<div class="price">₹135</div>
+<button onclick="addCart('Tropicana Orange Juice',135)">Add to Cart</button>
+</div>
+
+</section>
+
+<script src="script.js"></script>
+</body>
+  </html>
+  
