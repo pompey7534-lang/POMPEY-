@@ -244,18 +244,7 @@ Place Order
 </span>
 
 </p>
-<h3>Apply Coupon</h3>
 
-<input
-type="text"
-id="coupon"
-placeholder="Enter Coupon Code">
-
-<button type="button" onclick="applyCoupon()">
-Apply Coupon
-</button>
-
-<p id="couponMsg" style="color:green;font-weight:bold;"></p>
 <hr><br>
 
 <h3>
@@ -413,29 +402,5 @@ window.location.href="orders.html";
 
 }
 
-    
-function applyCoupon(){
-
-let code = document.getElementById("coupon").value.toUpperCase();
-
-if(code === "SAVE10"){
-
-let discount = grandTotal * 0.10;
-
-let newTotal = grandTotal - discount;
-
-document.getElementById("grandTotal").innerHTML = newTotal.toFixed(2);
-
-document.getElementById("couponMsg").innerHTML =
-"✅ Coupon Applied! You saved ₹" + discount.toFixed(2);
-
-}else{
-
-document.getElementById("couponMsg").innerHTML =
-"❌ Invalid Coupon Code";
-
-}
-
-}
     </script>
 </body></html>
