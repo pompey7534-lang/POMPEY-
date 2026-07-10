@@ -65,17 +65,6 @@ document
 // Load Counter on Page Open
 updateCartCount();
 // Open/Close Cart
-document.querySelector(".cart").onclick = function () {
-
-    let panel = document.getElementById("cartPanel");
-
-    if (panel.style.right === "0px") {
-        panel.style.right = "-400px";
-    } else {
-        panel.style.right = "0px";
-        renderCart();
-    }
-};
 
 // Display Cart Items
 function renderCart() {
@@ -150,3 +139,15 @@ function checkout() {
     cart = [];
     renderCart();
 }
+function toggleCart(){
+
+    let panel = document.getElementById("cartPanel");
+
+    if(panel.style.right==="0px"){
+        panel.style.right="-400px";
+    }else{
+        panel.style.right="0px";
+        renderCart();
+    }
+
+                }
