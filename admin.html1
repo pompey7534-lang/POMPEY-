@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>POMPEY Admin Dashboard</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f4f6f9;
+display:flex;
+}
+
+/* Sidebar */
+
+.sidebar{
+width:250px;
+height:100vh;
+background:#131921;
+color:white;
+position:fixed;
+left:0;
+top:0;
+}
+
+.logo{
+padding:20px;
+font-size:28px;
+font-weight:bold;
+text-align:center;
+background:#232f3e;
+}
+
+.sidebar ul{
+list-style:none;
+}
+
+.sidebar ul li{
+padding:18px 25px;
+border-bottom:1px solid rgba(255,255,255,.1);
+cursor:pointer;
+}
+
+.sidebar ul li:hover{
+background:#37475a;
+}
+
+.sidebar ul li i{
+margin-right:10px;
+}
+
+/* Main */
+
+.main{
+margin-left:250px;
+width:calc(100% - 250px);
+}
+
+/* Header */
+
+.header{
+height:70px;
+background:white;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:0 25px;
+box-shadow:0 2px 10px rgba(0,0,0,.1);
+}
+
+.header h2{
+color:#131921;
+}
+
+.admin{
+font-weight:bold;
+color:#0d6efd;
+}
+
+/* Cards */
+
+.cards{
+
+display:grid;
+
+grid-template-columns:repeat(4,1fr);
+
+gap:20px;
+
+padding:25px;
+
+}
+
+.card{
+
+background:white;
+
+padding:20px;
+
+border-radius:12px;
+
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+transition:.3s;
+
+}
+
+.card:hover{
+
+transform:translateY(-5px);
+
+}
+
+.card h3{
+
+color:#777;
+
+margin-bottom:10px;
+
+}
+
+.card h1{
+
+color:#0d6efd;
+
+}
+
+.content{
+
+padding:25px;
+
+}
+
+.table-box{
+
+background:white;
+
+padding:20px;
+
+border-radius:12px;
+
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+overflow:auto;
+
+}
+<div style="margin-bottom:20px;display:flex;gap:10px;">
+
+<input
+type="text"
+id="searchOrder"
+placeholder="Search by Customer Name or Mobile"
+style="width:350px;padding:10px;border:1px solid #ccc;border-radius:6px;">
+
+<button onclick="searchOrders()"
+style="padding:10px 20px;background:#0d6efd;color:white;border:none;border-radius:6px;cursor:pointer;">
+
+🔍 Search
+
+</button>
+
+<button onclick="loadOrders()"
+style="padding:10px 20px;background:#28a745;color:white;border:none;border-radius:6px;cursor:pointer;">
+
+Show All
+
+</button>
+
+</div>
+  
+table{
+
+width:100%;
+
+border-collapse:collapse;
+
+}
+
+th,td{
+
+padding:12px;
+
+border-bottom:1px solid #ddd;
+
+text-align:left;
+
+}
+
+th{
+
+background:#232f3e;
+
+color:white;
+
+}
+
+.status{
+
+padding:6px 12px;
+
+border-radius:20px;
+
+color:white;
+
+font-size:13px;
+
+}
+
+.paid{
+
+background:green;
+
+}
+
+.pending{
+
+background:orange;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<div class="logo">
+
+POMPEY Admin
+
+</div>
+
+<ul>
+
+<li><i class="fa fa-chart-line"></i> Dashboard</li>
+
+<li><i class="fa fa-shopping-cart"></i> Orders</li>
+
+<li><i class="fa fa-users"></i> Customers</li>
+
+<li><i class="fa fa-box"></i> Products</li>
+
+<li><i class="fa fa-credit-card"></i> Payments</li>
+
+<li><i class="fa fa-truck"></i> Delivery</li>
+
+<li><i class="fa fa-cog"></i> Settings</li>
+
+<li onclick="window.location='index.html'">
+
+<i class="fa fa-home"></i> Home
+
+</li>
+
+</ul>
+
+</div>
+
+<div class="main">
+
+<div class="header">
+
+<h2>Admin Dashboard</h2>
+
+<div class="admin">
+
+<i class="fa fa-user-circle"></i>
+
+Admin
+
+</div>
+
+</div>
+
+<div class="cards">
+
+<div class="card">
+
+<h3>Total Orders</h3>
+
+<h1 id="totalOrders">0</h1>
+
+</div>
+
+<div class="card">
+
+<h3>Total Sales</h3>
+
+<h1>₹<span id="totalSales">0</span></h1>
+
+</div>
+
+<div class="card">
+
+<h3>Customers</h3>
+
+<h1 id="customers">0</h1>
+
+</div>
+
+<div class="card">
+
+<h3>Revenue</h3>
+
+<h1>₹<span id="revenue">0</span></h1>
+
+</div>
+
+</div>
+
+<div class="content">
+
+<div class="table-box">
+
+<h2>Recent Orders</h2>
+
+<br>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Order</th>
+
+<th>Customer</th>
+
+<th>Mobile</th>
+
+<th>Total</th>
+
+<th>Payment</th>
+
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody id="ordersTable">
+
+<!-- Orders will appear here -->
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+<script>
+
+// Load Orders from localStorage
+let orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+let table = document.getElementById("ordersTable");
+
+let totalSales = 0;
+
+// Dashboard Statistics
+document.getElementById("totalOrders").innerHTML = orders.length;
+document.getElementById("customers").innerHTML = orders.length;
+
+// Show Orders
+function loadOrders(list = orders){
+
+let table = document.getElementById("ordersTable");
+
+table.innerHTML = "";
+
+let total = 0;
+
+list.forEach((order,index)=>{
+
+total += Number(order.total);
+
+table.innerHTML += `
+
+<tr>
+
+<td>#${index+1}</td>
+
+<td>${order.name}</td>
+
+<td>${order.mobile}</td>
+
+<td>₹${Number(order.total).toFixed(2)}</td>
+
+<td>${order.payment}</td>
+
+<td><span class="status paid">${order.status}</span></td>
+
+</tr>
+
+`;
+
+});
+
+if(list.length==0){
+
+table.innerHTML=`
+<tr>
+<td colspan="6" style="text-align:center;">
+No Matching Orders Found
+</td>
+</tr>
+`;
+
+}
+
+}
+
+loadOrders();
+
+function searchOrders(){
+
+let value=document.getElementById("searchOrder")
+.value.toLowerCase();
+
+let filtered=orders.filter(order=>{
+
+return order.name.toLowerCase().includes(value)
+
+||
+
+order.mobile.includes(value);
+
+});
+
+loadOrders(filtered);
+
+  }
+
+</script>
+
+</body>
+</html>
+
