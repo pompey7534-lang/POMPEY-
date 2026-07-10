@@ -1,12 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>POMPEY Fast Food</title>
 
 <style>
 
+.qty{
+
+font-size:20px;
+
+font-weight:bold;
+
+padding:8px;
+
+width:30px;
+
+text-align:center;
+
+}
+
+.product button{
+
+margin:4px;
+
+}
+
+.product{
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+.product:hover{
+
+transform:translateY(-8px);
+
+transition:.3s;
+
+}
+
+.badge{
+position:absolute;
+top:10px;
+left:10px;
+background:red;
+color:white;
+padding:5px 10px;
+border-radius:20px;
+font-size:12px;
+font-weight:bold;
+}
+
+.discount{
+position:absolute;
+top:10px;
+right:10px;
+background:#28a745;
+color:white;
+padding:5px 10px;
+border-radius:20px;
+font-size:12px;
+font-weight:bold;
+}
+
+.wishlist{
+position:absolute;
+right:15px;
+bottom:15px;
+font-size:28px;
+cursor:pointer;
+color:#bbb;
+}
+
+.wishlist.active{
+color:red;
+}
+
+.buyNow{
+background:#ff9800;
+margin-top:8px;
+}
+
+.buyNow:hover{
+background:#f57c00;
+}
+
+.offer{
+color:#28a745;
+font-weight:bold;
+margin-top:8px;
+}
+
+    
 *{
 margin:0;
 padding:0;
@@ -15,368 +106,2853 @@ font-family:Arial,sans-serif;
 }
 
 body{
-background:#f5f5f5;
+background:#f3f3f3;
 }
 
+/* HEADER */
+
 header{
-background:#ff6f00;
-padding:15px 30px;
+background:#131921;
+padding:15px 20px;
 display:flex;
 justify-content:space-between;
 align-items:center;
-color:white;
+position:sticky;
+top:0;
+z-index:1000;
 }
 
-header a{
-color:white;
-text-decoration:none;
-margin-left:20px;
+.logo{
+color:#fff;
+font-size:28px;
 font-weight:bold;
 }
 
-.search{
-padding:20px;
-text-align:center;
+.logo span{
+color:#ff9900;
 }
 
-.search input{
-width:60%;
+.search-box{
+display:flex;
+flex:1;
+margin:0 20px;
+}
+
+.search-box input{
+width:100%;
 padding:12px;
+font-size:16px;
+border:none;
+outline:none;
+border-radius:6px 0 0 6px;
+}
+
+.search-box button{
+padding:12px 18px;
+background:#ff9900;
+border:none;
+cursor:pointer;
 font-size:18px;
-border-radius:8px;
-border:1px solid #ccc;
+border-radius:0 6px 6px 0;
+}
+
+nav{
+display:flex;
+gap:15px;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+font-weight:bold;
+}
+
+.hero{
+height:280px;
+background:url("https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=80");
+background-size:cover;
+background-position:center;
+display:flex;
+justify-content:center;
+align-items:center;
+color:white;
+font-size:45px;
+font-weight:bold;
+text-shadow:2px 2px 5px black;
 }
 
 .products{
+
+width:95%;
+
+max-width:1400px;
+
+margin:30px auto;
+
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
 gap:20px;
-padding:20px;
+
 }
 
-.card{
+.product{
+
 background:white;
-padding:15px;
+
 border-radius:12px;
+
+padding:15px;
+
 box-shadow:0 5px 12px rgba(0,0,0,.15);
+
 text-align:center;
+
 transition:.3s;
+
 }
 
-.card:hover{
+.product:hover{
+
 transform:translateY(-6px);
+
 }
 
-.card img{
-width:180px;
+.product img{
+
+width:100%;
+
 height:180px;
+
 object-fit:cover;
+
 border-radius:10px;
+
 }
 
-.rating{
-color:#ff9800;
-margin:8px;
-}
+.product h3{
 
-.old{
-text-decoration:line-through;
-color:gray;
+margin:10px 0;
+
 }
 
 .price{
+
 font-size:22px;
+
+color:#e53935;
+
 font-weight:bold;
-color:#ff5722;
-margin:10px;
+
+margin:10px 0;
+
 }
 
 button{
-width:100%;
-padding:12px;
-background:#ff9800;
+
+padding:10px 18px;
+
 border:none;
+
+background:#28a745;
+
 color:white;
-border-radius:8px;
-cursor:pointer;
+
 font-size:16px;
+
+border-radius:6px;
+
+cursor:pointer;
+
 }
 
 button:hover{
-background:#e68900;
-}
 
-footer{
-background:#222;
-color:white;
-text-align:center;
-padding:20px;
-margin-top:30px;
+background:#218838;
+
 }
 
 </style>
 
 </head>
-<script>
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-function addToCart(name, price, image) {
-
-    const existingProduct = cart.find(product => product.name === name);
-
-    if (existingProduct) {
-        existingProduct.qty += 1;
-    } else {
-        cart.push({
-            name: name,
-            price: price,
-            image: image,
-            qty: 1
-        });
-    }
-
-    localStorage.setItem("cart", JSON.stringify(cart));
-
-    updateCartCount();
-
-    alert(name + " added to cart!");
-}
-
-function updateCartCount() {
-
-    let total = 0;
-
-    cart.forEach(item => {
-        total += item.qty;
-    });
-
-    const count = document.getElementById("cartCount");
-
-    if (count) {
-        count.innerHTML = total;
-    }
-
-}
-
-updateCartCount();
-</script>
-  
-</body>
+<body>
 
 <header>
 
-<h2>🍔 POMPEY Fast Food</h2>
+<div class="logo">
 
-<div>
-
-<a href="index.html">Home</a>
-
-<a href="cart.html">
-🛒 Cart (<span id="cartCount">0</span>)
-</a>
-<a href="dashboard.html">Dashboard</a>
+POM<span>PEY</span>
 
 </div>
 
-</header>
-
-<div class="search">
+<div class="search-box">
 
 <input
 type="text"
 id="search"
 placeholder="Search Fast Food...">
 
+<button>🔍</button>
+
 </div>
-<section> 
+
+<nav>
+
+<a href="index.html">Home</a>
+
+<a href="cart.html">🛒 Cart</a>
+
+<a href="dashboard.html">Dashboard</a>
+
+</nav>
+
+</header>
+
+<div class="hero">
+
+🍔 Fast Food Corner
+
+</div>
+
 <div class="products">
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400">
-<h3>Cheese Burger</h3>
-<div class="rating">⭐⭐⭐⭐⭐</div>
-<div class="old">₹199</div>
-<div class="price">₹149</div>
-<button>Add to Cart</button>
+<!-- Product 1 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?burger" alt="Burger">
+<h3>Veg Burger</h3>
+<p>⭐ 4.5</p>
+<p class="price">₹99</p>
+<button onclick="addToCart('Veg Burger',99,'https://source.unsplash.com/400x300/?burger')">Add to Cart</button>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+</div>
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
 </div>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400">
+
+<!-- Product 2 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?pizza" alt="Pizza">
 <h3>Margherita Pizza</h3>
-<div class="rating">⭐⭐⭐⭐⭐</div>
-<div class="old">₹349</div>
-<div class="price">₹279</div>
-<button>Add to Cart</button>
+<p>⭐ 4.7</p>
+<p class="price">₹249</p>
+<button onclick="addToCart('Margherita Pizza',249,'https://source.unsplash.com/400x300/?pizza')">Add to Cart</button>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+</div>
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
 </div>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=400">
+<!-- Product 3 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?french-fries" alt="Fries">
 <h3>French Fries</h3>
-<div class="rating">⭐⭐⭐⭐☆</div>
-<div class="old">₹129</div>
-<div class="price">₹99</div>
-<button>Add to Cart</button>
+<p>⭐ 4.6</p>
+<p class="price">₹129</p>
+<button onclick="addToCart('French Fries',129,'https://source.unsplash.com/400x300/?french-fries')">Add to Cart</button>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+</div>
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
 </div>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1608039755401-742074f0548d?w=400">
-<h3>Veg Sandwich</h3>
-<div class="rating">⭐⭐⭐⭐⭐</div>
-<div class="old">₹120</div>
-<div class="price">₹89</div>
-<button>Add to Cart</button>
+<!-- Product 4 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?sandwich" alt="Sandwich">
+<h3>Grilled Sandwich</h3>
+<p>⭐ 4.4</p>
+<p class="price">₹149</p>
+<button onclick="addToCart('Grilled Sandwich',149,'https://source.unsplash.com/400x300/?sandwich')">Add to Cart</button>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+</div>
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
 </div>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1562967916-eb82221dfb92?w=400">
-<h3>Hot Dog</h3>
-<div class="rating">⭐⭐⭐⭐☆</div>
-<div class="old">₹180</div>
-<div class="price">₹140</div>
-<button>Add to Cart</button>
+<!-- Product 5 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?noodles" alt="Noodles">
+<h3>Hakka Noodles</h3>
+<p>⭐ 4.5</p>
+<p class="price">₹179</p>
+<button onclick="addToCart('Hakka Noodles',179,'https://source.unsplash.com/400x300/?noodles')">Add to Cart</button>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+</div>
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
 </div>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400">
-<h3>Farm Pizza</h3>
-<div class="rating">⭐⭐⭐⭐⭐</div>
-<div class="old">₹420</div>
-<div class="price">₹349</div>
-<button>Add to Cart</button>
+<!-- Product 6 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?pasta" alt="Pasta">
+<h3>White Sauce Pasta</h3>
+<p>⭐ 4.6</p>
+<p class="price">₹229</p>
+<button onclick="addToCart('White Sauce Pasta',229,'https://source.unsplash.com/400x300/?pasta')">Add to Cart</button>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+</div>
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
 </div>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=400">
-<h3>Chicken Burger</h3>
-<div class="rating">⭐⭐⭐⭐⭐</div>
-<div class="old">₹249</div>
-<div class="price">₹189</div>
-<button>Add to Cart</button>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?w=400">
-<h3>Noodles</h3>
-<div class="rating">⭐⭐⭐⭐⭐</div>
-<div class="old">₹170</div>
-<div class="price">₹130</div>
-<button>Add to Cart</button>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1585238342024-78d387f4a707?w=400">
-<h3>Pasta</h3>
-<div class="rating">⭐⭐⭐⭐☆</div>
-<div class="old">₹220</div>
-<div class="price">₹179</div>
-<button>Add to Cart</button>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400">
-<h3>Fried Chicken</h3>
-<div class="rating">⭐⭐⭐⭐⭐</div>
-<div class="old">₹320</div>
-<div class="price">₹249</div>
-<button>Add to Cart</button>
-</div>
-  
-<div class="card">
-<img src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=400" alt="Taco">
-<h3>Mexican Taco</h3>
-<div class="rating">⭐⭐⭐⭐⭐</div>
-<div class="old">₹199</div>
-<div class="price">₹159</div>
-<button onclick="addToCart('Mexican Taco',159,'https://images.unsplash.com/photo-1550547660-d9450f859349?w=400')">Add to Cart</button>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?w=400" alt="Wrap">
-<h3>Chicken Wrap</h3>
-<div class="rating">⭐⭐⭐⭐⭐</div>
-<div class="old">₹189</div>
-<div class="price">₹149</div>
-<button onclick="addToCart('Chicken Wrap',149,'https://images.unsplash.com/photo-1512058564366-18510be2db19?w=400')">Add to Cart</button>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1585238342024-78d387f4a707?w=400" alt="Momos">
+<!-- Product 7 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?momos" alt="Momos">
 <h3>Veg Momos</h3>
-<div class="rating">⭐⭐⭐⭐☆</div>
-<div class="old">₹149</div>
-<div class="price">₹119</div>
-<button onclick="addToCart('Veg Momos',119,'https://images.unsplash.com/photo-1585238342024-78d387f4a707?w=400')">Add to Cart</button>
+<p>⭐ 4.7</p>
+<p class="price">₹139</p>
+<button onclick="addToCart('Veg Momos',139,'https://source.unsplash.com/400x300/?momos')">Add to Cart</button>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+</div>
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
 </div>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400" alt="Spring Rolls">
-<h3>Spring Rolls</h3>
-<div class="rating">⭐⭐⭐⭐⭐</div>
-<div class="old">₹179</div>
-<div class="price">₹139</div>
-<button onclick="addToCart('Spring Rolls',139,'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400')">Add to Cart</button>
+<!-- Product 8 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?hotdog" alt="Hot Dog">
+<h3>Hot Dog</h3>
+<p>⭐ 4.4</p>
+<p class="price">₹159</p>
+<button onclick="addToCart('Hot Dog',159,'https://source.unsplash.com/400x300/?hotdog')">Add to Cart</button>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+</div>
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
 </div>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1516685018646-549198525c1b?w=400" alt="Paneer Pizza">
-<h3>Paneer Pizza</h3>
-<div class="rating">⭐⭐⭐⭐⭐</div>
-<div class="old">₹399</div>
-<div class="price">₹329</div>
-<button onclick="addToCart('Paneer Pizza',329,'https://images.unsplash.com/photo-1516685018646-549198525c1b?w=400')">Add to Cart</button>
+<!-- Product 9 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?fried-chicken" alt="Chicken">
+<h3>Fried Chicken</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹299</p>
+<button onclick="addToCart('Fried Chicken',299,'https://source.unsplash.com/400x300/?fried-chicken')">Add to Cart</button>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+</div>
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
 </div>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1559847844-5315695dadae?w=400" alt="Loaded Fries">
-<h3>Loaded Fries</h3>
-<div class="rating">⭐⭐⭐⭐☆</div>
-<div class="old">₹179</div>
-<div class="price">₹149</div>
-<button onclick="addToCart('Loaded Fries',149,'https://images.unsplash.com/photo-1559847844-5315695dadae?w=400')">Add to Cart</button>
+<!-- Product 10 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?shawarma" alt="Shawarma">
+<h3>Chicken Shawarma</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹199</p>
+<button onclick="addToCart('Chicken Shawarma',199,'https://source.unsplash.com/400x300/?shawarma')">Add to Cart</button>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+</div>
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
 </div>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1608039829572-78524f79c4c7?w=400" alt="Garlic Bread">
-<h3>Garlic Bread</h3>
-<div class="rating">⭐⭐⭐⭐⭐</div>
-<div class="old">₹149</div>
-<div class="price">₹109</div>
-<button onclick="addToCart('Garlic Bread',109,'https://images.unsplash.com/photo-1608039829572-78524f79c4c7?w=400')">Add to Cart</button>
+<!-- Product 11 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?taco" alt="Taco">
+<h3>Veg Taco</h3>
+<p>⭐ 4.5</p>
+<p class="price">₹169</p>
+<button onclick="addToCart('Veg Taco',169,'https://source.unsplash.com/400x300/?taco')">Add to Cart</button>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+</div>
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
 </div>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=400" alt="Chicken Nuggets">
-<h3>Chicken Nuggets</h3>
-<div class="rating">⭐⭐⭐⭐⭐</div>
-<div class="old">₹249</div>
-<div class="price">₹199</div>
-<button onclick="addToCart('Chicken Nuggets',199,'https://images.unsplash.com/photo-1544025162-d76694265947?w=400')">Add to Cart</button>
+<!-- Product 12 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?wrap" alt="Wrap">
+<h3>Paneer Wrap</h3>
+<p>⭐ 4.6</p>
+<p class="price">₹189</p>
+<button onclick="addToCart('Paneer Wrap',189,'https://source.unsplash.com/400x300/?wrap')">Add to Cart</button>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+</div>
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
 </div>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400" alt="Caesar Salad">
-<h3>Caesar Salad</h3>
-<div class="rating">⭐⭐⭐⭐☆</div>
-<div class="old">₹199</div>
-<div class="price">₹159</div>
-<button onclick="addToCart('Caesar Salad',159,'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400')">Add to Cart</button>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=400" alt="Chocolate Donut">
+<!-- Product 13 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?donut" alt="Donut">
 <h3>Chocolate Donut</h3>
-<div class="rating">⭐⭐⭐⭐⭐</div>
-<div class="old">₹99</div>
-<div class="price">₹79</div>
-<button onclick="addToCart('Chocolate Donut',79,'https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=400')">Add to Cart</button>
-  </div>
+<p>⭐ 4.4</p>
+<p class="price">₹89</p>
+<button onclick="addToCart('Chocolate Donut',89,'https://source.unsplash.com/400x300/?donut')">Add to Cart</button>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
 </div>
-</section>
-<footer>
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
 
-© 2026 POMPEY Fast Food Store
+<!-- Product 14 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?cake" alt="Cake">
+<h3>Chocolate Cake</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹399</p>
+<button onclick="addToCart('Chocolate Cake',399,'https://source.unsplash.com/400x300/?cake')">Add to Cart</button>
+<div class="badge">Best Seller</div>
 
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+</div>
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+
+<!-- Product 15 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?icecream" alt="Ice Cream">
+<h3>Vanilla Ice Cream</h3>
+<p>⭐ 4.6</p>
+<p class="price">₹99</p>
+<button onclick="addToCart('Vanilla Ice Cream',99,'https://source.unsplash.com/400x300/?icecream')">Add to Cart</button>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+</div>
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+
+<!-- Product 16 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?milkshake" alt="Milkshake">
+<h3>Chocolate Milkshake</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹149</p>
+<button onclick="addToCart('Chocolate Milkshake',149,'https://source.unsplash.com/400x300/?milkshake')">Add to Cart</button>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+</div>
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+
+<!-- Product 17 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?cold-coffee" alt="Coffee">
+<h3>Cold Coffee</h3>
+<p>⭐ 4.5</p>
+<p class="price">₹129</p>
+<button onclick="addToCart('Cold Coffee',129,'https://source.unsplash.com/400x300/?cold-coffee')">Add to Cart</button>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+</div>
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+
+<!-- Product 18 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?soft-drink" alt="Drink">
+<h3>Soft Drink</h3>
+<p>⭐ 4.3</p>
+<p class="price">₹59</p>
+<button onclick="addToCart('Soft Drink',59,'https://source.unsplash.com/400x300/?soft-drink')">Add to Cart</button>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+</div>
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+
+<!-- Product 19 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?popcorn" alt="Popcorn">
+<h3>Cheese Popcorn</h3>
+<p>⭐ 4.4</p>
+<p class="price">₹149</p>
+<button onclick="addToCart('Cheese Popcorn',149,'https://source.unsplash.com/400x300/?popcorn')">Add to Cart</button>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+</div>
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+
+<!-- Product 20 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?pizza,burger" alt="Combo">
+<h3>Burger Combo Meal</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹349</p>
+<button onclick="addToCart('Burger Combo Meal',349,'https://source.unsplash.com/400x300/?pizza,burger')">Add to Cart</button>
+  <div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+</div>
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>  
+
+<!-- Product 21 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?paneer-pizza">
+<h3>Paneer Pizza</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹299</p>
+<button onclick="addToCart('Paneer Pizza',299,'https://source.unsplash.com/400x300/?paneer-pizza')">Add to Cart</button>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+</div>
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+
+<!-- Product 22 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?cheese-burger">
+<h3>Cheese Burger</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹179</p>
+<button onclick="addToCart('Cheese Burger',179,'https://source.unsplash.com/400x300/?cheese-burger')">Add to Cart</button>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+</div>
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+
+<!-- Product 23 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?veg-roll">
+<h3>Veg Roll</h3>
+<p>⭐ 4.5</p>
+<p class="price">₹119</p>
+<button onclick="addToCart('Veg Roll',119,'https://source.unsplash.com/400x300/?veg-roll')">Add to Cart</button>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+</div>
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+
+<!-- Product 24 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?spring-roll">
+<h3>Spring Roll</h3>
+<p>⭐ 4.6</p>
+<p class="price">₹139</p>
+<button onclick="addToCart('Spring Roll',139,'https://source.unsplash.com/400x300/?spring-roll')">Add to Cart</button>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+</div>
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+
+<!-- Product 25 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?manchurian">
+<h3>Veg Manchurian</h3>
+<p>⭐ 4.6</p>
+<p class="price">₹169</p>
+<button onclick="addToCart('Veg Manchurian',169,'https://source.unsplash.com/400x300/?manchurian')">Add to Cart</button>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+</div>
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+
+<!-- Product 26 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?fried-rice">
+<h3>Fried Rice</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹189</p>
+<button onclick="addToCart('Fried Rice',189,'https://source.unsplash.com/400x300/?fried-rice')">Add to Cart</button>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+</div>
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+
+<!-- Product 27 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?chowmein">
+<h3>Chowmein</h3>
+<p>⭐ 4.5</p>
+<p class="price">₹179</p>
+<button onclick="addToCart('Chowmein',179,'https://source.unsplash.com/400x300/?chowmein')">Add to Cart</button>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+</div>
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+
+<!-- Product 28 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?samosa">
+<h3>Samosa (2 pcs)</h3>
+<p>⭐ 4.5</p>
+<p class="price">₹40</p>
+<button onclick="addToCart('Samosa',40,'https://source.unsplash.com/400x300/?samosa')">Add to Cart</button>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+</div>
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+
+<!-- Product 29 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?kachori">
+<h3>Kachori</h3>
+<p>⭐ 4.4</p>
+<p class="price">₹35</p>
+<button onclick="addToCart('Kachori',35,'https://source.unsplash.com/400x300/?kachori')">Add to Cart</button>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+</div>
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+
+<!-- Product 30 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?pav-bhaji">
+<h3>Pav Bhaji</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹149</p>
+<button onclick="addToCart('Pav Bhaji',149,'https://source.unsplash.com/400x300/?pav-bhaji')">Add to Cart</button>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+</div>
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+
+<!-- Product 31 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?vada-pav">
+<h3>Vada Pav</h3>
+<p>⭐ 4.6</p>
+<p class="price">₹50</p>
+<button onclick="addToCart('Vada Pav',50,'https://source.unsplash.com/400x300/?vada-pav')">Add to Cart</button>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+</div>
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+
+<!-- Product 32 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?dosa">
+<h3>Masala Dosa</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹120</p>
+<button onclick="addToCart('Masala Dosa',120,'https://source.unsplash.com/400x300/?dosa')">Add to Cart</button>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+</div>
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+
+<!-- Product 33 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?idli">
+<h3>Idli Sambar</h3>
+<p>⭐ 4.5</p>
+<p class="price">₹90</p>
+<button onclick="addToCart('Idli Sambar',90,'https://source.unsplash.com/400x300/?idli')">Add to Cart</button>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+</div>
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+
+<!-- Product 34 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?uttapam">
+<h3>Uttapam</h3>
+<p>⭐ 4.5</p>
+<p class="price">₹130</p>
+<button onclick="addToCart('Uttapam',130,'https://source.unsplash.com/400x300/?uttapam')">Add to Cart</button>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+</div>
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+
+<!-- Product 35 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?chole-bhature">
+<h3>Chole Bhature</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹170</p>
+<button onclick="addToCart('Chole Bhature',170,'https://source.unsplash.com/400x300/?chole-bhature')">Add to Cart</button>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+</div>
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+
+<!-- Product 36 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?rajma-rice">
+<h3>Rajma Rice</h3>
+<p>⭐ 4.6</p>
+<p class="price">₹180</p>
+<button onclick="addToCart('Rajma Rice',180,'https://source.unsplash.com/400x300/?rajma-rice')">Add to Cart</button>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+</div>
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+
+<!-- Product 37 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?biryani">
+<h3>Veg Biryani</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹249</p>
+<button onclick="addToCart('Veg Biryani',249,'https://source.unsplash.com/400x300/?biryani')">Add to Cart</button>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+</div>
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+
+<!-- Product 38 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?chicken-biryani">
+<h3>Chicken Biryani</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹329</p>
+<button onclick="addToCart('Chicken Biryani',329,'https://source.unsplash.com/400x300/?chicken-biryani')">Add to Cart</button>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+</div>
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+
+<!-- Product 39 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?falafel">
+<h3>Falafel Wrap</h3>
+<p>⭐ 4.5</p>
+<p class="price">₹199</p>
+<button onclick="addToCart('Falafel Wrap',199,'https://source.unsplash.com/400x300/?falafel')">Add to Cart</button>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+</div>
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+
+<!-- Product 40 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?club-sandwich">
+<h3>Club Sandwich</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹219</p>
+<button onclick="addToCart('Club Sandwich',219,'https://source.unsplash.com/400x300/?club-sandwich')">Add to Cart</button>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+</div>
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+
+<!-- Product 41 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?nachos">
+<h3>Cheese Nachos</h3>
+<p>⭐ 4.6</p>
+<p class="price">₹179</p>
+<button onclick="addToCart('Cheese Nachos',179,'https://source.unsplash.com/400x300/?nachos')">Add to Cart</button>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+</div>
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+
+<!-- Product 42 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?garlic-bread">
+<h3>Garlic Bread</h3>
+<p>⭐ 4.5</p>
+<p class="price">₹149</p>
+<button onclick="addToCart('Garlic Bread',149,'https://source.unsplash.com/400x300/?garlic-bread')">Add to Cart</button>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+</div>
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+
+<!-- Product 43 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?cheese-pizza">
+<h3>Cheese Pizza</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹329</p>
+<button onclick="addToCart('Cheese Pizza',329,'https://source.unsplash.com/400x300/?cheese-pizza')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 44 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?veg-pizza">
+<h3>Farmhouse Pizza</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹369</p>
+<button onclick="addToCart('Farmhouse Pizza',369,'https://source.unsplash.com/400x300/?veg-pizza')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 45 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?peri-peri-fries">
+<h3>Peri Peri Fries</h3>
+<p>⭐ 4.6</p>
+<p class="price">₹159</p>
+<button onclick="addToCart('Peri Peri Fries',159,'https://source.unsplash.com/400x300/?peri-peri-fries')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 46 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?onion-rings">
+<h3>Onion Rings</h3>
+<p>⭐ 4.5</p>
+<p class="price">₹149</p>
+<button onclick="addToCart('Onion Rings',149,'https://source.unsplash.com/400x300/?onion-rings')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 47 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?fried-momos">
+<h3>Fried Momos</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹169</p>
+<button onclick="addToCart('Fried Momos',169,'https://source.unsplash.com/400x300/?fried-momos')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 48 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?steamed-momos">
+<h3>Steamed Momos</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹159</p>
+<button onclick="addToCart('Steamed Momos',159,'https://source.unsplash.com/400x300/?steamed-momos')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 49 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?paneer-roll">
+<h3>Paneer Roll</h3>
+<p>⭐ 4.6</p>
+<p class="price">₹169</p>
+<button onclick="addToCart('Paneer Roll',169,'https://source.unsplash.com/400x300/?paneer-roll')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 50 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?egg-roll">
+<h3>Egg Roll</h3>
+<p>⭐ 4.5</p>
+<p class="price">₹129</p>
+<button onclick="addToCart('Egg Roll',129,'https://source.unsplash.com/400x300/?egg-roll')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 51 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?chicken-roll">
+<h3>Chicken Roll</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹189</p>
+<button onclick="addToCart('Chicken Roll',189,'https://source.unsplash.com/400x300/?chicken-roll')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 52 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?waffles">
+<h3>Belgian Waffle</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹199</p>
+<button onclick="addToCart('Belgian Waffle',199,'https://source.unsplash.com/400x300/?waffles')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 53 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?brownie">
+<h3>Chocolate Brownie</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹149</p>
+<button onclick="addToCart('Chocolate Brownie',149,'https://source.unsplash.com/400x300/?brownie')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 54 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?cupcake">
+<h3>Cup Cake</h3>
+<p>⭐ 4.6</p>
+<p class="price">₹99</p>
+<button onclick="addToCart('Cup Cake',99,'https://source.unsplash.com/400x300/?cupcake')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 55 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?muffin">
+<h3>Chocolate Muffin</h3>
+<p>⭐ 4.5</p>
+<p class="price">₹89</p>
+<button onclick="addToCart('Chocolate Muffin',89,'https://source.unsplash.com/400x300/?muffin')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 56 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?oreo-milkshake">
+<h3>Oreo Milkshake</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹189</p>
+<button onclick="addToCart('Oreo Milkshake',189,'https://source.unsplash.com/400x300/?oreo-milkshake')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 57 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?mango-shake">
+<h3>Mango Shake</h3>
+<p>⭐ 4.6</p>
+<p class="price">₹149</p>
+<button onclick="addToCart('Mango Shake',149,'https://source.unsplash.com/400x300/?mango-shake')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 58 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?lemonade">
+<h3>Fresh Lemonade</h3>
+<p>⭐ 4.4</p>
+<p class="price">₹79</p>
+<button onclick="addToCart('Fresh Lemonade',79,'https://source.unsplash.com/400x300/?lemonade')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 59 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?mojito">
+<h3>Virgin Mojito</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹129</p>
+<button onclick="addToCart('Virgin Mojito',129,'https://source.unsplash.com/400x300/?mojito')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 60 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?combo-meal">
+<h3>Family Combo Meal</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹599</p>
+<button onclick="addToCart('Family Combo Meal',599,'https://source.unsplash.com/400x300/?combo-meal')">Add to Cart</button>
+    </div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 61 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?veg-salad">
+<h3>Veg Salad</h3>
+<p>⭐ 4.5</p>
+<p class="price">₹149</p>
+<button onclick="addToCart('Veg Salad',149,'https://source.unsplash.com/400x300/?veg-salad')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 62 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?caesar-salad">
+<h3>Caesar Salad</h3>
+<p>⭐ 4.6</p>
+<p class="price">₹229</p>
+<button onclick="addToCart('Caesar Salad',229,'https://source.unsplash.com/400x300/?caesar-salad')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 63 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?paneer-tikka">
+<h3>Paneer Tikka</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹299</p>
+<button onclick="addToCart('Paneer Tikka',299,'https://source.unsplash.com/400x300/?paneer-tikka')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 64 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?chicken-tikka">
+<h3>Chicken Tikka</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹349</p>
+<button onclick="addToCart('Chicken Tikka',349,'https://source.unsplash.com/400x300/?chicken-tikka')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 65 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?cheese-sandwich">
+<h3>Cheese Sandwich</h3>
+<p>⭐ 4.5</p>
+<p class="price">₹139</p>
+<button onclick="addToCart('Cheese Sandwich',139,'https://source.unsplash.com/400x300/?cheese-sandwich')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 66 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?paneer-burger">
+<h3>Paneer Burger</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹199</p>
+<button onclick="addToCart('Paneer Burger',199,'https://source.unsplash.com/400x300/?paneer-burger')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 67 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?double-burger">
+<h3>Double Burger</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹279</p>
+<button onclick="addToCart('Double Burger',279,'https://source.unsplash.com/400x300/?double-burger')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 68 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?cheese-fries">
+<h3>Cheese Fries</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹179</p>
+<button onclick="addToCart('Cheese Fries',179,'https://source.unsplash.com/400x300/?cheese-fries')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 69 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?veg-puff">
+<h3>Veg Puff</h3>
+<p>⭐ 4.4</p>
+<p class="price">₹45</p>
+<button onclick="addToCart('Veg Puff',45,'https://source.unsplash.com/400x300/?veg-puff')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 70 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?pizza-pocket">
+<h3>Pizza Pocket</h3>
+<p>⭐ 4.6</p>
+<p class="price">₹99</p>
+<button onclick="addToCart('Pizza Pocket',99,'https://source.unsplash.com/400x300/?pizza-pocket')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 71 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?veg-cutlet">
+<h3>Veg Cutlet</h3>
+<p>⭐ 4.5</p>
+<p class="price">₹79</p>
+<button onclick="addToCart('Veg Cutlet',79,'https://source.unsplash.com/400x300/?veg-cutlet')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 72 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?bread-omelette">
+<h3>Bread Omelette</h3>
+<p>⭐ 4.6</p>
+<p class="price">₹89</p>
+<button onclick="addToCart('Bread Omelette',89,'https://source.unsplash.com/400x300/?bread-omelette')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 73 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?omelette">
+<h3>Cheese Omelette</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹119</p>
+<button onclick="addToCart('Cheese Omelette',119,'https://source.unsplash.com/400x300/?omelette')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 74 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?masala-tea">
+<h3>Masala Tea</h3>
+<p>⭐ 4.5</p>
+<p class="price">₹35</p>
+<button onclick="addToCart('Masala Tea',35,'https://source.unsplash.com/400x300/?masala-tea')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 75 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?coffee">
+<h3>Hot Coffee</h3>
+<p>⭐ 4.6</p>
+<p class="price">₹79</p>
+<button onclick="addToCart('Hot Coffee',79,'https://source.unsplash.com/400x300/?coffee')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 76 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?tea">
+<h3>Green Tea</h3>
+<p>⭐ 4.4</p>
+<p class="price">₹59</p>
+<button onclick="addToCart('Green Tea',59,'https://source.unsplash.com/400x300/?tea')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 77 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?smoothie">
+<h3>Fruit Smoothie</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹189</p>
+<button onclick="addToCart('Fruit Smoothie',189,'https://source.unsplash.com/400x300/?smoothie')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 78 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?orange-juice">
+<h3>Orange Juice</h3>
+<p>⭐ 4.5</p>
+<p class="price">₹99</p>
+<button onclick="addToCart('Orange Juice',99,'https://source.unsplash.com/400x300/?orange-juice')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 79 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?watermelon-juice">
+<h3>Watermelon Juice</h3>
+<p>⭐ 4.6</p>
+<p class="price">₹109</p>
+<button onclick="addToCart('Watermelon Juice',109,'https://source.unsplash.com/400x300/?watermelon-juice')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 80 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?family-pizza">
+<h3>Family Pizza Combo</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹699</p>
+<button onclick="addToCart('Family Pizza Combo',699,'https://source.unsplash.com/400x300/?family-pizza')">Add to Cart</button>
+    </div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 81 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?chicken-burger">
+<h3>Chicken Burger</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹219</p>
+<button onclick="addToCart('Chicken Burger',219,'https://source.unsplash.com/400x300/?chicken-burger')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 82 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?fish-burger">
+<h3>Fish Burger</h3>
+<p>⭐ 4.6</p>
+<p class="price">₹249</p>
+<button onclick="addToCart('Fish Burger',249,'https://source.unsplash.com/400x300/?fish-burger')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 83 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?pepperoni-pizza">
+<h3>Pepperoni Pizza</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹449</p>
+<button onclick="addToCart('Pepperoni Pizza',449,'https://source.unsplash.com/400x300/?pepperoni-pizza')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 84 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?mexican-pizza">
+<h3>Mexican Pizza</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹389</p>
+<button onclick="addToCart('Mexican Pizza',389,'https://source.unsplash.com/400x300/?mexican-pizza')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 85 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?tandoori-pizza">
+<h3>Tandoori Pizza</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹419</p>
+<button onclick="addToCart('Tandoori Pizza',419,'https://source.unsplash.com/400x300/?tandoori-pizza')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 86 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?cheese-pasta">
+<h3>Cheese Pasta</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹249</p>
+<button onclick="addToCart('Cheese Pasta',249,'https://source.unsplash.com/400x300/?cheese-pasta')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 87 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?red-sauce-pasta">
+<h3>Red Sauce Pasta</h3>
+<p>⭐ 4.6</p>
+<p class="price">₹229</p>
+<button onclick="addToCart('Red Sauce Pasta',229,'https://source.unsplash.com/400x300/?red-sauce-pasta')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 88 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?macaroni">
+<h3>Macaroni</h3>
+<p>⭐ 4.5</p>
+<p class="price">₹199</p>
+<button onclick="addToCart('Macaroni',199,'https://source.unsplash.com/400x300/?macaroni')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 89 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?falooda">
+<h3>Royal Falooda</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹169</p>
+<button onclick="addToCart('Royal Falooda',169,'https://source.unsplash.com/400x300/?falooda')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 90 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?kulfi">
+<h3>Kesar Kulfi</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹89</p>
+<button onclick="addToCart('Kesar Kulfi',89,'https://source.unsplash.com/400x300/?kulfi')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 91 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?brownie-icecream">
+<h3>Brownie with Ice Cream</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹229</p>
+<button onclick="addToCart('Brownie with Ice Cream',229,'https://source.unsplash.com/400x300/?brownie-icecream')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 92 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?chocolate-shake">
+<h3>Chocolate Shake</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹159</p>
+<button onclick="addToCart('Chocolate Shake',159,'https://source.unsplash.com/400x300/?chocolate-shake')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 93 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?strawberry-milkshake">
+<h3>Strawberry Shake</h3>
+<p>⭐ 4.6</p>
+<p class="price">₹149</p>
+<button onclick="addToCart('Strawberry Shake',149,'https://source.unsplash.com/400x300/?strawberry-milkshake')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 94 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?banana-shake">
+<h3>Banana Shake</h3>
+<p>⭐ 4.5</p>
+<p class="price">₹139</p>
+<button onclick="addToCart('Banana Shake',139,'https://source.unsplash.com/400x300/?banana-shake')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 95 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?fresh-lime">
+<h3>Fresh Lime Soda</h3>
+<p>⭐ 4.5</p>
+<p class="price">₹79</p>
+<button onclick="addToCart('Fresh Lime Soda',79,'https://source.unsplash.com/400x300/?fresh-lime')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 96 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?energy-drink">
+<h3>Energy Drink</h3>
+<p>⭐ 4.4</p>
+<p class="price">₹99</p>
+<button onclick="addToCart('Energy Drink',99,'https://source.unsplash.com/400x300/?energy-drink')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 97 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?veg-combo">
+<h3>Veg Combo Meal</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹349</p>
+<button onclick="addToCart('Veg Combo Meal',349,'https://source.unsplash.com/400x300/?veg-combo')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 98 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?chicken-combo">
+<h3>Chicken Combo Meal</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹449</p>
+<button onclick="addToCart('Chicken Combo Meal',449,'https://source.unsplash.com/400x300/?chicken-combo')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 99 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?party-food">
+<h3>Party Meal Pack</h3>
+<p>⭐ 5.0</p>
+<p class="price">₹999</p>
+<button onclick="addToCart('Party Meal Pack',999,'https://source.unsplash.com/400x300/?party-food')">Add to Cart</button>
+</div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+<!-- Product 100 -->
+<div class="product">
+<img src="https://source.unsplash.com/400x300/?fast-food-platter">
+<h3>Ultimate Fast Food Platter</h3>
+<p>⭐ 5.0</p>
+<p class="price">₹1199</p>
+<button onclick="addToCart('Ultimate Fast Food Platter',1199,'https://source.unsplash.com/400x300/?fast-food-platter')">Add to Cart</button>
+    </div>
+<div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+</div>
+
+<footer style="background:#131921;color:white;text-align:center;padding:25px;margin-top:40px;">
+<h3>POMPEY Fast Food Store</h3>
+<p>Fresh • Fast • Delicious</p>
+<p>© 2026 POMPEY. All Rights Reserved.</p>
 </footer>
 
+<script>
+
+// Load Cart
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+// Create Cart Counter
+const cartLink = document.querySelector('a[href="cart.html"]');
+cartLink.innerHTML = "🛒 Cart (<span id='cartCount'>0</span>)";
+
+// Update Cart Count
+function updateCartCount(){
+    document.getElementById("cartCount").innerText = cart.reduce((t,i)=>t+i.qty,0);
+}
+
+updateCartCount();
+
+// Add to Cart Function
+function addToCart(name,price,image){
+
+    let found = cart.find(item=>item.name===name);
+
+    if(found){
+        found.qty++;
+    }else{
+        cart.push({
+            name:name,
+            price:price,
+            image:image,
+            qty:1
+        });
+    }
+
+    localStorage.setItem("cart",JSON.stringify(cart));
+
+    updateCartCount();
+
+    alert(name + " added to cart!");
+
+}
+
+// Live Search
+const searchInput = document.getElementById("search");
+
+searchInput.addEventListener("keyup",function(){
+
+    let value = this.value.toLowerCase();
+
+    let products = document.querySelectorAll(".product");
+
+    products.forEach(product=>{
+
+        let text = product.innerText.toLowerCase();
+
+        if(text.includes(value)){
+            product.style.display="block";
+        }else{
+            product.style.display="none";
+        }
+
+    });
+
+});
+
+function increaseQty(btn){
+
+let qty=btn.parentElement.querySelector(".qty");
+
+qty.innerText=parseInt(qty.innerText)+1;
+
+}
+
+function decreaseQty(btn){
+
+let qty=btn.parentElement.querySelector(".qty");
+
+if(parseInt(qty.innerText)>1){
+
+qty.innerText=parseInt(qty.innerText)-1;
+
+}
+
+    }
+
+function toggleWish(icon){
+
+icon.classList.toggle("active");
+
+}
+
+function buyNow(name,price,image){
+
+localStorage.setItem("cart",JSON.stringify([{
+
+name:name,
+price:price,
+image:image,
+qty:1
+
+}]));
+
+window.location.href="checkout.html";
+
+}
+    
+</script>
+
 </body>
-  </html>
+</html>
+
+<div style="display:flex;justify-content:center;gap:8px;margin:10px 0;">
+
+<button onclick="decreaseQty(this)">−</button>
+
+<span class="qty">1</span>
+
+<button onclick="increaseQty(this)">+</button>
+
+</div>
+
+<p style="color:green;font-weight:bold;">
+🚚 Delivery in 20–30 mins
+</p>
+
+<p style="color:#ff9800;">
+★★★★★ (4.8)
+</p>
+
+
+    
