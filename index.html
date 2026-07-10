@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>POMPEY</title>
+<title>POMPEY | Online Shopping</title>
 
 <style>
 
@@ -12,172 +13,255 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial,Helvetica,sans-serif;
+font-family:Arial,sans-serif;
 }
 
 body{
-background:#f4f6f8;
+background:#f3f3f3;
 }
 
-/* HEADER */
+/* Header */
 
 header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:15px 40px;
+
 background:#131921;
+
+padding:12px 20px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
 position:sticky;
+
 top:0;
+
 z-index:1000;
+
 }
 
-/* LOGO */
+/* Logo */
 
 .logo{
+
 display:flex;
+
 align-items:center;
-gap:15px;
-}
 
-.circle{
-width:120px;
-height:120px;
-border-radius:50%;
-background:linear-gradient(45deg,#00c853,#ff9800,#2962ff);
-display:flex;
-align-items:center;
-justify-content:center;
-color:#fff;
-font-size:22px;
-font-weight:bold;
-animation:spin 6s linear infinite;
-box-shadow:0 0 20px rgba(0,0,0,.3);
-}
-
-@keyframes spin{
-100%{
-transform:rotate(360deg);
-}
-}
-
-.logo h2{
 color:white;
+
+font-size:28px;
+
+font-weight:bold;
+
 }
 
-/* MENU */
+.logo span{
+
+color:#ff9900;
+
+}
+
+/* Search */
+
+.search-box{
+
+flex:1;
+
+margin:0 25px;
+
+display:flex;
+
+}
+
+.search-box input{
+
+width:100%;
+
+padding:12px;
+
+border:none;
+
+outline:none;
+
+font-size:16px;
+
+border-radius:6px 0 0 6px;
+
+}
+
+.search-box button{
+
+padding:12px 18px;
+
+border:none;
+
+background:#febd69;
+
+cursor:pointer;
+
+font-size:18px;
+
+border-radius:0 6px 6px 0;
+
+}
+
+/* Menu */
+
+nav{
+
+display:flex;
+
+gap:18px;
+
+}
 
 nav a{
-text-decoration:none;
+
 color:white;
-margin-left:25px;
+
+text-decoration:none;
+
 font-weight:bold;
-transition:.3s;
+
 }
 
 nav a:hover{
+
 color:#ff9900;
+
 }
 
-/* HERO */
+/* Hero */
 
 .hero{
 
-height:500px;
+height:420px;
 
 background:
-linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+
+linear-gradient(rgba(0,0,0,.4),rgba(0,0,0,.4)),
+
 url("https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1600&q=80");
 
 background-size:cover;
+
 background-position:center;
 
 display:flex;
-justify-content:center;
+
 align-items:center;
+
+justify-content:center;
+
 flex-direction:column;
 
-text-align:center;
-
 color:white;
+
+text-align:center;
 
 }
 
 .hero h1{
-font-size:60px;
+
+font-size:55px;
+
 }
 
 .hero p{
+
 margin-top:15px;
+
 font-size:22px;
+
 }
 
-.btn{
+.shop-btn{
+
 margin-top:25px;
+
 padding:15px 35px;
+
 background:#ff9900;
+
 color:white;
+
 text-decoration:none;
+
 border-radius:30px;
-font-size:18px;
+
+font-size:20px;
+
 }
 
-/* SERVICES */
+/* Categories */
 
-.services{
-padding:60px 30px;
+.categories{
+
+width:95%;
+
+max-width:1400px;
+
+margin:40px auto;
+
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:25px;
+
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+gap:20px;
+
 }
 
-.card{
+.category{
 
-background:white;
-
-padding:30px;
+height:220px;
 
 border-radius:15px;
 
-text-align:center;
+overflow:hidden;
 
-box-shadow:0 5px 15px rgba(0,0,0,.15);
+position:relative;
+
+background-size:cover;
+
+background-position:center;
+
+cursor:pointer;
 
 transition:.3s;
 
 }
 
-.card:hover{
-transform:translateY(-10px);
+.category:hover{
+
+transform:scale(1.03);
+
 }
 
-.card img{
-width:80px;
-margin-bottom:15px;
-}
+.overlay{
 
-.card h3{
-margin-bottom:10px;
-}
+position:absolute;
 
-/* CONTACT */
+bottom:0;
 
-.contact{
-background:#131921;
+left:0;
+
+right:0;
+
+padding:18px;
+
+background:rgba(0,0,0,.55);
+
 color:white;
-padding:50px;
-text-align:center;
-}
 
-.contact h2{
-margin-bottom:15px;
-}
+font-size:24px;
 
-footer{
-background:black;
-color:white;
-padding:15px;
+font-weight:bold;
+
 text-align:center;
+
 }
 
 </style>
@@ -190,58 +274,31 @@ text-align:center;
 
 <div class="logo">
 
-<div class="circle">
-POMPEY 
+POM<span>PEY</span>
+
 </div>
 
-<h2>POMPEY</h2>
+<div class="search-box">
+
+<input
+type="text"
+placeholder="Search Grocery, Electronics, Pharmacy...">
+
+<button>🔍</button>
 
 </div>
 
 <nav>
 
-<a href="#">Home</a>
+<a href="dashboard.html">Dashboard</a>
 
-<a href="Grocery.html">Grocery</a>
+<a href="cart.html">Cart</a>
 
-<a href="Pharmacy.html">Pharmacy</a>
+<a href="orders.html">Orders</a>
 
-<a href="Vegetables.html">Fresh Vegetables</a>
+<a href="profile.html">Profile</a>
 
-<a href="Fastfood.html">Fast Food</a>
-
-<a href="Clothes.html">Clothes</a>
-  
-<div id="userMenu" style="display:flex;align-items:center;gap:15px;color:white;">
-
-<a id="loginLink" href="login.html">Login</a>
-
-<a id="signupLink" href="signup.html">Sign Up</a>
-
-<div id="dashboardMenu" style="display:none;position:relative;">
-
-<span id="welcomeUser" style="cursor:pointer;font-weight:bold;">
-Hello, User ▼
-</span>
-
-<div id="dropdown" style="display:none;position:absolute;top:30px;right:0;background:white;border-radius:8px;min-width:180px;box-shadow:0 5px 15px rgba(0,0,0,.2);">
-
-<a href="dashboard.html" style="display:block;padding:10px;color:black;text-decoration:none;">🏠 Dashboard</a>
-
-<a href="profile.html" style="display:block;padding:10px;color:black;text-decoration:none;">👤 Profile</a>
-
-<a href="orders.html" style="display:block;padding:10px;color:black;text-decoration:none;">📦 Orders</a>
-
-<a href="cart.html" style="display:block;padding:10px;color:black;text-decoration:none;">🛒 Cart</a>
-
-<a href="#" id="logoutBtn" style="display:block;padding:10px;color:red;text-decoration:none;">🚪 Logout</a>
-
-</div>
-
-</div>
-
-</div>
-<a href="#">Contact</a>
+<a href="login.html">Login</a>
 
 </nav>
 
@@ -251,128 +308,205 @@ Hello, User ▼
 
 <h1>Welcome to POMPEY</h1>
 
-<p>Your One Stop Online Shopping Destination</p>
+<p>India's Smart Online Shopping Platform</p>
 
-<a href="x" class="btn">Shop Now</a>
-<p>SERVICES  TIME  ON 7AM  TO 10PM </p>
-</section>
+<a href="Grocery.html" class="shop-btn">
 
+Start Shopping
 
-<section class="services">
-
-<div class="card">
-<h3>🛒 Home Grocery</h3>
-<p>Daily essentials delivered quickly.</p>
-<a href="Grocery.html" class="btn">Shop Now</a>
-
-</div>
-
-<div class="card">
-<h3>💊 🚑🩸👨‍⚕️Pharmacy</h3>
-<p>Healthcare products & medicines.</p>
-  
-<a href="Pharmacy.html" class="btn">Shop Now</a>
-
-</div>
-
-<div class="card">
-<h3>🥬☘️🍆🍅 Fresh Vegetables</h3>
-<p>Farm fresh vegetables every day.</p>
-  
-<a href="Vegetables.html" class="btn">Shop Now</a>
-
-</div>
-
-<div class="card">
-<h3>🍔 🎂🥮Fast Food</h3>
-<p>Order your favourite meals instantly.</p>
-  
-<a href="Fastfood.html" class="btn">Shop Now</a>
-
-</div>
-
-<div class="card">
-<h3>👕🧥🩳👙 Clothes</h3>
-<p>Fashion for men, women & kids.</p>
-  
-<a href="Clothes.html" class="btn">Shop Now</a>
-
-</div>
-
-<div class="card">
-<h3>📞🔌📟 Electronics</h3>
-<p>Fashion for men, women & kids.</p>
-  
-<a href="Electronics.html" class="btn">Shop Now</a>
-
-</div>
-</section>
-
-<section class="contact">
-
-<h2>Contact Us</h2>
-
-<p>Email: pompey7534@gmail.com</p>
-
-<p>Thank you for visiting POMPEY.</p>
+</a>
 
 </section>
 
-<footer>
+<section class="categories">
 
-© 2026 POMPEY | All Rights Reserved
+<!-- Grocery -->
 
-</footer>
-<script type="module">
+<a href="Grocery.html" style="text-decoration:none;">
 
-import { auth } from "./js/firebase-config.js";
+<div class="category"
 
-import {
-onAuthStateChanged,
-signOut
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+style="background-image:url('https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=800&q=80');">
 
-const loginLink = document.getElementById("loginLink");
-const signupLink = document.getElementById("signupLink");
-const dashboardMenu = document.getElementById("dashboardMenu");
-const welcomeUser = document.getElementById("welcomeUser");
-const dropdown = document.getElementById("dropdown");
-const logoutBtn = document.getElementById("logoutBtn");
+<div class="overlay">
 
-onAuthStateChanged(auth,(user)=>{
+🛒 Grocery
 
-if(user){
+</div>
 
-loginLink.style.display="none";
-signupLink.style.display="none";
+</div>
 
-dashboardMenu.style.display="block";
+</a>
 
-welcomeUser.textContent="Hello, "+(user.displayName || user.email);
+<!-- Pharmacy -->
 
-}else{
+<a href="Pharmacy.html" style="text-decoration:none;">
 
-dashboardMenu.style.display="none";
+<div class="category"
 
-}
+style="background-image:url('https://images.unsplash.com/photo-1587854692152-cbe660dbde88?auto=format&fit=crop&w=800&q=80');">
 
-});
+<div class="overlay">
 
-welcomeUser.onclick=()=>{
+💊 Pharmacy
 
-dropdown.style.display=
-dropdown.style.display==="block"?"none":"block";
+</div>
 
-};
+</div>
 
-logoutBtn.onclick=async()=>{
+</a>
 
-await signOut(auth);
+<!-- Fresh Vegetables -->
 
-window.location.href="login.html";
+<a href="Vegetables.html" style="text-decoration:none;">
 
-};
+<div class="category"
 
-  </script>
-</body>
-</html>
+style="background-image:url('https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80');">
+
+<div class="overlay">
+
+🥬 Fresh Vegetables
+
+</div>
+
+</div>
+
+</a>
+
+<!-- Fast Food -->
+
+<a href="Fastfood.html" style="text-decoration:none;">
+
+<div class="category"
+
+style="background-image:url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80');">
+
+<div class="overlay">
+
+🍔 Fast Food
+
+</div>
+
+</div>
+
+</a>
+
+<!-- Electronics -->
+
+<a href="Electronics.html" style="text-decoration:none;">
+
+<div class="category"
+
+style="background-image:url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80');">
+
+<div class="overlay">
+
+📱 Electronics
+
+</div>
+
+</div>
+
+</a>
+
+<!-- Clothes -->
+
+<a href="Clothes.html" style="text-decoration:none;">
+
+<div class="category"
+
+style="background-image:url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80');">
+
+<div class="overlay">
+
+👕 Clothes
+
+</div>
+
+</div>
+
+</a>
+  
+<!-- Agriculture -->
+
+<a href="Agriculture.html" style="text-decoration:none;">
+
+<div class="category"
+
+style="background-image:url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=800&q=80');">
+
+<div class="overlay">
+
+🌾 Agriculture
+
+</div>
+
+</div>
+
+</a>
+
+<!-- Stationery -->
+
+<a href="Stationery.html" style="text-decoration:none;">
+
+<div class="category"
+
+style="background-image:url('https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=800&q=80');">
+
+<div class="overlay">
+
+📚 Stationery
+
+</div>
+
+</div>
+
+</a>
+
+<!-- Dairy -->
+
+<a href="Dairy.html" style="text-decoration:none;">
+
+<div class="category"
+
+style="background-image:url('https://images.unsplash.com/photo-1550583724-b2692b85b150?auto=format&fit=crop&w=800&q=80');">
+
+<div class="overlay">
+
+🥛 Dairy Products
+
+</div>
+
+</div>
+
+</a>
+
+<!-- Personal Care -->
+
+<a href="PersonalCare.html" style="text-decoration:none;">
+
+<div class="category"
+
+style="background-image:url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=800&q=80');">
+
+<div class="overlay">
+
+🧴 Personal Care
+
+</div>
+
+</div>
+
+</a>
+
+<!-- Home & Kitchen -->
+
+<a href="HomeKitchen.html" style="text-decoration:none;">
+
+<div class="category"
+
+style="background-image:url('https://images.unsplash.com/photo-1484154218962-a197
+
+
+  
