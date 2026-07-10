@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>POMPEY Admin - Orders</title>
 
-<title>POMPEY - My Orders</title>
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
 
@@ -17,73 +18,572 @@ font-family:Arial,sans-serif;
 }
 
 body{
-background:#f2f2f2;
+background:#f4f6f9;
+display:flex;
 }
 
-header{
-background:#0d6efd;
-color:white;
-padding:15px 25px;
+/* Sidebar */
+
+.sidebar{
+width:250px;
+height:100vh;
+background:#131921;
+color:#fff;
+position:fixed;
+left:0;
+top:0;
+overflow:auto;
+}
+
+.logo{
+padding:20px;
+font-size:28px;
+font-weight:bold;
+text-align:center;
+background:#232f3e;
+}
+
+.sidebar ul{
+list-style:none;
+}
+
+.sidebar ul li{
+padding:18px 25px;
+border-bottom:1px solid rgba(255,255,255,.1);
+cursor:pointer;
+transition:.3s;
+}
+
+.sidebar ul li:hover{
+background:#37475a;
+}
+
+.sidebar ul li i{
+margin-right:10px;
+}
+
+/* Main */
+
+.main{
+margin-left:250px;
+width:calc(100% - 250px);
+}
+
+/* Header */
+
+.header{
+height:70px;
+background:#fff;
 display:flex;
 justify-content:space-between;
 align-items:center;
+padding:0 25px;
+box-shadow:0 2px 10px rgba(0,0,0,.1);
 }
 
-header a{
-color:white;
-text-decoration:none;
+.header h2{
+color:#131921;
+}
+
+.admin{
 font-weight:bold;
-}
-
-.container{
-width:95%;
-max-width:1000px;
-margin:30px auto;
-}
-
-.order{
-background:white;
-border-radius:12px;
-padding:20px;
-margin-bottom:20px;
-box-shadow:0 4px 10px rgba(0,0,0,.1);
-}
-
-.order h2{
 color:#0d6efd;
+}
+
+/* Cards */
+
+.cards{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px;
+padding:25px;
+}
+
+.card{
+background:#fff;
+padding:20px;
+border-radius:12px;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+}
+
+.card h3{
+color:#777;
 margin-bottom:10px;
 }
 
-.row{
-margin:8px 0;
+.card h1{
+color:#0d6efd;
 }
 
-.products{
-margin-top:15px;
-padding-top:15px;
-border-top:1px solid #ddd;
+/* Content */
+
+.content{
+padding:25px;
 }
 
-.item{
+.table-box{
+background:#fff;
+padding:20px;
+border-radius:12px;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+overflow:auto;
+}
+
+.toolbar{
 display:flex;
-justify-content:space-between;
-margin:8px 0;
+gap:10px;
+flex-wrap:wrap;
+margin:20px 0;
+}
+
+.toolbar input{
+padding:10px;
+width:300px;
+border:1px solid #ccc;
+border-radius:6px;
+}
+
+.toolbar button{
+padding:10px 18px;
+border:none;
+border-radius:6px;
+cursor:pointer;
+color:#fff;
+}
+
+.searchBtn{
+background:#0d6efd;
+}
+
+.showBtn{
+background:#28a745;
+}
+
+.exportBtn{
+background:#ff9800;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th,td{
+padding:12px;
+border-bottom:1px solid #ddd;
+text-align:left;
+}
+
+th{
+background:#232f3e;
+color:white;
 }
 
 .status{
-display:inline-block;
-padding:8px 15px;
-background:#28a745;
-color:white;
+padding:6px 12px;
 border-radius:20px;
-margin-top:15px;
+color:#fff;
+font-size:13px;
+background:#28a745;
 }
 
-.empty{
-text-align:center;
-padding:80px;
-font-size:22px;
-color:#777;
+select{
+padding:8px;
+border-radius:5px;
+}
+
+.invoiceBtn{
+background:#ff9800;
+color:#fff;
+padding:8px 15px;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+
+@media(max-width:900px){
+
+.cards{
+grid-template-columns:repeat(2,1fr);
+}
+
+}
+
+@media(max-width:600px){
+
+.sidebar{
+display:none;
+}
+
+.main{
+margin-left:0;
+width:100%;
+}
+
+.cards{
+grid-template-columns:1fr;
+}
+
+.toolbar input{
+width:100%;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<div class="logo">
+POMPEY Admin
+</div>
+
+<ul>
+
+<li><i class="fa fa-chart-line"></i> Dashboard</li>
+
+<li><i class="fa fa-shopping-cart"></i> Orders</li>
+
+<li><i class="fa fa-users"></i> Customers</li>
+
+<li><i class="fa fa-box"></i> Products</li>
+
+<li><i class="fa fa-credit-card"></i> Payments</li>
+
+<li><i class="fa fa-truck"></i> Delivery</li>
+
+<li><i class="fa fa-cog"></i> Settings</li>
+
+<li onclick="location.href='index.html'">
+
+<i class="fa fa-home"></i> Home
+
+</li>
+
+</ul>
+
+</div>
+
+<div class="main">
+
+<div class="header">
+
+<h2>Orders Dashboard</h2>
+
+<div class="admin">
+
+<i class="fa fa-user-circle"></i>
+
+Admin
+
+</div>
+
+</div>
+
+<div class="cards">
+
+<div class="card">
+<h3>Total Orders</h3>
+<h1 id="totalOrders">0</h1>
+</div>
+
+<div class="card">
+<h3>Total Sales</h3>
+<h1>₹<span id="totalSales">0</span></h1>
+</div>
+
+<div class="card">
+<h3>Customers</h3>
+<h1 id="customers">0</h1>
+</div>
+
+<div class="card">
+<h3>Revenue</h3>
+<h1>₹<span id="revenue">0</span></h1>
+</div>
+
+</div>
+
+<div class="content">
+
+<div class="table-box">
+
+<h2>Recent Orders</h2>
+
+<div class="toolbar">
+
+<input
+type="text"
+id="searchOrder"
+placeholder="Search Customer or Mobile">
+
+<button class="searchBtn"
+onclick="searchOrders()">
+🔍 Search
+</button>
+
+<button class="showBtn"
+onclick="loadOrders()">
+Show All
+</button>
+
+<button class="exportBtn"
+onclick="exportCSV()">
+📥 Export CSV
+</button>
+
+</div>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Order</th>
+
+<th>Customer</th>
+
+<th>Mobile</th>
+
+<th>Total</th>
+
+<th>Payment</th>
+
+<th>Status</th>
+
+<th>Invoice</th>
+
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody id="ordersTable">
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+  </div>
+  <script>
+
+let orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+function dashboard(){
+
+let totalSales = 0;
+
+orders.forEach(order=>{
+totalSales += Number(order.total || 0);
+});
+
+document.getElementById("totalOrders").innerHTML = orders.length;
+document.getElementById("customers").innerHTML = orders.length;
+document.getElementById("totalSales").innerHTML = totalSales.toFixed(2);
+document.getElementById("revenue").innerHTML = totalSales.toFixed(2);
+
+}
+
+function loadOrders(list = orders){
+
+let table = document.getElementById("ordersTable");
+
+table.innerHTML = "";
+
+if(list.length===0){
+
+table.innerHTML=`
+<tr>
+<td colspan="8" style="text-align:center;">
+No Orders Found
+</td>
+</tr>`;
+return;
+
+}
+
+list.forEach((order,index)=>{
+
+table.innerHTML += `
+
+<tr>
+
+<td>#${index+1}</td>
+
+<td>${order.name}</td>
+
+<td>${order.mobile}</td>
+
+<td>₹${Number(order.total).toFixed(2)}</td>
+
+<td>${order.payment}</td>
+
+<td>
+
+<span class="status">
+${order.status || "Pending"}
+</span>
+
+</td>
+
+<td>
+
+<button class="invoiceBtn"
+onclick="printInvoice(${index})">
+
+🖨 Print
+
+</button>
+
+</td>
+
+<td>
+
+<select onchange="updateStatus(${index},this.value)">
+
+<option ${order.status=="Pending"?"selected":""}>Pending</option>
+
+<option ${order.status=="Confirmed"?"selected":""}>Confirmed</option>
+
+<option ${order.status=="Packed"?"selected":""}>Packed</option>
+
+<option ${order.status=="Shipped"?"selected":""}>Shipped</option>
+
+<option ${order.status=="Out for Delivery"?"selected":""}>Out for Delivery</option>
+
+<option ${order.status=="Delivered"?"selected":""}>Delivered</option>
+
+<option ${order.status=="Cancelled"?"selected":""}>Cancelled</option>
+
+</select>
+
+</td>
+
+</tr>
+
+`;
+
+});
+
+dashboard();
+
+}
+
+function searchOrders(){
+
+let value =
+document.getElementById("searchOrder")
+.value.toLowerCase();
+
+let result = orders.filter(order=>{
+
+return order.name.toLowerCase().includes(value)
+
+||
+
+order.mobile.includes(value);
+
+});
+
+loadOrders(result);
+
+}
+
+loadOrders();
+  </script >  
+<script>
+
+function updateStatus(index, status){
+
+orders[index].status = status;
+
+localStorage.setItem("orders", JSON.stringify(orders));
+
+alert("Order status updated to " + status);
+
+loadOrders();
+
+}
+
+function exportCSV(){
+
+if(orders.length===0){
+
+alert("No orders found!");
+
+return;
+
+}
+
+let csv =
+"Order No,Customer,Mobile,Email,Address,Payment,Total,Status,Date\n";
+
+orders.forEach((order,index)=>{
+
+csv += `${index+1},"${order.name}","${order.mobile}","${order.email}","${order.address}","${order.payment}",${order.total},"${order.status}","${order.date}"\n`;
+
+});
+
+let blob = new Blob([csv],{type:"text/csv"});
+
+let link = document.createElement("a");
+
+link.href = URL.createObjectURL(blob);
+
+link.download = "POMPEY_Orders.csv";
+
+link.click();
+
+}
+
+function printInvoice(index){
+
+let order = orders[index];
+
+let win = window.open("","_blank");
+
+win.document.write(`
+
+<html>
+
+<head>
+
+<title>Invoice</title>
+
+<style>
+
+body{
+font-family:Arial;
+padding:30px;
+}
+
+h1{
+color:#0d6efd;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+}
+
+th,td{
+border:1px solid #ccc;
+padding:10px;
 }
 
 </style>
@@ -92,94 +592,81 @@ color:#777;
 
 <body>
 
-<header>
+<h1>POMPEY</h1>
 
-<h2>POMPEY Orders</h2>
+<h2>Order Invoice</h2>
 
-<a href="dashboard.html">Dashboard</a>
+<hr>
 
-</header>
+<p><b>Invoice:</b> #${index+1}</p>
 
-<div class="container" id="ordersContainer">
+<p><b>Date:</b> ${order.date || "-"}</p>
 
-</div>
+<p><b>Name:</b> ${order.name}</p>
+
+<p><b>Mobile:</b> ${order.mobile}</p>
+
+<p><b>Email:</b> ${order.email}</p>
+
+<p><b>Address:</b> ${order.address}</p>
+
+<p><b>Payment:</b> ${order.payment}</p>
+
+<table>
+
+<tr>
+
+<th>Product</th>
+
+<th>Qty</th>
+
+<th>Price</th>
+
+</tr>
+
+${(order.items || []).map(item=>`
+
+<tr>
+
+<td>${item.name}</td>
+
+<td>${item.qty}</td>
+
+<td>₹${item.price}</td>
+
+</tr>
+
+`).join("")}
+
+</table>
+
+<h3>Subtotal : ₹${Number(order.subtotal || 0).toFixed(2)}</h3>
+
+<h3>Delivery : ₹${Number(order.delivery || 0).toFixed(2)}</h3>
+
+<h3>GST : ₹${Number(order.gst || 0).toFixed(2)}</h3>
+
+<h2>Total : ₹${Number(order.total || 0).toFixed(2)}</h2>
+
+<p>Thank you for shopping with POMPEY.</p>
 
 <script>
 
-const container=document.getElementById("ordersContainer");
+window.onload=function(){
 
-let orders=JSON.parse(localStorage.getItem("orders"))||[];
+window.print();
 
-if(orders.length===0){
+}
 
-container.innerHTML=`
-<div class="empty">
-📦<br><br>
-No Orders Yet
-</div>
-`;
+<\/script>
 
-}else{
+</body>
 
-orders.reverse().forEach((order,index)=>{
+</html>
 
-let products="";
+`);
 
-order.items.forEach(item=>{
-
-products+=`
-
-<div class="item">
-
-<span>${item.name} × ${item.qty}</span>
-
-<span>₹${item.price*item.qty}</span>
-
-</div>
-
-`;
-
-});
-
-container.innerHTML+=`
-
-<div class="order">
-
-<h2>Order #${orders.length-index}</h2>
-
-<div class="row"><b>Name :</b> ${order.name}</div>
-
-<div class="row"><b>Mobile :</b> ${order.mobile}</div>
-
-<div class="row"><b>Email :</b> ${order.email}</div>
-
-<div class="row"><b>Address :</b> ${order.address}</div>
-
-<div class="row"><b>Payment :</b> ${order.payment}</div>
-
-<div class="row"><b>Date :</b> ${order.date}</div>
-
-<div class="products">
-
-<h3>Ordered Products</h3>
-
-${products}
-
-</div>
-
-<h3>Total : ₹${order.total}</h3>
-
-<div class="status">
-
-Order Confirmed ✅
-
-</div>
-
-</div>
-
-`;
-
-});
+win.document.close();
 
 }
 
