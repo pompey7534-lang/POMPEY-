@@ -331,6 +331,31 @@ Admin
 
 <br>
 
+<div style="margin-bottom:20px;display:flex;gap:10px;flex-wrap:wrap;">
+
+<input
+type="text"
+id="searchOrder"
+placeholder="Search Customer or Mobile"
+style="padding:10px;width:300px;border:1px solid #ccc;border-radius:6px;">
+
+<button onclick="searchOrders()"
+style="padding:10px 20px;background:#0d6efd;color:white;border:none;border-radius:6px;">
+🔍 Search
+</button>
+
+<button onclick="loadOrders()"
+style="padding:10px 20px;background:#28a745;color:white;border:none;border-radius:6px;">
+Show All
+</button>
+
+<button onclick="exportCSV()"
+style="padding:10px 20px;background:#ff9800;color:white;border:none;border-radius:6px;">
+📥 Export Orders
+</button>
+
+</div>
+
 <table>
 
 <thead>
@@ -350,6 +375,8 @@ Admin
 <th>Status</th>
   
 <th>Invoice</th>
+
+<th>Action</th>
 
 </tr>
 
@@ -414,6 +441,17 @@ table.innerHTML += `
 style="background:#ff9800;color:white;border:none;padding:8px 15px;border-radius:5px;cursor:pointer;">
 🖨 Print
 </button>
+</td>
+<td>
+<select onchange="updateStatus(${index}, this.value)">
+<option ${order.status=="Pending"?"selected":""}>Pending</option>
+<option ${order.status=="Confirmed"?"selected":""}>Confirmed</option>
+<option ${order.status=="Packed"?"selected":""}>Packed</option>
+<option ${order.status=="Shipped"?"selected":""}>Shipped</option>
+<option ${order.status=="Out for Delivery"?"selected":""}>Out for Delivery</option>
+<option ${order.status=="Delivered"?"selected":""}>Delivered</option>
+<option ${order.status=="Cancelled"?"selected":""}>Cancelled</option>
+</select>
 </td>
 
 </tr>
@@ -563,6 +601,48 @@ window.print();
 invoice.document.close();
 
   }
+function exportCSV(){
+
+let orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+if(orders.length===0){
+    alert("No orders found!");
+    return;
+}
+
+let csv =
+"Order No,Customer,Mobile,Email,Address,Payment,Total,Status,Date\n";
+
+orders.forEach((order,index)=>{
+
+csv += `${index+1},"${order.name}","${order.mobile}","${order.email}","${order.address}","${order.payment}",${order.total},"${order.status}","${order.date}"\n`;
+
+});
+
+let blob = new Blob([csv], {type:"text/csv"});
+
+let link = document.createElement("a");
+
+link.href = URL.createObjectURL(blob);
+
+link.download = "POMPEY_Orders.csv";
+
+link.click();
+
+  }
+function updateStatus(index, status){
+
+    let orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+    orders[index].status = status;
+
+    localStorage.setItem("orders", JSON.stringify(orders));
+
+    alert("Order status updated to " + status);
+
+    location.reload();
+
+}
 </script>
 
 </body>
