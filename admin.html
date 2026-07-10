@@ -158,7 +158,7 @@ overflow:auto;
 
 }
 <div style="margin-bottom:20px;display:flex;gap:10px;">
-
+</div>
 <input
 type="text"
 id="searchOrder"
@@ -397,16 +397,12 @@ style="padding:10px 20px;background:#ff9800;color:white;border:none;border-radiu
 </div>
 <script type="module">
 
-// Load Orders
+// Load Orders from localStorage
 let orders = JSON.parse(localStorage.getItem("orders")) || [];
 
 let table = document.getElementById("ordersTable");
-let totalSales = 0;
-
-let table = document.getElementById("ordersTable");
 
 let totalSales = 0;
-
 // Dashboard Statistics
 document.getElementById("totalOrders").innerHTML = orders.length;
 document.getElementById("customers").innerHTML = orders.length;
