@@ -178,3 +178,24 @@ slides[slideIndex-1].style.display="block";
 setTimeout(showSlides,3000);
 
 }
+<script>
+
+function addToCart(){
+   ...
+}
+
+function filterProducts(){
+   ...
+}
+
+/* Paste here */
+
+document.querySelector(".cart").onclick = function () {
+    document.getElementById("cartSidebar").classList.add("open");
+};
+
+function closeCart() {
+    document.getElementById("cartSidebar").classList.remove("open");
+}
+
+</script>
