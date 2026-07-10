@@ -1,0 +1,1609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>POMPEY Grocery Store</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f5f5f5;
+}
+
+header{
+background:#0F9D58;
+padding:15px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+.logo{
+font-size:30px;
+font-weight:bold;
+color:#fff;
+}
+
+.search-box{
+width:50%;
+display:flex;
+}
+
+.search-box input{
+flex:1;
+padding:12px;
+border:none;
+outline:none;
+font-size:16px;
+border-radius:5px 0 0 5px;
+}
+
+.search-box button{
+padding:12px 18px;
+border:none;
+background:#FFC107;
+cursor:pointer;
+border-radius:0 5px 5px 0;
+}
+
+.cart{
+color:#fff;
+font-size:28px;
+cursor:pointer;
+position:relative;
+}
+
+.cart span{
+position:absolute;
+top:-8px;
+right:-10px;
+background:red;
+width:22px;
+height:22px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:12px;
+}
+
+.products{
+
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+gap:20px;
+padding:20px;
+
+}
+
+.card{
+
+background:#fff;
+border-radius:12px;
+padding:15px;
+box-shadow:0 3px 10px rgba(0,0,0,.15);
+transition:.3s;
+
+}
+
+.card:hover{
+
+transform:translateY(-5px);
+
+}
+
+.card img{
+
+width:100%;
+height:170px;
+object-fit:cover;
+border-radius:10px;
+
+}
+
+.card h3{
+
+margin-top:10px;
+
+}
+
+.price{
+
+color:#0F9D58;
+font-size:22px;
+font-weight:bold;
+margin:10px 0;
+
+}
+
+button{
+
+width:100%;
+padding:12px;
+background:#0F9D58;
+color:white;
+border:none;
+border-radius:6px;
+cursor:pointer;
+
+}
+
+button:hover{
+
+background:#087A43;
+
+}
+
+.cart-panel{
+
+position:fixed;
+top:0;
+right:-380px;
+width:350px;
+height:100%;
+background:#fff;
+box-shadow:-4px 0 12px rgba(0,0,0,.25);
+transition:.4s;
+padding:20px;
+overflow:auto;
+z-index:9999;
+
+}
+
+.cart-item{
+
+padding:10px 0;
+border-bottom:1px solid #ddd;
+
+}
+.categories{
+display:flex;
+overflow-x:auto;
+gap:15px;
+padding:15px;
+background:#fff;
+}
+
+.category{
+min-width:90px;
+padding:15px;
+background:#f7f7f7;
+text-align:center;
+border-radius:12px;
+cursor:pointer;
+transition:.3s;
+font-size:15px;
+font-weight:bold;
+}
+
+.category:hover{
+background:#0F9D58;
+color:#fff;
+}
+
+.category span{
+display:block;
+margin-top:8px;
+  }
+
+
+.hero{
+
+margin:20px;
+
+background:linear-gradient(135deg,#00b14f,#0F9D58);
+
+border-radius:20px;
+
+padding:40px;
+
+color:white;
+
+text-align:center;
+
+}
+
+.hero h1{
+
+font-size:40px;
+
+margin-bottom:15px;
+
+}
+
+.hero p{
+
+font-size:20px;
+
+margin-bottom:20px;
+
+}
+
+.hero button{
+
+background:#FFC107;
+
+color:black;
+
+width:220px;
+
+font-size:18px;
+
+font-weight:bold;
+
+padding:15px;
+
+border:none;
+
+border-radius:10px;
+
+cursor:pointer;
+
+}
+<!-- Image Slider -->
+
+<section class="slider">
+
+<div class="slides fade">
+<img src="banner1.webp">
+</div>
+
+<div class="slides fade">
+<img src="banner2.webp">
+</div>
+
+<div class="slides fade">
+<img src="banner3.webp">
+</div>
+
+<div class="slides fade">
+<img src="banner4.webp">
+</div>
+
+</section>
+  
+.hero button:hover{
+
+transform:scale(1.05);
+
+  }
+
+  <h2 style="margin:20px;">🔥 Flash Sale</h2>
+
+<section class="flash-sale">
+
+<div class="sale-card">
+
+<h3>50% OFF</h3>
+
+<p>Fresh Fruits</p>
+
+</div>
+
+<div class="sale-card">
+
+<h3>40% OFF</h3>
+
+<p>Dairy Products</p>
+
+</div>
+
+<div class="sale-card">
+
+<h3>Buy 1 Get 1</h3>
+
+<p>Snacks</p>
+
+</div>
+
+<div class="sale-card">
+
+<h3>30% OFF</h3>
+
+<p>Household</p>
+
+</div>
+
+</section>
+  .hero{
+
+margin:20px;
+
+background:linear-gradient(135deg,#00b14f,#0F9D58);
+
+border-radius:20px;
+
+padding:40px;
+
+color:white;
+
+text-align:center;
+
+}
+
+.hero h1{
+
+font-size:40px;
+
+margin-bottom:15px;
+
+}
+
+.hero p{
+
+font-size:20px;
+
+margin-bottom:20px;
+
+}
+
+.hero button{
+
+background:#FFC107;
+
+color:black;
+
+width:220px;
+
+font-size:18px;
+
+font-weight:bold;
+
+padding:15px;
+
+border:none;
+
+border-radius:10px;
+
+cursor:pointer;
+
+}
+
+.hero button:hover{
+
+transform:scale(1.05);
+
+  }
+
+.slider{
+
+width:96%;
+
+height:320px;
+
+margin:20px auto;
+
+overflow:hidden;
+
+border-radius:20px;
+
+box-shadow:0 5px 15px rgba(0,0,0,.2);
+
+}
+
+.slides{
+
+display:none;
+
+}
+
+.slides img{
+
+width:100%;
+
+height:320px;
+
+object-fit:cover;
+
+}
+
+.fade{
+
+animation:fade 1s;
+
+}
+
+@keyframes fade{
+
+from{opacity:.4;}
+
+to{opacity:1;}
+
+  }
+  
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+POMPEY Grocery
+</div>
+
+<div class="search-box">
+
+<input
+type="text"
+id="search"
+placeholder="Search Grocery...">
+
+<button>
+<i class="fas fa-search"></i>
+</button>
+
+</div>
+
+<div class="cart">
+
+<i class="fas fa-shopping-cart"></i>
+
+<span id="count">0</span>
+
+</div>
+<!-- Categories -->
+
+<section class="categories">
+
+<div class="category active" onclick="filterProducts('all')">
+🥬
+<span>All</span>
+</div>
+
+<div class="category" onclick="filterProducts('fruits')">
+🍎
+<span>Fruits</span>
+</div>
+
+<div class="category" onclick="filterProducts('vegetables')">
+🥦
+<span>Vegetables</span>
+</div>
+
+<div class="category" onclick="filterProducts('dairy')">
+🥛
+<span>Dairy</span>
+</div>
+
+<div class="category" onclick="filterProducts('bakery')">
+🍞
+<span>Bakery</span>
+</div>
+
+<div class="category" onclick="filterProducts('beverages')">
+🥤
+<span>Beverages</span>
+</div>
+
+<div class="category" onclick="filterProducts('snacks')">
+🍟
+<span>Snacks</span>
+</div>
+
+<div class="category" onclick="filterProducts('grains')">
+🌾
+<span>Grains</span>
+</div>
+
+<div class="category" onclick="filterProducts('spices')">
+🌶️
+<span>Spices</span>
+</div>
+
+<div class="category" onclick="filterProducts('household')">
+🧴
+<span>Household</span>
+</div>
+
+<div class="category" onclick="filterProducts('personal')">
+🧼
+<span>Personal Care</span>
+</div>
+
+<div class="category" onclick="filterProducts('baby')">
+👶
+<span>Baby Care</span>
+</div>
+
+  </section>
+
+</header>
+
+<!-- Categories -->
+
+<section class="categories">
+
+<div class="category active" onclick="filterProducts('all')">
+🥬
+<span>All</span>
+</div>
+
+<div class="category" onclick="filterProducts('fruits')">
+🍎
+<span>Fruits</span>
+</div>
+
+<div class="category" onclick="filterProducts('vegetables')">
+🥦
+<span>Vegetables</span>
+</div>
+
+<div class="category" onclick="filterProducts('dairy')">
+🥛
+<span>Dairy</span>
+</div>
+
+<div class="category" onclick="filterProducts('bakery')">
+🍞
+<span>Bakery</span>
+</div>
+
+<div class="category" onclick="filterProducts('beverages')">
+🥤
+<span>Beverages</span>
+</div>
+
+<div class="category" onclick="filterProducts('snacks')">
+🍟
+<span>Snacks</span>
+</div>
+
+<div class="category" onclick="filterProducts('grains')">
+🌾
+<span>Grains</span>
+</div>
+
+<div class="category" onclick="filterProducts('household')">
+🧴
+<span>Household</span>
+</div>
+
+</section>
+<!-- Hero Banner -->
+
+<section class="hero">
+
+<div class="offer">
+
+<h1>⚡ Grocery Delivered in 10 Minutes</h1>
+
+<p>Fresh Fruits • Vegetables • Dairy • Snacks</p>
+
+<button>Shop Now</button>
+
+</div>
+
+</section>
+
+  
+<section class="products">
+  
+
+<!-- Product 1 -->
+  
+<div class="product">
+<img src="rice.webp" alt="Basmati Rice">
+<h3>Basmati Rice 5kg</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹499</p>
+<button onclick="addToCart('Basmati Rice 5kg',499,'rice.webp')">Add to Cart</button>
+<div class="badge">Best Seller</div>
+</div>
+
+<!-- Product 2 -->
+<div class="product">
+<img src="atta.webp" alt="Aashirvaad Atta">
+<h3>Aashirvaad Atta 10kg</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹589</p>
+<button onclick="addToCart('Aashirvaad Atta 10kg',589,'atta.webp')">Add to Cart</button>
+<div class="badge">Popular</div>
+</div>
+
+<!-- Product 3 -->
+<div class="product">
+<img src="milk.webp" alt="Amul Milk">
+<h3>Amul Milk 1L</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹68</p>
+<button onclick="addToCart('Amul Milk 1L',68,'milk.webp')">Add to Cart</button>
+<div class="badge">Fresh</div>
+</div>
+
+<!-- Product 4 -->
+<div class="product">
+<img src="bread.webp" alt="Brown Bread">
+<h3>Brown Bread</h3>
+<p>⭐ 4.5</p>
+<p class="price">₹45</p>
+<button onclick="addToCart('Brown Bread',45,'bread.webp')">Add to Cart</button>
+<div class="badge">Fresh</div>
+</div>
+
+<!-- Product 5 -->
+<div class="product">
+<img src="eggs.webp" alt="Farm Eggs">
+<h3>Farm Eggs (12)</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹95</p>
+<button onclick="addToCart('Farm Eggs',95,'eggs.webp')">Add to Cart</button>
+<div class="badge">Best Seller</div>
+</div>
+
+<!-- Product 6 -->
+  <div class="product fruits">
+<div class="product">
+<img src="apple.webp" alt="Apple">
+<h3>Apple 1kg</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹180</p>
+<button onclick="addToCart('Apple 1kg',180,'apple.webp')">Add to Cart</button>
+<div class="badge">Fresh</div>
+</div>
+
+<!-- Product 7 -->
+    <div class="product fruits">
+<div class="product">
+<img src="banana.webp" alt="Banana">
+<h3>Banana (12 pcs)</h3>
+<p>⭐ 4.6</p>
+<p class="price">₹70</p>
+<button onclick="addToCart('Banana (12 pcs)',70,'banana.webp')">Add to Cart</button>
+<div class="badge">Offer</div>
+</div>
+
+<!-- Product 8 -->
+    <div class="product vegetables">
+<div class="product">
+<img src="potato.webp" alt="Potato">
+<h3>Potato 1kg</h3>
+<p>⭐ 4.5</p>
+<p class="price">₹35</p>
+<button onclick="addToCart('Potato 1kg',35,'potato.webp')">Add to Cart</button>
+<div class="badge">Daily Use</div>
+</div>
+
+<!-- Product 9 -->
+  <div class="product vegetables">
+<div class="product">
+<img src="onion.webp" alt="Onion">
+<h3>Onion 1kg</h3>
+<p>⭐ 4.5</p>
+<p class="price">₹40</p>
+<button onclick="addToCart('Onion 1kg',40,'onion.webp')">Add to Cart</button>
+<div class="badge">Fresh</div>
+</div>
+
+<!-- Product 10 -->
+  <div class="product vegetables">
+<div class="product">
+<img src="tomato.webp" alt="Tomato">
+<h3>Tomato 1kg</h3>
+<p>⭐ 4.6</p>
+<p class="price">₹55</p>
+<button onclick="addToCart('Tomato 1kg',55,'tomato.webp')">Add to Cart</button>
+<div class="badge">Organic</div>
+  </div>
+  <!-- Product 11 -->
+    <div class="product fruits">
+<div class="product">
+<img src="orange.webp" alt="Orange">
+<h3>Orange 1kg</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹120</p>
+<button onclick="addToCart('Orange 1kg',120,'orange.webp')">Add to Cart</button>
+<div class="badge">Fresh</div>
+</div>
+
+<!-- Product 12 -->
+      <div class="product fruits">
+<div class="product">
+<img src="grapes.webp" alt="Black Grapes">
+<h3>Black Grapes 500g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹90</p>
+<button onclick="addToCart('Black Grapes 500g',90,'grapes.webp')">Add to Cart</button>
+<div class="badge">Sweet</div>
+</div>
+
+<!-- Product 13 -->
+      <div class="product fruits">
+<div class="product">
+<img src="mango.webp" alt="Mango">
+<h3>Mango 1kg</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹180</p>
+<button onclick="addToCart('Mango 1kg',180,'mango.webp')">Add to Cart</button>
+<div class="badge">Seasonal</div>
+</div>
+
+<!-- Product 14 -->
+        <div class="product fruits">
+<div class="product">
+<img src="watermelon.webp" alt="Watermelon">
+<h3>Watermelon</h3>
+<p>⭐ 4.6</p>
+<p class="price">₹120</p>
+<button onclick="addToCart('Watermelon',120,'watermelon.webp')">Add to Cart</button>
+<div class="badge">Fresh</div>
+</div>
+
+<!-- Product 15 -->
+          <div class="product fruits">
+<div class="product">
+<img src="cauliflower.webp" alt="Cauliflower">
+<h3>Cauliflower</h3>
+<p>⭐ 4.5</p>
+<p class="price">₹50</p>
+<button onclick="addToCart('Cauliflower',50,'cauliflower.webp')">Add to Cart</button>
+<div class="badge">Farm Fresh</div>
+</div>
+
+<!-- Product 16 -->
+            <div class="product vegetables">
+<div class="product">
+<img src="cabbage.webp" alt="Cabbage">
+<h3>Cabbage</h3>
+<p>⭐ 4.5</p>
+<p class="price">₹40</p>
+<button onclick="addToCart('Cabbage',40,'cabbage.webp')">Add to Cart</button>
+<div class="badge">Organic</div>
+</div>
+
+<!-- Product 17 -->
+              <div class="product vegetables">
+<div class="product">
+<img src="carrot.webp" alt="Carrot">
+<h3>Carrot 1kg</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹60</p>
+<button onclick="addToCart('Carrot 1kg',60,'carrot.webp')">Add to Cart</button>
+<div class="badge">Healthy</div>
+</div>
+
+<!-- Product 18 -->
+                <div class="product vegetables">
+<div class="product">
+<img src="cucumber.webp" alt="Cucumber">
+<h3>Cucumber 1kg</h3>
+<p>⭐ 4.6</p>
+<p class="price">₹45</p>
+<button onclick="addToCart('Cucumber 1kg',45,'cucumber.webp')">Add to Cart</button>
+<div class="badge">Fresh</div>
+</div>
+
+<!-- Product 19 -->
+                  <div class="product fruits">
+<div class="product">
+<img src="capsicum.webp" alt="Capsicum">
+<h3>Capsicum 500g</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹70</p>
+<button onclick="addToCart('Capsicum 500g',70,'capsicum.webp')">Add to Cart</button>
+<div class="badge">Popular</div>
+</div>
+
+<!-- Product 20 -->
+                    <div class="product fruits">
+<div class="product">
+<img src="broccoli.webp" alt="Broccoli">
+<h3>Broccoli 250g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹95</p>
+<button onclick="addToCart('Broccoli 250g',95,'broccoli.webp')">Add to Cart</button>
+<div class="badge">Premium</div>
+  </div>
+  <!-- Product 21 -->
+<div class="product">
+<img src="butter.webp" alt="Amul Butter">
+<h3>Amul Butter 500g</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹285</p>
+<button onclick="addToCart('Amul Butter 500g',285,'butter.webp')">Add to Cart</button>
+<div class="badge">Best Seller</div>
+</div>
+
+<!-- Product 22 -->
+<div class="product">
+<img src="cheese.webp" alt="Amul Cheese">
+<h3>Amul Cheese Slices</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹235</p>
+<button onclick="addToCart('Amul Cheese Slices',235,'cheese.webp')">Add to Cart</button>
+<div class="badge">Popular</div>
+</div>
+
+<!-- Product 23 -->
+<div class="product">
+<img src="paneer.webp" alt="Paneer">
+<h3>Fresh Paneer 500g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹210</p>
+<button onclick="addToCart('Fresh Paneer 500g',210,'paneer.webp')">Add to Cart</button>
+<div class="badge">Fresh</div>
+</div>
+
+<!-- Product 24 -->
+<div class="product">
+<img src="curd.webp" alt="Curd">
+<h3>Fresh Curd 500g</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹55</p>
+<button onclick="addToCart('Fresh Curd 500g',55,'curd.webp')">Add to Cart</button>
+<div class="badge">Healthy</div>
+</div>
+
+<!-- Product 25 -->
+<div class="product">
+<img src="tea.webp" alt="Tea">
+<h3>Tata Tea 500g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹240</p>
+<button onclick="addToCart('Tata Tea 500g',240,'tea.webp')">Add to Cart</button>
+<div class="badge">Popular</div>
+</div>
+
+<!-- Product 26 -->
+<div class="product">
+<img src="coffee.webp" alt="Coffee">
+<h3>Nescafe Coffee 100g</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹325</p>
+<button onclick="addToCart('Nescafe Coffee',325,'coffee.webp')">Add to Cart</button>
+<div class="badge">Premium</div>
+</div>
+
+<!-- Product 27 -->
+<div class="product">
+<img src="cola.webp" alt="Coca Cola">
+<h3>Coca-Cola 2L</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹95</p>
+<button onclick="addToCart('Coca-Cola 2L',95,'cola.webp')">Add to Cart</button>
+<div class="badge">Chilled</div>
+</div>
+
+<!-- Product 28 -->
+<div class="product">
+<img src="pepsi.webp" alt="Pepsi">
+<h3>Pepsi 2L</h3>
+<p>⭐ 4.6</p>
+<p class="price">₹99</p>
+<button onclick="addToCart('Pepsi 2L',99,'pepsi.webp')">Add to Cart</button>
+<div class="badge">Offer</div>
+</div>
+
+<!-- Product 29 -->
+<div class="product">
+<img src="juice.webp" alt="Juice">
+<h3>Tropicana Orange Juice</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹135</p>
+<button onclick="addToCart('Tropicana Orange Juice',135,'juice.webp')">Add to Cart</button>
+<div class="badge">Healthy</div>
+</div>
+
+<!-- Product 30 -->
+<div class="product">
+<img src="water.webp" alt="Bisleri">
+<h3>Bisleri Water 2L</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹40</p>
+<button onclick="addToCart('Bisleri Water 2L',40,'water.webp')">Add to Cart</button>
+<div class="badge">Essential</div>
+</div>
+
+<!-- Product 31 -->
+<div class="product">
+<img src="parleg.webp" alt="Parle G">
+<h3>Parle-G Biscuits</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹10</p>
+<button onclick="addToCart('Parle-G Biscuits',10,'parleg.webp')">Add to Cart</button>
+<div class="badge">Best Seller</div>
+</div>
+
+<!-- Product 32 -->
+<div class="product">
+<img src="goodday.webp" alt="Good Day">
+<h3>Good Day Cookies</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹35</p>
+<button onclick="addToCart('Good Day Cookies',35,'goodday.webp')">Add to Cart</button>
+<div class="badge">Popular</div>
+</div>
+
+<!-- Product 33 -->
+<div class="product">
+<img src="oreo.webp" alt="Oreo">
+<h3>Oreo Biscuits</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹40</p>
+<button onclick="addToCart('Oreo Biscuits',40,'oreo.webp')">Add to Cart</button>
+<div class="badge">Kids</div>
+</div>
+
+<!-- Product 34 -->
+<div class="product">
+<img src="lays.webp" alt="Lays">
+<h3>Lays Classic Chips</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹20</p>
+<button onclick="addToCart('Lays Classic Chips',20,'lays.webp')">Add to Cart</button>
+<div class="badge">Snack</div>
+</div>
+
+<!-- Product 35 -->
+<div class="product">
+<img src="kurkure.webp" alt="Kurkure">
+<h3>Kurkure Masala</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹20</p>
+<button onclick="addToCart('Kurkure Masala',20,'kurkure.webp')">Add to Cart</button>
+<div class="badge">Hot</div>
+</div>
+
+<!-- Product 36 -->
+<div class="product">
+<img src="maggi.webp" alt="Maggi">
+<h3>Maggi Noodles</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹16</p>
+<button onclick="addToCart('Maggi Noodles',16,'maggi.webp')">Add to Cart</button>
+<div class="badge">Best Seller</div>
+</div>
+
+<!-- Product 37 -->
+<div class="product">
+<img src="pasta.webp" alt="Pasta">
+<h3>Pasta 500g</h3>
+<p>⭐ 4.6</p>
+<p class="price">₹75</p>
+<button onclick="addToCart('Pasta 500g',75,'pasta.webp')">Add to Cart</button>
+<div class="badge">Italian</div>
+</div>
+
+<!-- Product 38 -->
+<div class="product">
+<img src="cornflakes.webp" alt="Cornflakes">
+<h3>Kellogg's Cornflakes</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹185</p>
+<button onclick="addToCart('Kelloggs Cornflakes',185,'cornflakes.webp')">Add to Cart</button>
+<div class="badge">Breakfast</div>
+</div>
+
+<!-- Product 39 -->
+<div class="product">
+<img src="oats.webp" alt="Oats">
+<h3>Quaker Oats 1kg</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹220</p>
+<button onclick="addToCart('Quaker Oats 1kg',220,'oats.webp')">Add to Cart</button>
+<div class="badge">Healthy</div>
+</div>
+
+<!-- Product 40 -->
+<div class="product">
+<img src="chocolate.webp" alt="Chocolate">
+<h3>Dairy Milk Silk</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹190</p>
+<button onclick="addToCart('Dairy Milk Silk',190,'chocolate.webp')">Add to Cart</button>
+<div class="badge">Premium</div>
+</div>
+<!-- Product 41 -->
+<div class="product">
+<img src="sugar.webp" alt="Sugar">
+<h3>Sugar 1kg</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹52</p>
+<button onclick="addToCart('Sugar 1kg',52,'sugar.webp')">Add to Cart</button>
+<div class="badge">Daily Use</div>
+</div>
+
+<!-- Product 42 -->
+<div class="product">
+<img src="salt.webp" alt="Salt">
+<h3>Tata Salt 1kg</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹30</p>
+<button onclick="addToCart('Tata Salt 1kg',30,'salt.webp')">Add to Cart</button>
+<div class="badge">Best Seller</div>
+</div>
+
+<!-- Product 43 -->
+<div class="product">
+<img src="oil.webp" alt="Oil">
+<h3>Fortune Sunflower Oil 1L</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹165</p>
+<button onclick="addToCart('Fortune Sunflower Oil 1L',165,'oil.webp')">Add to Cart</button>
+<div class="badge">Popular</div>
+</div>
+
+<!-- Product 44 -->
+<div class="product">
+<img src="turmeric.webp" alt="Turmeric">
+<h3>Turmeric Powder 200g</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹65</p>
+<button onclick="addToCart('Turmeric Powder',65,'turmeric.webp')">Add to Cart</button>
+<div class="badge">Organic</div>
+</div>
+
+<!-- Product 45 -->
+<div class="product">
+<img src="chilli.webp" alt="Red Chilli">
+<h3>Red Chilli Powder 200g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹80</p>
+<button onclick="addToCart('Red Chilli Powder',80,'chilli.webp')">Add to Cart</button>
+<div class="badge">Hot</div>
+</div>
+
+<!-- Product 46 -->
+<div class="product">
+<img src="coriander.webp" alt="Coriander">
+<h3>Coriander Powder 200g</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹70</p>
+<button onclick="addToCart('Coriander Powder',70,'coriander.webp')">Add to Cart</button>
+<div class="badge">Fresh</div>
+</div>
+
+<!-- Product 47 -->
+<div class="product">
+<img src="garammasala.webp" alt="Garam Masala">
+<h3>Garam Masala 100g</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹95</p>
+<button onclick="addToCart('Garam Masala',95,'garammasala.webp')">Add to Cart</button>
+<div class="badge">Premium</div>
+</div>
+
+<!-- Product 48 -->
+<div class="product">
+<img src="toordal.webp" alt="Toor Dal">
+<h3>Toor Dal 1kg</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹170</p>
+<button onclick="addToCart('Toor Dal 1kg',170,'toordal.webp')">Add to Cart</button>
+<div class="badge">Healthy</div>
+</div>
+
+<!-- Product 49 -->
+<div class="product">
+<img src="rajma.webp" alt="Rajma">
+<h3>Rajma 1kg</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹160</p>
+<button onclick="addToCart('Rajma 1kg',160,'rajma.webp')">Add to Cart</button>
+<div class="badge">Protein</div>
+</div>
+
+<!-- Product 50 -->
+<div class="product">
+<img src="chana.webp" alt="Chana">
+<h3>Kabuli Chana 1kg</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹145</p>
+<button onclick="addToCart('Kabuli Chana 1kg',145,'chana.webp')">Add to Cart</button>
+<div class="badge">Healthy</div>
+</div>
+
+<!-- Product 51 -->
+<div class="product">
+<img src="honey.webp" alt="Honey">
+<h3>Dabur Honey 500g</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹260</p>
+<button onclick="addToCart('Dabur Honey 500g',260,'honey.webp')">Add to Cart</button>
+<div class="badge">Natural</div>
+</div>
+
+<!-- Product 52 -->
+<div class="product">
+<img src="cashew.webp" alt="Cashew">
+<h3>Cashew Nuts 500g</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹520</p>
+<button onclick="addToCart('Cashew Nuts 500g',520,'cashew.webp')">Add to Cart</button>
+<div class="badge">Premium</div>
+</div>
+
+<!-- Product 53 -->
+<div class="product">
+<img src="almond.webp" alt="Almond">
+<h3>Almonds 500g</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹480</p>
+<button onclick="addToCart('Almonds 500g',480,'almond.webp')">Add to Cart</button>
+<div class="badge">Healthy</div>
+</div>
+
+<!-- Product 54 -->
+<div class="product">
+<img src="raisins.webp" alt="Raisins">
+<h3>Raisins 250g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹150</p>
+<button onclick="addToCart('Raisins 250g',150,'raisins.webp')">Add to Cart</button>
+<div class="badge">Sweet</div>
+</div>
+
+<!-- Product 55 -->
+<div class="product">
+<img src="detergent.webp" alt="Detergent">
+<h3>Surf Excel 1kg</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹245</p>
+<button onclick="addToCart('Surf Excel 1kg',245,'detergent.webp')">Add to Cart</button>
+<div class="badge">Top Rated</div>
+</div>
+
+<!-- Product 56 -->
+<div class="product">
+<img src="soap.webp" alt="Soap">
+<h3>Lux Soap Pack</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹145</p>
+<button onclick="addToCart('Lux Soap Pack',145,'soap.webp')">Add to Cart</button>
+<div class="badge">Offer</div>
+</div>
+
+<!-- Product 57 -->
+<div class="product">
+<img src="shampoo.webp" alt="Shampoo">
+<h3>Clinic Plus Shampoo</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹210</p>
+<button onclick="addToCart('Clinic Plus Shampoo',210,'shampoo.webp')">Add to Cart</button>
+<div class="badge">Popular</div>
+</div>
+
+<!-- Product 58 -->
+<div class="product">
+<img src="toothpaste.webp" alt="Toothpaste">
+<h3>Colgate Toothpaste</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹120</p>
+<button onclick="addToCart('Colgate Toothpaste',120,'toothpaste.webp')">Add to Cart</button>
+<div class="badge">Best Seller</div>
+</div>
+
+<!-- Product 59 -->
+<div class="product">
+<img src="toothbrush.webp" alt="Toothbrush">
+<h3>Oral-B Toothbrush</h3>
+<p>⭐ 4.6</p>
+<p class="price">₹60</p>
+<button onclick="addToCart('Oral-B Toothbrush',60,'toothbrush.webp')">Add to Cart</button>
+<div class="badge">Daily Use</div>
+</div>
+
+<!-- Product 60 -->
+<div class="product">
+<img src="tissue.webp" alt="Tissue">
+<h3>Facial Tissue Box</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹90</p>
+<button onclick="addToCart('Facial Tissue Box',90,'tissue.webp')">Add to Cart</button>
+<div class="badge">Essential</div>
+  </div>
+  <!-- Product 61 -->
+<div class="product">
+<img src="frozenpeas.webp" alt="Frozen Peas">
+<h3>Frozen Green Peas 500g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹95</p>
+<button onclick="addToCart('Frozen Green Peas 500g',95,'frozenpeas.webp')">Add to Cart</button>
+<div class="badge">Frozen</div>
+</div>
+
+<!-- Product 62 -->
+<div class="product">
+<img src="frenchfries.webp" alt="French Fries">
+<h3>Frozen French Fries 1kg</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹210</p>
+<button onclick="addToCart('Frozen French Fries 1kg',210,'frenchfries.webp')">Add to Cart</button>
+<div class="badge">Best Seller</div>
+</div>
+
+<!-- Product 63 -->
+<div class="product">
+<img src="pizza.webp" alt="Frozen Pizza">
+<h3>Frozen Veg Pizza</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹249</p>
+<button onclick="addToCart('Frozen Veg Pizza',249,'pizza.webp')">Add to Cart</button>
+<div class="badge">Popular</div>
+</div>
+
+<!-- Product 64 -->
+<div class="product">
+<img src="garlicbread.webp" alt="Garlic Bread">
+<h3>Garlic Bread</h3>
+<p>⭐ 4.6</p>
+<p class="price">₹120</p>
+<button onclick="addToCart('Garlic Bread',120,'garlicbread.webp')">Add to Cart</button>
+<div class="badge">Fresh</div>
+</div>
+
+<!-- Product 65 -->
+<div class="product">
+<img src="cake.webp" alt="Cake">
+<h3>Chocolate Cake</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹399</p>
+<button onclick="addToCart('Chocolate Cake',399,'cake.webp')">Add to Cart</button>
+<div class="badge">Premium</div>
+</div>
+
+<!-- Product 66 -->
+<div class="product">
+<img src="muffin.webp" alt="Muffin">
+<h3>Chocolate Muffin</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹45</p>
+<button onclick="addToCart('Chocolate Muffin',45,'muffin.webp')">Add to Cart</button>
+<div class="badge">Fresh</div>
+</div>
+
+<!-- Product 67 -->
+<div class="product">
+<img src="croissant.webp" alt="Croissant">
+<h3>Butter Croissant</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹55</p>
+<button onclick="addToCart('Butter Croissant',55,'croissant.webp')">Add to Cart</button>
+<div class="badge">Bakery</div>
+</div>
+
+<!-- Product 68 -->
+<div class="product">
+<img src="jam.webp" alt="Jam">
+<h3>Kissan Mixed Fruit Jam</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹175</p>
+<button onclick="addToCart('Kissan Mixed Fruit Jam',175,'jam.webp')">Add to Cart</button>
+<div class="badge">Popular</div>
+</div>
+
+<!-- Product 69 -->
+<div class="product">
+<img src="peanutbutter.webp" alt="Peanut Butter">
+<h3>Peanut Butter 500g</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹260</p>
+<button onclick="addToCart('Peanut Butter 500g',260,'peanutbutter.webp')">Add to Cart</button>
+<div class="badge">Healthy</div>
+</div>
+
+<!-- Product 70 -->
+<div class="product">
+<img src="mayonnaise.webp" alt="Mayonnaise">
+<h3>Veg Mayonnaise</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹185</p>
+<button onclick="addToCart('Veg Mayonnaise',185,'mayonnaise.webp')">Add to Cart</button>
+<div class="badge">New</div>
+</div>
+
+<!-- Product 71 -->
+<div class="product">
+<img src="babydiaper.webp" alt="Diapers">
+<h3>Pampers Diapers</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹499</p>
+<button onclick="addToCart('Pampers Diapers',499,'babydiaper.webp')">Add to Cart</button>
+<div class="badge">Baby Care</div>
+</div>
+
+<!-- Product 72 -->
+<div class="product">
+<img src="babywipes.webp" alt="Baby Wipes">
+<h3>Baby Wipes Pack</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹199</p>
+<button onclick="addToCart('Baby Wipes Pack',199,'babywipes.webp')">Add to Cart</button>
+<div class="badge">Baby Care</div>
+</div>
+
+<!-- Product 73 -->
+<div class="product">
+<img src="babysoap.webp" alt="Baby Soap">
+<h3>Johnson Baby Soap</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹90</p>
+<button onclick="addToCart('Johnson Baby Soap',90,'babysoap.webp')">Add to Cart</button>
+<div class="badge">Baby Care</div>
+</div>
+
+<!-- Product 74 -->
+<div class="product">
+<img src="floorcleaner.webp" alt="Floor Cleaner">
+<h3>Lizol Floor Cleaner</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹185</p>
+<button onclick="addToCart('Lizol Floor Cleaner',185,'floorcleaner.webp')">Add to Cart</button>
+<div class="badge">Cleaning</div>
+</div>
+
+<!-- Product 75 -->
+<div class="product">
+<img src="dishwash.webp" alt="Dishwash">
+<h3>Vim Dishwash Gel</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹110</p>
+<button onclick="addToCart('Vim Dishwash Gel',110,'dishwash.webp')">Add to Cart</button>
+<div class="badge">Essential</div>
+</div>
+
+<!-- Product 76 -->
+<div class="product">
+<img src="glasscleaner.webp" alt="Glass Cleaner">
+<h3>Colin Glass Cleaner</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹105</p>
+<button onclick="addToCart('Colin Glass Cleaner',105,'glasscleaner.webp')">Add to Cart</button>
+<div class="badge">Cleaning</div>
+</div>
+
+<!-- Product 77 -->
+<div class="product">
+<img src="airfreshener.webp" alt="Air Freshener">
+<h3>Air Freshener</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹165</p>
+<button onclick="addToCart('Air Freshener',165,'airfreshener.webp')">Add to Cart</button>
+<div class="badge">Home Care</div>
+</div>
+
+<!-- Product 78 -->
+<div class="product">
+<img src="mosquitorepellent.webp" alt="Mosquito Repellent">
+<h3>GoodKnight Refill</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹95</p>
+<button onclick="addToCart('GoodKnight Refill',95,'mosquitorepellent.webp')">Add to Cart</button>
+<div class="badge">Home Care</div>
+</div>
+
+<!-- Product 79 -->
+<div class="product">
+<img src="garbagebags.webp" alt="Garbage Bags">
+<h3>Garbage Bags Pack</h3>
+<p>⭐ 4.6</p>
+<p class="price">₹85</p>
+<button onclick="addToCart('Garbage Bags Pack',85,'garbagebags.webp')">Add to Cart</button>
+<div class="badge">Utility</div>
+</div>
+
+<!-- Product 80 -->
+<div class="product">
+<img src="aluminiumfoil.webp" alt="Aluminium Foil">
+<h3>Aluminium Foil Roll</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹140</p>
+<button onclick="addToCart('Aluminium Foil Roll',140,'aluminiumfoil.webp')">Add to Cart</button>
+<div class="badge">Kitchen</div>
+</div>
+<!-- Product 81 -->
+<div class="product">
+<img src="dogfood.webp" alt="Dog Food">
+<h3>Pedigree Dog Food 1kg</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹320</p>
+<button onclick="addToCart('Pedigree Dog Food 1kg',320,'dogfood.webp')">Add to Cart</button>
+<div class="badge">Pet Care</div>
+</div>
+
+<!-- Product 82 -->
+<div class="product">
+<img src="catfood.webp" alt="Cat Food">
+<h3>Whiskas Cat Food 1kg</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹350</p>
+<button onclick="addToCart('Whiskas Cat Food 1kg',350,'catfood.webp')">Add to Cart</button>
+<div class="badge">Pet Care</div>
+</div>
+
+<!-- Product 83 -->
+<div class="product">
+<img src="notebook.webp" alt="Notebook">
+<h3>Classmate Notebook</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹60</p>
+<button onclick="addToCart('Classmate Notebook',60,'notebook.webp')">Add to Cart</button>
+<div class="badge">Stationery</div>
+</div>
+
+<!-- Product 84 -->
+<div class="product">
+<img src="pen.webp" alt="Pen">
+<h3>Cello Ball Pen Pack</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹50</p>
+<button onclick="addToCart('Cello Ball Pen Pack',50,'pen.webp')">Add to Cart</button>
+<div class="badge">Stationery</div>
+</div>
+
+<!-- Product 85 -->
+<div class="product">
+<img src="pencil.webp" alt="Pencil">
+<h3>Nataraj Pencil Pack</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹40</p>
+<button onclick="addToCart('Nataraj Pencil Pack',40,'pencil.webp')">Add to Cart</button>
+<div class="badge">School</div>
+</div>
+
+<!-- Product 86 -->
+<div class="product">
+<img src="icecream.webp" alt="Ice Cream">
+<h3>Amul Ice Cream</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹180</p>
+<button onclick="addToCart('Amul Ice Cream',180,'icecream.webp')">Add to Cart</button>
+<div class="badge">Frozen</div>
+</div>
+
+<!-- Product 87 -->
+<div class="product">
+<img src="energydrink.webp" alt="Energy Drink">
+<h3>Red Bull 250ml</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹125</p>
+<button onclick="addToCart('Red Bull 250ml',125,'energydrink.webp')">Add to Cart</button>
+<div class="badge">Energy</div>
+</div>
+
+<!-- Product 88 -->
+<div class="product">
+<img src="greentea.webp" alt="Green Tea">
+<h3>Lipton Green Tea</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹210</p>
+<button onclick="addToCart('Lipton Green Tea',210,'greentea.webp')">Add to Cart</button>
+<div class="badge">Healthy</div>
+</div>
+
+<!-- Product 89 -->
+<div class="product">
+<img src="noodles.webp" alt="Noodles">
+<h3>Yippee Noodles</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹18</p>
+<button onclick="addToCart('Yippee Noodles',18,'noodles.webp')">Add to Cart</button>
+<div class="badge">Instant</div>
+</div>
+
+<!-- Product 90 -->
+<div class="product">
+<img src="soupmix.webp" alt="Soup">
+<h3>Knorr Soup Mix</h3>
+<p>⭐ 4.6</p>
+<p class="price">₹65</p>
+<button onclick="addToCart('Knorr Soup Mix',65,'soupmix.webp')">Add to Cart</button>
+<div class="badge">New</div>
+</div>
+
+<!-- Product 91 -->
+<div class="product">
+<img src="pickles.webp" alt="Pickle">
+<h3>Mango Pickle 500g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹140</p>
+<button onclick="addToCart('Mango Pickle',140,'pickles.webp')">Add to Cart</button>
+<div class="badge">Homestyle</div>
+</div>
+
+<!-- Product 92 -->
+<div class="product">
+<img src="papad.webp" alt="Papad">
+<h3>Punjabi Papad</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹90</p>
+<button onclick="addToCart('Punjabi Papad',90,'papad.webp')">Add to Cart</button>
+<div class="badge">Traditional</div>
+</div>
+
+<!-- Product 93 -->
+<div class="product">
+<img src="sauce.webp" alt="Sauce">
+<h3>Kissan Tomato Ketchup</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹120</p>
+<button onclick="addToCart('Kissan Tomato Ketchup',120,'sauce.webp')">Add to Cart</button>
+<div class="badge">Best Seller</div>
+</div>
+
+<!-- Product 94 -->
+<div class="product">
+<img src="vinegar.webp" alt="Vinegar">
+<h3>White Vinegar</h3>
+<p>⭐ 4.6</p>
+<p class="price">₹95</p>
+<button onclick="addToCart('White Vinegar',95,'vinegar.webp')">Add to Cart</button>
+<div class="badge">Kitchen</div>
+</div>
+
+<!-- Product 95 -->
+<div class="product">
+<img src="soyachunks.webp" alt="Soya Chunks">
+<h3>Soya Chunks 500g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹130</p>
+<button onclick="addToCart('Soya Chunks 500g',130,'soyachunks.webp')">Add to Cart</button>
+<div class="badge">Protein</div>
+</div>
+
+<!-- Product 96 -->
+<div class="product">
+<img src="dates.webp" alt="Dates">
+<h3>Premium Dates 500g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹250</p>
+<button onclick="addToCart('Premium Dates',250,'dates.webp')">Add to Cart</button>
+<div class="badge">Healthy</div>
+</div>
+
+<!-- Product 97 -->
+<div class="product">
+<img src="walnut.webp" alt="Walnut">
+<h3>Walnuts 250g</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹320</p>
+<button onclick="addToCart('Walnuts 250g',320,'walnut.webp')">Add to Cart</button>
+<div class="badge">Premium</div>
+</div>
+
+<!-- Product 98 -->
+<div class="product">
+<img src="chia.webp" alt="Chia Seeds">
+<h3>Chia Seeds 250g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹180</p>
+<button onclick="addToCart('Chia Seeds',180,'chia.webp')">Add to Cart</button>
+<div class="badge">Superfood</div>
+</div>
+
+<!-- Product 99 -->
+<div class="product">
+<img src="flaxseed.webp" alt="Flax Seeds">
+<h3>Flax Seeds 250g</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹140</p>
+<button onclick="addToCart('Flax Seeds',140,'flaxseed.webp')">Add to Cart</button>
+<div class="badge">Healthy</div>
+</div>
+
+<!-- Product 100 -->
+<div class="product">
+<img src="giftbasket.webp" alt="Gift Basket">
+<h3>Festival Grocery Basket</h3>
+<p>⭐ 5.0</p>
+<p class="price">₹999</p>
+<button onclick="addToCart('Festival Grocery Basket',999,'giftbasket.webp')">Add to Cart</button>
+<div class="badge">Special Offer</div>
+  </div>
+  
