@@ -258,22 +258,6 @@ Apply Coupon
 <p id="couponMsg" style="color:green;font-weight:bold;"></p>
 <hr><br>
 
-<h3>Check Delivery Availability</h3>
-
-<input
-type="text"
-id="pin"
-placeholder="Enter 6-digit Pincode"
-maxlength="6">
-
-<button type="button" onclick="checkPin()">
-Check Delivery
-</button>
-
-<p id="pinResult" style="margin-top:10px;font-weight:bold;"></p>
-
-<hr><br>
-    
 <h3>
 
 <span>Grand Total</span>
@@ -453,56 +437,5 @@ document.getElementById("couponMsg").innerHTML =
 }
 
 }
-
-function checkPin() {
-
-    let pin = document.getElementById("pin").value.trim();
-
-    let result = document.getElementById("pinResult");
-
-    if (pin.length !== 6 || isNaN(pin)) {
-
-        result.style.color = "red";
-        result.innerHTML = "❌ Please enter a valid 6-digit PIN code.";
-        return;
-    }
-
-    const serviceablePins = [
-        "110001",
-        "122001",
-        "201301",
-        "226001",
-        "208001",
-        "302001",
-        "400001",
-        "560001",
-        "700001",
-        "800001"
-    ];
-
-    if (serviceablePins.includes(pin)) {
-
-        let today = new Date();
-        today.setDate(today.getDate() + 2);
-
-        let deliveryDate = today.toLocaleDateString("en-IN", {
-            weekday: "long",
-            day: "numeric",
-            month: "long"
-        });
-
-        result.style.color = "green";
-        result.innerHTML =
-            "✅ Delivery Available<br><b>Expected Delivery:</b> " + deliveryDate;
-
-    } else {
-
-        result.style.color = "red";
-        result.innerHTML =
-            "❌ Sorry! We don't deliver to this PIN code yet.";
-
-    }
-    }
-
-  </script>
+    </script>
 </body></html>
