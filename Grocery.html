@@ -1614,4 +1614,154 @@ placeholder="Search Grocery...">
 <button onclick="addToCart('Festival Grocery Basket',999,'giftbasket.webp')">Add to Cart</button>
 <div class="badge">Special Offer</div>
   </div>
-  
+ <div class="badge">Best Seller</div>
+
+<div class="discount">20% OFF</div>
+
+<p class="offer">
+Free Delivery above ₹299
+</p>
+
+<button class="buyNow"
+onclick="buyNow('Veg Burger',99,'images/fastfood/burger.jpg')">
+Buy Now
+</button>
+
+<div class="wishlist"
+onclick="toggleWish(this)">
+❤
+</div>
+</div>
+
+<footer style="background:#131921;color:white;text-align:center;padding:25px;margin-top:40px;">
+<h3>POMPEY Fast Food Store</h3>
+<p>Fresh • Fast • Delicious</p>
+<p>© 2026 POMPEY. All Rights Reserved.</p>
+</footer>
+
+<script>
+
+// Load Cart
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+// Create Cart Counter
+const cartLink = document.querySelector('a[href="cart.html"]');
+cartLink.innerHTML = "🛒 Cart (<span id='cartCount'>0</span>)";
+
+// Update Cart Count
+function updateCartCount(){
+    document.getElementById("cartCount").innerText = cart.reduce((t,i)=>t+i.qty,0);
+}
+
+updateCartCount();
+
+// Add to Cart Function
+function addToCart(name,price,image){
+
+    let found = cart.find(item=>item.name===name);
+
+    if(found){
+        found.qty++;
+    }else{
+        cart.push({
+            name:name,
+            price:price,
+            image:image,
+            qty:1
+        });
+    }
+
+    localStorage.setItem("cart",JSON.stringify(cart));
+
+    updateCartCount();
+
+    alert(name + " added to cart!");
+
+}
+
+// Live Search
+const searchInput = document.getElementById("search");
+
+searchInput.addEventListener("keyup",function(){
+
+    let value = this.value.toLowerCase();
+
+    let products = document.querySelectorAll(".product");
+
+    products.forEach(product=>{
+
+        let text = product.innerText.toLowerCase();
+
+        if(text.includes(value)){
+            product.style.display="block";
+        }else{
+            product.style.display="none";
+        }
+
+    });
+function increaseQty(btn){
+
+let qty=btn.parentElement.querySelector(".qty");
+
+qty.innerText=parseInt(qty.innerText)+1;
+
+}
+
+function decreaseQty(btn){
+
+let qty=btn.parentElement.querySelector(".qty");
+
+if(parseInt(qty.innerText)>1){
+
+qty.innerText=parseInt(qty.innerText)-1;
+
+}
+
+    }
+
+function toggleWish(icon){
+
+icon.classList.toggle("active");
+
+}
+
+function buyNow(name,price,image){
+
+localStorage.setItem("cart",JSON.stringify([{
+
+name:name,
+price:price,
+image:image,
+qty:1
+
+}]));
+
+window.location.href="checkout.html";
+
+}
+    
+</script>
+
+</body>
+</html>
+
+<div style="display:flex;justify-content:center;gap:8px;margin:10px 0;">
+
+<button onclick="decreaseQty(this)">−</button>
+
+<span class="qty">1</span>
+
+<button onclick="increaseQty(this)">+</button>
+
+</div>
+
+<p style="color:green;font-weight:bold;">
+🚚 Delivery in 20–30 mins
+</p>
+
+<p style="color:#ff9800;">
+★★★★★ (4.8)
+</p>
+
+                  </div>
+                </div>
