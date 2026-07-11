@@ -451,7 +451,9 @@ console.log("Order email sent");
 })
 .catch(function(error){
 
-console.log("Email error",error);
+console.log("Email error:", error.text || error);
+
+alert("Email failed: " + (error.text || "Unknown error"));
 
 });
 localStorage.removeItem("cart");
