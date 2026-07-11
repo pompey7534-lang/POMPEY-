@@ -1,0 +1,2352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9DFDRNTM50"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9DFDRNTM50');
+      </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>POMPEY Grocery</title>
+
+<style>
+
+.qty{
+
+font-size:20px;
+
+font-weight:bold;
+
+padding:8px;
+
+width:30px;
+
+text-align:center;
+
+}
+
+.product button{
+
+margin:4px;
+
+}
+
+.product{
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+.product:hover{
+
+transform:translateY(-8px);
+
+transition:.3s;
+
+}
+
+.badge{
+position:absolute;
+top:10px;
+left:10px;
+background:red;
+color:white;
+padding:5px 10px;
+border-radius:20px;
+font-size:12px;
+font-weight:bold;
+}
+
+.discount{
+position:absolute;
+top:10px;
+right:10px;
+background:#28a745;
+color:white;
+padding:5px 10px;
+border-radius:20px;
+font-size:12px;
+font-weight:bold;
+}
+
+.wishlist{
+position:absolute;
+right:15px;
+bottom:15px;
+font-size:28px;
+cursor:pointer;
+color:#bbb;
+}
+
+.wishlist.active{
+color:red;
+}
+
+.buyNow{
+background:#ff9800;
+margin-top:8px;
+}
+
+.buyNow:hover{
+background:#f57c00;
+}
+
+.offer{
+color:#28a745;
+font-weight:bold;
+margin-top:8px;
+}
+
+    
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f3f3f3;
+}
+
+/* HEADER */
+
+header{
+background:#131921;
+padding:15px 20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+.logo{
+color:#fff;
+font-size:28px;
+font-weight:bold;
+}
+
+.logo span{
+color:#ff9900;
+}
+
+.search-box{
+display:flex;
+flex:1;
+margin:0 20px;
+}
+
+.search-box input{
+width:100%;
+padding:12px;
+font-size:16px;
+border:none;
+outline:none;
+border-radius:6px 0 0 6px;
+}
+
+.search-box button{
+padding:12px 18px;
+background:#ff9900;
+border:none;
+cursor:pointer;
+font-size:18px;
+border-radius:0 6px 6px 0;
+}
+
+nav{
+display:flex;
+gap:15px;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+font-weight:bold;
+}
+
+.hero{
+height:280px;
+background:url("grocery");
+background-size:cover;
+background-position:center;
+display:flex;
+justify-content:center;
+align-items:center;
+color:white;
+font-size:45px;
+font-weight:bold;
+text-shadow:2px 2px 5px black;
+}
+
+.products{
+
+width:95%;
+
+max-width:1400px;
+
+margin:30px auto;
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+gap:20px;
+
+}
+
+.product{
+
+background:white;
+
+border-radius:12px;
+
+padding:15px;
+
+box-shadow:0 5px 12px rgba(0,0,0,.15);
+
+text-align:center;
+
+transition:.3s;
+
+}
+
+.product:hover{
+
+transform:translateY(-6px);
+
+}
+
+.product img{
+
+width:100%;
+
+height:180px;
+
+object-fit:cover;
+
+border-radius:10px;
+
+}
+
+.product h3{
+
+margin:10px 0;
+
+}
+
+.price{
+
+font-size:22px;
+
+color:#e53935;
+
+font-weight:bold;
+
+margin:10px 0;
+
+}
+
+button{
+
+padding:10px 18px;
+
+border:none;
+
+background:#28a745;
+
+color:white;
+
+font-size:16px;
+
+border-radius:6px;
+
+cursor:pointer;
+
+}
+
+button:hover{
+
+background:#218838;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+
+POM<span>PEY</span>
+
+</div>
+
+<div class="search-box">
+
+<input
+type="text"
+id="search"
+placeholder="Search Grocery...">
+
+<button>🔍</button>
+
+</div>
+
+<nav>
+
+<a href="index.html">Home</a>
+
+<a href="cart.html">🛒 Cart</a>
+
+<a href="dashboard.html">Dashboard</a>
+
+</nav>
+
+</header>
+
+<div class="hero">
+
+ Grocery Corner
+
+</div>
+
+<div class="products">
+
+<div class="product">
+<div class="badge">20% OFF</div>
+<img src="images/grocery/atta.jpg">
+<h3>Aashirvaad Atta 5kg</h3>
+<p>⭐ 4.8</p>
+<p class="old">₹380</p>
+<p class="price">₹329</p>
+<button class="cart" onclick="addToCart('Aashirvaad Atta 5kg',329,'images/grocery/atta.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Aashirvaad Atta 5kg',329,'images/grocery/atta.jpg')">Buy Now</button>
+</div>
+
+<div class="product">
+<img src="images/grocery/rice.jpg">
+<h3>Basmati Rice 5kg</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹499</p>
+<button class="cart" onclick="addToCart('Basmati Rice 5kg',499,'images/grocery/rice.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Basmati Rice 5kg',499,'images/grocery/rice.jpg')">Buy Now</button>
+</div>
+
+<div class="product">
+<img src="images/grocery/sugar.jpg">
+<h3>Sugar 1kg</h3>
+<p>⭐ 4.6</p>
+<p class="price">₹49</p>
+<button class="cart" onclick="addToCart('Sugar 1kg',49,'images/grocery/sugar.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Sugar 1kg',49,'images/grocery/sugar.jpg')">Buy Now</button>
+</div>
+
+<div class="product">
+<img src="images/grocery/salt.jpg">
+<h3>Tata Salt 1kg</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹30</p>
+<button class="cart" onclick="addToCart('Tata Salt 1kg',30,'images/grocery/salt.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Tata Salt 1kg',30,'images/grocery/salt.jpg')">Buy Now</button>
+</div>
+
+<div class="product">
+<img src="images/grocery/oil.jpg">
+<h3>Fortune Sunflower Oil 1L</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹179</p>
+<button class="cart" onclick="addToCart('Fortune Sunflower Oil 1L',179,'images/grocery/oil.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Fortune Sunflower Oil 1L',179,'images/grocery/oil.jpg')">Buy Now</button>
+</div>
+
+<div class="product">
+<img src="images/grocery/toor-dal.jpg">
+<h3>Toor Dal 1kg</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹169</p>
+<button class="cart" onclick="addToCart('Toor Dal 1kg',169,'images/grocery/toor-dal.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Toor Dal 1kg',169,'images/grocery/toor-dal.jpg')">Buy Now</button>
+</div>
+
+<div class="product">
+<img src="images/grocery/chana-dal.jpg">
+<h3>Chana Dal 1kg</h3>
+<p>⭐ 4.6</p>
+<p class="price">₹95</p>
+<button class="cart" onclick="addToCart('Chana Dal 1kg',95,'images/grocery/chana-dal.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Chana Dal 1kg',95,'images/grocery/chana-dal.jpg')">Buy Now</button>
+</div>
+
+<div class="product">
+<img src="images/grocery/moong-dal.jpg">
+<h3>Moong Dal 1kg</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹145</p>
+<button class="cart" onclick="addToCart('Moong Dal 1kg',145,'images/grocery/moong-dal.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Moong Dal 1kg',145,'images/grocery/moong-dal.jpg')">Buy Now</button>
+</div>
+<div class="product">
+<img src="images/grocery/tea.jpg">
+<h3>Tata Tea Premium</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹210</p>
+<button class="cart" onclick="addToCart('Tata Tea Premium',210,'images/grocery/tea.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Tata Tea Premium',210,'images/grocery/tea.jpg')">Buy Now</button>
+</div>
+
+<div class="product">
+<img src="images/grocery/coffee.jpg">
+<h3>Nescafe Classic</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹299</p>
+<button class="cart" onclick="addToCart('Nescafe Classic',299,'images/grocery/coffee.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Nescafe Classic',299,'images/grocery/coffee.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 21 -->
+<div class="product">
+<img src="images/grocery/besan.jpg" alt="Besan">
+<h3>Fortune Besan 1kg</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹85</p>
+<button class="cart" onclick="addToCart('Fortune Besan 1kg',85,'images/grocery/besan.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Fortune Besan 1kg',85,'images/grocery/besan.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 22 -->
+<div class="product">
+<img src="images/grocery/maida.jpg" alt="Maida">
+<h3>Maida 1kg</h3>
+<p>⭐ 4.6</p>
+<p class="price">₹55</p>
+<button class="cart" onclick="addToCart('Maida 1kg',55,'images/grocery/maida.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Maida 1kg',55,'images/grocery/maida.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 23 -->
+<div class="product">
+<img src="images/grocery/sooji.jpg" alt="Sooji">
+<h3>Sooji 1kg</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹62</p>
+<button class="cart" onclick="addToCart('Sooji 1kg',62,'images/grocery/sooji.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Sooji 1kg',62,'images/grocery/sooji.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 24 -->
+<div class="product">
+<img src="images/grocery/poha.jpg" alt="Poha">
+<h3>Poha 1kg</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹68</p>
+<button class="cart" onclick="addToCart('Poha 1kg',68,'images/grocery/poha.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Poha 1kg',68,'images/grocery/poha.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 25 -->
+<div class="product">
+<img src="images/grocery/vermicelli.jpg" alt="Vermicelli">
+<h3>Vermicelli 500g</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹45</p>
+<button class="cart" onclick="addToCart('Vermicelli 500g',45,'images/grocery/vermicelli.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Vermicelli 500g',45,'images/grocery/vermicelli.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 26 -->
+<div class="product">
+<img src="images/grocery/popcorn.jpg" alt="Popcorn">
+<h3>Popcorn Kernels 500g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹95</p>
+<button class="cart" onclick="addToCart('Popcorn Kernels 500g',95,'images/grocery/popcorn.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Popcorn Kernels 500g',95,'images/grocery/popcorn.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 27 -->
+<div class="product">
+<img src="images/grocery/rajma.jpg" alt="Rajma">
+<h3>Rajma 1kg</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹165</p>
+<button class="cart" onclick="addToCart('Rajma 1kg',165,'images/grocery/rajma.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Rajma 1kg',165,'images/grocery/rajma.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 28 -->
+<div class="product">
+<img src="images/grocery/chole.jpg" alt="Kabuli Chana">
+<h3>Kabuli Chana 1kg</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹145</p>
+<button class="cart" onclick="addToCart('Kabuli Chana 1kg',145,'images/grocery/chole.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Kabuli Chana 1kg',145,'images/grocery/chole.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 29 -->
+<div class="product">
+<img src="images/grocery/urad-dal.jpg" alt="Urad Dal">
+<h3>Urad Dal 1kg</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹155</p>
+<button class="cart" onclick="addToCart('Urad Dal 1kg',155,'images/grocery/urad-dal.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Urad Dal 1kg',155,'images/grocery/urad-dal.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 30 -->
+<div class="product">
+<img src="images/grocery/masoor-dal.jpg" alt="Masoor Dal">
+<h3>Masoor Dal 1kg</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹138</p>
+<button class="cart" onclick="addToCart('Masoor Dal 1kg',138,'images/grocery/masoor-dal.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Masoor Dal 1kg',138,'images/grocery/masoor-dal.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 31 -->
+<div class="product">
+<img src="images/grocery/green-tea.jpg" alt="Green Tea">
+<h3>Green Tea</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹220</p>
+<button class="cart" onclick="addToCart('Green Tea',220,'images/grocery/green-tea.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Green Tea',220,'images/grocery/green-tea.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 32 -->
+<div class="product">
+<img src="images/grocery/boost.jpg" alt="Boost">
+<h3>Boost Health Drink</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹399</p>
+<button class="cart" onclick="addToCart('Boost Health Drink',399,'images/grocery/boost.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Boost Health Drink',399,'images/grocery/boost.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 33 -->
+<div class="product">
+<img src="images/grocery/horlicks.jpg" alt="Horlicks">
+<h3>Horlicks 1kg</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹459</p>
+<button class="cart" onclick="addToCart('Horlicks 1kg',459,'images/grocery/horlicks.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Horlicks 1kg',459,'images/grocery/horlicks.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 34 -->
+<div class="product">
+<img src="images/grocery/bournvita.jpg" alt="Bournvita">
+<h3>Bournvita 750g</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹425</p>
+<button class="cart" onclick="addToCart('Bournvita 750g',425,'images/grocery/bournvita.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Bournvita 750g',425,'images/grocery/bournvita.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 35 -->
+<div class="product">
+<img src="images/grocery/milk-powder.jpg" alt="Milk Powder">
+<h3>Milk Powder 500g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹320</p>
+<button class="cart" onclick="addToCart('Milk Powder 500g',320,'images/grocery/milk-powder.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Milk Powder 500g',320,'images/grocery/milk-powder.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 36 -->
+<div class="product">
+<img src="images/grocery/coconut-oil.jpg" alt="Coconut Oil">
+<h3>Coconut Oil 1L</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹295</p>
+<button class="cart" onclick="addToCart('Coconut Oil 1L',295,'images/grocery/coconut-oil.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Coconut Oil 1L',295,'images/grocery/coconut-oil.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 37 -->
+<div class="product">
+<img src="images/grocery/mustard-oil.jpg" alt="Mustard Oil">
+<h3>Mustard Oil 1L</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹210</p>
+<button class="cart" onclick="addToCart('Mustard Oil 1L',210,'images/grocery/mustard-oil.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Mustard Oil 1L',210,'images/grocery/mustard-oil.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 38 -->
+<div class="product">
+<img src="images/grocery/vinegar.jpg" alt="Vinegar">
+<h3>White Vinegar</h3>
+<p>⭐ 4.6</p>
+<p class="price">₹85</p>
+<button class="cart" onclick="addToCart('White Vinegar',85,'images/grocery/vinegar.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('White Vinegar',85,'images/grocery/vinegar.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 39 -->
+<div class="product">
+<img src="images/grocery/soy-sauce.jpg" alt="Soy Sauce">
+<h3>Soy Sauce</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹110</p>
+<button class="cart" onclick="addToCart('Soy Sauce',110,'images/grocery/soy-sauce.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Soy Sauce',110,'images/grocery/soy-sauce.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 40 -->
+<div class="product">
+<img src="images/grocery/chilli-sauce.jpg" alt="Chilli Sauce">
+<h3>Chilli Sauce</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹120</p>
+<button class="cart" onclick="addToCart('Chilli Sauce',120,'images/grocery/chilli-sauce.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Chilli Sauce',120,'images/grocery/chilli-sauce.jpg')">Buy Now</button>
+</div>
+<!-- Product 41 -->
+<div class="product">
+<img src="images/grocery/oreo.jpg" alt="Oreo Biscuits">
+<h3>Oreo Biscuits</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹35</p>
+<button class="cart" onclick="addToCart('Oreo Biscuits',35,'images/grocery/oreo.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Oreo Biscuits',35,'images/grocery/oreo.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 42 -->
+<div class="product">
+<img src="images/grocery/hide-seek.jpg" alt="Hide & Seek">
+<h3>Hide & Seek Biscuits</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹40</p>
+<button class="cart" onclick="addToCart('Hide & Seek Biscuits',40,'images/grocery/hide-seek.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Hide & Seek Biscuits',40,'images/grocery/hide-seek.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 43 -->
+<div class="product">
+<img src="images/grocery/bourbon.jpg" alt="Bourbon">
+<h3>Bourbon Biscuits</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹45</p>
+<button class="cart" onclick="addToCart('Bourbon Biscuits',45,'images/grocery/bourbon.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Bourbon Biscuits',45,'images/grocery/bourbon.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 44 -->
+<div class="product">
+<img src="images/grocery/dairy-milk.jpg" alt="Dairy Milk">
+<h3>Cadbury Dairy Milk</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹50</p>
+<button class="cart" onclick="addToCart('Cadbury Dairy Milk',50,'images/grocery/dairy-milk.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Cadbury Dairy Milk',50,'images/grocery/dairy-milk.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 45 -->
+<div class="product">
+<img src="images/grocery/kitkat.jpg" alt="KitKat">
+<h3>KitKat Chocolate</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹30</p>
+<button class="cart" onclick="addToCart('KitKat Chocolate',30,'images/grocery/kitkat.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('KitKat Chocolate',30,'images/grocery/kitkat.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 46 -->
+<div class="product">
+<img src="images/grocery/munch.jpg" alt="Munch">
+<h3>Nestle Munch</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹20</p>
+<button class="cart" onclick="addToCart('Nestle Munch',20,'images/grocery/munch.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Nestle Munch',20,'images/grocery/munch.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 47 -->
+<div class="product">
+<img src="images/grocery/5star.jpg" alt="5 Star">
+<h3>5 Star Chocolate</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹20</p>
+<button class="cart" onclick="addToCart('5 Star Chocolate',20,'images/grocery/5star.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('5 Star Chocolate',20,'images/grocery/5star.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 48 -->
+<div class="product">
+<img src="images/grocery/snickers.jpg" alt="Snickers">
+<h3>Snickers Bar</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹55</p>
+<button class="cart" onclick="addToCart('Snickers Bar',55,'images/grocery/snickers.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Snickers Bar',55,'images/grocery/snickers.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 49 -->
+<div class="product">
+<img src="images/grocery/twinkies.jpg" alt="Cake">
+<h3>Cream Cake Pack</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹65</p>
+<button class="cart" onclick="addToCart('Cream Cake Pack',65,'images/grocery/twinkies.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Cream Cake Pack',65,'images/grocery/twinkies.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 50 -->
+<div class="product">
+<img src="images/grocery/muffin.jpg" alt="Muffin">
+<h3>Chocolate Muffin</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹45</p>
+<button class="cart" onclick="addToCart('Chocolate Muffin',45,'images/grocery/muffin.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Chocolate Muffin',45,'images/grocery/muffin.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 51 -->
+<div class="product">
+<img src="images/grocery/almonds.jpg" alt="Almonds">
+<h3>Premium Almonds 500g</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹480</p>
+<button class="cart" onclick="addToCart('Premium Almonds 500g',480,'images/grocery/almonds.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Premium Almonds 500g',480,'images/grocery/almonds.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 52 -->
+<div class="product">
+<img src="images/grocery/cashews.jpg" alt="Cashews">
+<h3>Premium Cashews 500g</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹560</p>
+<button class="cart" onclick="addToCart('Premium Cashews 500g',560,'images/grocery/cashews.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Premium Cashews 500g',560,'images/grocery/cashews.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 53 -->
+<div class="product">
+<img src="images/grocery/pista.jpg" alt="Pista">
+<h3>Pista 250g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹350</p>
+<button class="cart" onclick="addToCart('Pista 250g',350,'images/grocery/pista.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Pista 250g',350,'images/grocery/pista.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 54 -->
+<div class="product">
+<img src="images/grocery/walnut.jpg" alt="Walnut">
+<h3>Walnut 250g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹320</p>
+<button class="cart" onclick="addToCart('Walnut 250g',320,'images/grocery/walnut.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Walnut 250g',320,'images/grocery/walnut.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 55 -->
+<div class="product">
+<img src="images/grocery/frooti.jpg" alt="Frooti">
+<h3>Frooti 1L</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹120</p>
+<button class="cart" onclick="addToCart('Frooti 1L',120,'images/grocery/frooti.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Frooti 1L',120,'images/grocery/frooti.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 56 -->
+<div class="product">
+<img src="images/grocery/real-juice.jpg" alt="Real Juice">
+<h3>Real Mixed Fruit Juice</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹145</p>
+<button class="cart" onclick="addToCart('Real Mixed Fruit Juice',145,'images/grocery/real-juice.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Real Mixed Fruit Juice',145,'images/grocery/real-juice.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 57 -->
+<div class="product">
+<img src="images/grocery/redbull.jpg" alt="Red Bull">
+<h3>Red Bull Energy Drink</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹125</p>
+<button class="cart" onclick="addToCart('Red Bull Energy Drink',125,'images/grocery/redbull.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Red Bull Energy Drink',125,'images/grocery/redbull.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 58 -->
+<div class="product">
+<img src="images/grocery/sprite.jpg" alt="Sprite">
+<h3>Sprite 2L</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹99</p>
+<button class="cart" onclick="addToCart('Sprite 2L',99,'images/grocery/sprite.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Sprite 2L',99,'images/grocery/sprite.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 59 -->
+<div class="product">
+<img src="images/grocery/fanta.jpg" alt="Fanta">
+<h3>Fanta 2L</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹99</p>
+<button class="cart" onclick="addToCart('Fanta 2L',99,'images/grocery/fanta.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Fanta 2L',99,'images/grocery/fanta.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 60 -->
+<div class="product">
+<img src="images/grocery/7up.jpg" alt="7UP">
+<h3>7UP 2L</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹99</p>
+<button class="cart" onclick="addToCart('7UP 2L',99,'images/grocery/7up.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('7UP 2L',99,'images/grocery/7up.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 61 -->
+<div class="product">
+<img src="images/grocery/kelloggs-cornflakes.jpg" alt="Cornflakes">
+<h3>Kellogg's Cornflakes 875g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹395</p>
+<button class="cart" onclick="addToCart('Kelloggs Cornflakes',395,'images/grocery/kelloggs-cornflakes.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Kelloggs Cornflakes',395,'images/grocery/kelloggs-cornflakes.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 62 -->
+<div class="product">
+<img src="images/grocery/muesli.jpg" alt="Muesli">
+<h3>Fruit Muesli 750g</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹420</p>
+<button class="cart" onclick="addToCart('Fruit Muesli',420,'images/grocery/muesli.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Fruit Muesli',420,'images/grocery/muesli.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 63 -->
+<div class="product">
+<img src="images/grocery/chocos.jpg" alt="Chocos">
+<h3>Kellogg's Chocos</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹210</p>
+<button class="cart" onclick="addToCart('Kelloggs Chocos',210,'images/grocery/chocos.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Kelloggs Chocos',210,'images/grocery/chocos.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 64 -->
+<div class="product">
+<img src="images/grocery/oats.jpg" alt="Oats">
+<h3>Quaker Oats 1kg</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹199</p>
+<button class="cart" onclick="addToCart('Quaker Oats',199,'images/grocery/oats.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Quaker Oats',199,'images/grocery/oats.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 65 -->
+<div class="product">
+<img src="images/grocery/nutella.jpg" alt="Nutella">
+<h3>Nutella 350g</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹365</p>
+<button class="cart" onclick="addToCart('Nutella',365,'images/grocery/nutella.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Nutella',365,'images/grocery/nutella.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 66 -->
+<div class="product">
+<img src="images/grocery/mayonnaise.jpg" alt="Mayonnaise">
+<h3>Eggless Mayonnaise</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹185</p>
+<button class="cart" onclick="addToCart('Eggless Mayonnaise',185,'images/grocery/mayonnaise.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Eggless Mayonnaise',185,'images/grocery/mayonnaise.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 67 -->
+<div class="product">
+<img src="images/grocery/pizza-sauce.jpg" alt="Pizza Sauce">
+<h3>Pizza & Pasta Sauce</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹145</p>
+<button class="cart" onclick="addToCart('Pizza Sauce',145,'images/grocery/pizza-sauce.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Pizza Sauce',145,'images/grocery/pizza-sauce.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 68 -->
+<div class="product">
+<img src="images/grocery/schezwan.jpg" alt="Schezwan Sauce">
+<h3>Schezwan Chutney</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹135</p>
+<button class="cart" onclick="addToCart('Schezwan Chutney',135,'images/grocery/schezwan.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Schezwan Chutney',135,'images/grocery/schezwan.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 69 -->
+<div class="product">
+<img src="images/grocery/ginger-garlic.jpg" alt="Ginger Garlic Paste">
+<h3>Ginger Garlic Paste</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹95</p>
+<button class="cart" onclick="addToCart('Ginger Garlic Paste',95,'images/grocery/ginger-garlic.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Ginger Garlic Paste',95,'images/grocery/ginger-garlic.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 70 -->
+<div class="product">
+<img src="images/grocery/instant-upma.jpg" alt="Instant Upma">
+<h3>Instant Upma Mix</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹85</p>
+<button class="cart" onclick="addToCart('Instant Upma Mix',85,'images/grocery/instant-upma.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Instant Upma Mix',85,'images/grocery/instant-upma.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 71 -->
+<div class="product">
+<img src="images/grocery/idli-mix.jpg" alt="Idli Mix">
+<h3>Instant Idli Mix</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹110</p>
+<button class="cart" onclick="addToCart('Instant Idli Mix',110,'images/grocery/idli-mix.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Instant Idli Mix',110,'images/grocery/idli-mix.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 72 -->
+<div class="product">
+<img src="images/grocery/dosa-mix.jpg" alt="Dosa Mix">
+<h3>Instant Dosa Mix</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹120</p>
+<button class="cart" onclick="addToCart('Instant Dosa Mix',120,'images/grocery/dosa-mix.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Instant Dosa Mix',120,'images/grocery/dosa-mix.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 73 -->
+<div class="product">
+<img src="images/grocery/gulab-jamun.jpg" alt="Gulab Jamun Mix">
+<h3>Gulab Jamun Mix</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹140</p>
+<button class="cart" onclick="addToCart('Gulab Jamun Mix',140,'images/grocery/gulab-jamun.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Gulab Jamun Mix',140,'images/grocery/gulab-jamun.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 74 -->
+<div class="product">
+<img src="images/grocery/cake-mix.jpg" alt="Cake Mix">
+<h3>Chocolate Cake Mix</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹180</p>
+<button class="cart" onclick="addToCart('Chocolate Cake Mix',180,'images/grocery/cake-mix.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Chocolate Cake Mix',180,'images/grocery/cake-mix.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 75 -->
+<div class="product">
+<img src="images/grocery/baking-powder.jpg" alt="Baking Powder">
+<h3>Baking Powder</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹55</p>
+<button class="cart" onclick="addToCart('Baking Powder',55,'images/grocery/baking-powder.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Baking Powder',55,'images/grocery/baking-powder.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 76 -->
+<div class="product">
+<img src="images/grocery/yeast.jpg" alt="Yeast">
+<h3>Dry Yeast</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹75</p>
+<button class="cart" onclick="addToCart('Dry Yeast',75,'images/grocery/yeast.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Dry Yeast',75,'images/grocery/yeast.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 77 -->
+<div class="product">
+<img src="images/grocery/apple-cider-vinegar.jpg" alt="Apple Cider Vinegar">
+<h3>Apple Cider Vinegar</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹299</p>
+<button class="cart" onclick="addToCart('Apple Cider Vinegar',299,'images/grocery/apple-cider-vinegar.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Apple Cider Vinegar',299,'images/grocery/apple-cider-vinegar.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 78 -->
+<div class="product">
+<img src="images/grocery/olive-oil.jpg" alt="Olive Oil">
+<h3>Extra Virgin Olive Oil</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹699</p>
+<button class="cart" onclick="addToCart('Extra Virgin Olive Oil',699,'images/grocery/olive-oil.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Extra Virgin Olive Oil',699,'images/grocery/olive-oil.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 79 -->
+<div class="product">
+<img src="images/grocery/maple-syrup.jpg" alt="Maple Syrup">
+<h3>Maple Syrup</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹599</p>
+<button class="cart" onclick="addToCart('Maple Syrup',599,'images/grocery/maple-syrup.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Maple Syrup',599,'images/grocery/maple-syrup.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 80 -->
+<div class="product">
+<img src="images/grocery/organic-honey.jpg" alt="Organic Honey">
+<h3>Organic Honey 1kg</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹499</p>
+<button class="cart" onclick="addToCart('Organic Honey 1kg',499,'images/grocery/organic-honey.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Organic Honey 1kg',499,'images/grocery/organic-honey.jpg')">Buy Now</button>
+</div>
+<!-- Product 81 -->
+<div class="product">
+<img src="images/grocery/ferrero.jpg" alt="Ferrero Rocher">
+<h3>Ferrero Rocher (16 pcs)</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹499</p>
+<button class="cart" onclick="addToCart('Ferrero Rocher',499,'images/grocery/ferrero.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Ferrero Rocher',499,'images/grocery/ferrero.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 82 -->
+<div class="product">
+<img src="images/grocery/toblerone.jpg" alt="Toblerone">
+<h3>Toblerone Chocolate</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹350</p>
+<button class="cart" onclick="addToCart('Toblerone Chocolate',350,'images/grocery/toblerone.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Toblerone Chocolate',350,'images/grocery/toblerone.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 83 -->
+<div class="product">
+<img src="images/grocery/lindt.jpg" alt="Lindt">
+<h3>Lindt Excellence Chocolate</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹425</p>
+<button class="cart" onclick="addToCart('Lindt Chocolate',425,'images/grocery/lindt.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Lindt Chocolate',425,'images/grocery/lindt.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 84 -->
+<div class="product">
+<img src="images/grocery/icecream.jpg" alt="Ice Cream">
+<h3>Vanilla Ice Cream 1L</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹220</p>
+<button class="cart" onclick="addToCart('Vanilla Ice Cream',220,'images/grocery/icecream.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Vanilla Ice Cream',220,'images/grocery/icecream.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 85 -->
+<div class="product">
+<img src="images/grocery/frozen-peas.jpg" alt="Frozen Peas">
+<h3>Frozen Green Peas 500g</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹120</p>
+<button class="cart" onclick="addToCart('Frozen Green Peas',120,'images/grocery/frozen-peas.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Frozen Green Peas',120,'images/grocery/frozen-peas.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 86 -->
+<div class="product">
+<img src="images/grocery/french-fries.jpg" alt="French Fries">
+<h3>Frozen French Fries</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹180</p>
+<button class="cart" onclick="addToCart('Frozen French Fries',180,'images/grocery/french-fries.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Frozen French Fries',180,'images/grocery/french-fries.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 87 -->
+<div class="product">
+<img src="images/grocery/pizza-base.jpg" alt="Pizza Base">
+<h3>Pizza Base (Pack of 2)</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹95</p>
+<button class="cart" onclick="addToCart('Pizza Base',95,'images/grocery/pizza-base.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Pizza Base',95,'images/grocery/pizza-base.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 88 -->
+<div class="product">
+<img src="images/grocery/coffee.jpg" alt="Coffee">
+<h3>Nescafe Gold Coffee</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹599</p>
+<button class="cart" onclick="addToCart('Nescafe Gold Coffee',599,'images/grocery/coffee.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Nescafe Gold Coffee',599,'images/grocery/coffee.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 89 -->
+<div class="product">
+<img src="images/grocery/bru.jpg" alt="Bru Coffee">
+<h3>Bru Instant Coffee</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹295</p>
+<button class="cart" onclick="addToCart('Bru Instant Coffee',295,'images/grocery/bru.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Bru Instant Coffee',295,'images/grocery/bru.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 90 -->
+<div class="product">
+<img src="images/grocery/tea-bags.jpg" alt="Tea Bags">
+<h3>Lipton Green Tea</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹199</p>
+<button class="cart" onclick="addToCart('Lipton Green Tea',199,'images/grocery/tea-bags.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Lipton Green Tea',199,'images/grocery/tea-bags.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 91 -->
+<div class="product">
+<img src="images/grocery/quinoa.jpg" alt="Quinoa">
+<h3>Organic Quinoa 500g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹349</p>
+<button class="cart" onclick="addToCart('Organic Quinoa',349,'images/grocery/quinoa.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Organic Quinoa',349,'images/grocery/quinoa.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 92 -->
+<div class="product">
+<img src="images/grocery/chia.jpg" alt="Chia Seeds">
+<h3>Chia Seeds 250g</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹249</p>
+<button class="cart" onclick="addToCart('Chia Seeds',249,'images/grocery/chia.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Chia Seeds',249,'images/grocery/chia.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 93 -->
+<div class="product">
+<img src="images/grocery/flaxseed.jpg" alt="Flax Seeds">
+<h3>Flax Seeds 500g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹180</p>
+<button class="cart" onclick="addToCart('Flax Seeds',180,'images/grocery/flaxseed.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Flax Seeds',180,'images/grocery/flaxseed.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 94 -->
+<div class="product">
+<img src="images/grocery/brown-rice.jpg" alt="Brown Rice">
+<h3>Brown Rice 5kg</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹499</p>
+<button class="cart" onclick="addToCart('Brown Rice 5kg',499,'images/grocery/brown-rice.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Brown Rice 5kg',499,'images/grocery/brown-rice.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 95 -->
+<div class="product">
+<img src="images/grocery/millet.jpg" alt="Millets">
+<h3>Organic Millets 1kg</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹220</p>
+<button class="cart" onclick="addToCart('Organic Millets',220,'images/grocery/millet.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Organic Millets',220,'images/grocery/millet.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 96 -->
+<div class="product">
+<img src="images/grocery/tissue.jpg" alt="Tissue Paper">
+<h3>Tissue Paper Pack</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹120</p>
+<button class="cart" onclick="addToCart('Tissue Paper Pack',120,'images/grocery/tissue.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Tissue Paper Pack',120,'images/grocery/tissue.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 97 -->
+<div class="product">
+<img src="images/grocery/aluminium-foil.jpg" alt="Foil">
+<h3>Aluminium Foil Roll</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹160</p>
+<button class="cart" onclick="addToCart('Aluminium Foil Roll',160,'images/grocery/aluminium-foil.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Aluminium Foil Roll',160,'images/grocery/aluminium-foil.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 98 -->
+<div class="product">
+<img src="images/grocery/cling-film.jpg" alt="Cling Film">
+<h3>Cling Film Wrap</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹145</p>
+<button class="cart" onclick="addToCart('Cling Film Wrap',145,'images/grocery/cling-film.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Cling Film Wrap',145,'images/grocery/cling-film.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 99 -->
+<div class="product">
+<img src="images/grocery/garbage-bags.jpg" alt="Garbage Bags">
+<h3>Garbage Bags (30 pcs)</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹199</p>
+<button class="cart" onclick="addToCart('Garbage Bags',199,'images/grocery/garbage-bags.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Garbage Bags',199,'images/grocery/garbage-bags.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 100 -->
+<div class="product">
+<img src="images/grocery/air-freshener.jpg" alt="Air Freshener">
+<h3>Room Air Freshener</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹249</p>
+<button class="cart" onclick="addToCart('Room Air Freshener',249,'images/grocery/air-freshener.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Room Air Freshener',249,'images/grocery/air-freshener.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 101 -->
+<div class="product">
+<img src="images/grocery/surf-excel.jpg" alt="Surf Excel">
+<h3>Surf Excel 2kg</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹420</p>
+<button class="cart" onclick="addToCart('Surf Excel 2kg',420,'images/grocery/surf-excel.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Surf Excel 2kg',420,'images/grocery/surf-excel.jpg')">Buy Now</button>
+</div>
+<!-- Product 102 -->
+<div class="product">
+<img src="images/grocery/ariel.jpg" alt="Ariel">
+<h3>Ariel Matic 2kg</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹445</p>
+<button class="cart" onclick="addToCart('Ariel Matic 2kg',445,'images/grocery/ariel.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Ariel Matic 2kg',445,'images/grocery/ariel.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 103 -->
+<div class="product">
+<img src="images/grocery/rin.jpg" alt="Rin">
+<h3>Rin Detergent Bar</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹35</p>
+<button class="cart" onclick="addToCart('Rin Detergent Bar',35,'images/grocery/rin.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Rin Detergent Bar',35,'images/grocery/rin.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 104 -->
+<div class="product">
+<img src="images/grocery/vim-liquid.jpg" alt="Vim">
+<h3>Vim Dishwash Liquid</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹185</p>
+<button class="cart" onclick="addToCart('Vim Dishwash Liquid',185,'images/grocery/vim-liquid.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Vim Dishwash Liquid',185,'images/grocery/vim-liquid.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 105 -->
+<div class="product">
+<img src="images/grocery/harpic.jpg" alt="Harpic">
+<h3>Harpic Toilet Cleaner</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹110</p>
+<button class="cart" onclick="addToCart('Harpic Toilet Cleaner',110,'images/grocery/harpic.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Harpic Toilet Cleaner',110,'images/grocery/harpic.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 106 -->
+<div class="product">
+<img src="images/grocery/lizol.jpg" alt="Lizol">
+<h3>Lizol Floor Cleaner</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹190</p>
+<button class="cart" onclick="addToCart('Lizol Floor Cleaner',190,'images/grocery/lizol.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Lizol Floor Cleaner',190,'images/grocery/lizol.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 107 -->
+<div class="product">
+<img src="images/grocery/dettol-soap.jpg" alt="Dettol Soap">
+<h3>Dettol Soap (4 Pack)</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹180</p>
+<button class="cart" onclick="addToCart('Dettol Soap',180,'images/grocery/dettol-soap.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Dettol Soap',180,'images/grocery/dettol-soap.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 108 -->
+<div class="product">
+<img src="images/grocery/lux.jpg" alt="Lux">
+<h3>Lux Soap Pack</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹145</p>
+<button class="cart" onclick="addToCart('Lux Soap Pack',145,'images/grocery/lux.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Lux Soap Pack',145,'images/grocery/lux.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 109 -->
+<div class="product">
+<img src="images/grocery/dove.jpg" alt="Dove">
+<h3>Dove Beauty Soap</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹220</p>
+<button class="cart" onclick="addToCart('Dove Beauty Soap',220,'images/grocery/dove.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Dove Beauty Soap',220,'images/grocery/dove.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 110 -->
+<div class="product">
+<img src="images/grocery/clinic-plus.jpg" alt="Clinic Plus">
+<h3>Clinic Plus Shampoo</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹210</p>
+<button class="cart" onclick="addToCart('Clinic Plus Shampoo',210,'images/grocery/clinic-plus.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Clinic Plus Shampoo',210,'images/grocery/clinic-plus.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 111 -->
+<div class="product">
+<img src="images/grocery/head-shoulders.jpg" alt="Head & Shoulders">
+<h3>Head & Shoulders Shampoo</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹399</p>
+<button class="cart" onclick="addToCart('Head & Shoulders Shampoo',399,'images/grocery/head-shoulders.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Head & Shoulders Shampoo',399,'images/grocery/head-shoulders.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 112 -->
+<div class="product">
+<img src="images/grocery/colgate.jpg" alt="Colgate">
+<h3>Colgate Toothpaste</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹145</p>
+<button class="cart" onclick="addToCart('Colgate Toothpaste',145,'images/grocery/colgate.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Colgate Toothpaste',145,'images/grocery/colgate.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 113 -->
+<div class="product">
+<img src="images/grocery/closeup.jpg" alt="Closeup">
+<h3>Closeup Toothpaste</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹120</p>
+<button class="cart" onclick="addToCart('Closeup Toothpaste',120,'images/grocery/closeup.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Closeup Toothpaste',120,'images/grocery/closeup.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 114 -->
+<div class="product">
+<img src="images/grocery/listerine.jpg" alt="Listerine">
+<h3>Listerine Mouthwash</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹245</p>
+<button class="cart" onclick="addToCart('Listerine Mouthwash',245,'images/grocery/listerine.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Listerine Mouthwash',245,'images/grocery/listerine.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 115 -->
+<div class="product">
+<img src="images/grocery/handwash.jpg" alt="Handwash">
+<h3>Dettol Handwash</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹99</p>
+<button class="cart" onclick="addToCart('Dettol Handwash',99,'images/grocery/handwash.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Dettol Handwash',99,'images/grocery/handwash.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 116 -->
+<div class="product">
+<img src="images/grocery/vaseline.jpg" alt="Vaseline">
+<h3>Vaseline Lotion</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹275</p>
+<button class="cart" onclick="addToCart('Vaseline Lotion',275,'images/grocery/vaseline.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Vaseline Lotion',275,'images/grocery/vaseline.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 117 -->
+<div class="product">
+<img src="images/grocery/nivea.jpg" alt="Nivea">
+<h3>Nivea Body Lotion</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹299</p>
+<button class="cart" onclick="addToCart('Nivea Body Lotion',299,'images/grocery/nivea.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Nivea Body Lotion',299,'images/grocery/nivea.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 118 -->
+<div class="product">
+<img src="images/grocery/johnsons.jpg" alt="Johnson's">
+<h3>Johnson's Baby Powder</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹185</p>
+<button class="cart" onclick="addToCart('Johnsons Baby Powder',185,'images/grocery/johnsons.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Johnsons Baby Powder',185,'images/grocery/johnsons.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 119 -->
+<div class="product">
+<img src="images/grocery/pampers.jpg" alt="Pampers">
+<h3>Pampers Diapers</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹699</p>
+<button class="cart" onclick="addToCart('Pampers Diapers',699,'images/grocery/pampers.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Pampers Diapers',699,'images/grocery/pampers.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 120 -->
+<div class="product">
+<img src="images/grocery/baby-wipes.jpg" alt="Baby Wipes">
+<h3>Baby Wipes (72 pcs)</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹175</p>
+<button class="cart" onclick="addToCart('Baby Wipes',175,'images/grocery/baby-wipes.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Baby Wipes',175,'images/grocery/baby-wipes.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 121 -->
+<div class="product">
+<img src="images/grocery/pedigree.jpg" alt="Pedigree">
+<h3>Pedigree Adult Dog Food 3kg</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹850</p>
+<button class="cart" onclick="addToCart('Pedigree Adult Dog Food 3kg',850,'images/grocery/pedigree.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Pedigree Adult Dog Food 3kg',850,'images/grocery/pedigree.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 122 -->
+<div class="product">
+<img src="images/grocery/whiskas.jpg" alt="Whiskas">
+<h3>Whiskas Cat Food 1.2kg</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹420</p>
+<button class="cart" onclick="addToCart('Whiskas Cat Food',420,'images/grocery/whiskas.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Whiskas Cat Food',420,'images/grocery/whiskas.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 123 -->
+<div class="product">
+<img src="images/grocery/goodknight.jpg" alt="Good Knight">
+<h3>Good Knight Liquid Refill</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹95</p>
+<button class="cart" onclick="addToCart('Good Knight Liquid Refill',95,'images/grocery/goodknight.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Good Knight Liquid Refill',95,'images/grocery/goodknight.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 124 -->
+<div class="product">
+<img src="images/grocery/allout.jpg" alt="All Out">
+<h3>All Out Refill</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹99</p>
+<button class="cart" onclick="addToCart('All Out Refill',99,'images/grocery/allout.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('All Out Refill',99,'images/grocery/allout.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 125 -->
+<div class="product">
+<img src="images/grocery/odonil.jpg" alt="Odonil">
+<h3>Odonil Room Freshener</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹85</p>
+<button class="cart" onclick="addToCart('Odonil Room Freshener',85,'images/grocery/odonil.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Odonil Room Freshener',85,'images/grocery/odonil.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 126 -->
+<div class="product">
+<img src="images/grocery/glad-wrap.jpg" alt="Food Wrap">
+<h3>Food Wrap Roll</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹125</p>
+<button class="cart" onclick="addToCart('Food Wrap Roll',125,'images/grocery/glad-wrap.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Food Wrap Roll',125,'images/grocery/glad-wrap.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 127 -->
+<div class="product">
+<img src="images/grocery/trash-bags.jpg" alt="Garbage Bags">
+<h3>Garbage Bags Large</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹149</p>
+<button class="cart" onclick="addToCart('Garbage Bags Large',149,'images/grocery/trash-bags.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Garbage Bags Large',149,'images/grocery/trash-bags.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 128 -->
+<div class="product">
+<img src="images/grocery/foil.jpg" alt="Foil">
+<h3>Kitchen Aluminium Foil</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹175</p>
+<button class="cart" onclick="addToCart('Kitchen Aluminium Foil',175,'images/grocery/foil.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Kitchen Aluminium Foil',175,'images/grocery/foil.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 129 -->
+<div class="product">
+<img src="images/grocery/plates.jpg" alt="Paper Plates">
+<h3>Paper Plates (50 pcs)</h3>
+<p>⭐ 4.6</p>
+<p class="price">₹120</p>
+<button class="cart" onclick="addToCart('Paper Plates',120,'images/grocery/plates.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Paper Plates',120,'images/grocery/plates.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 130 -->
+<div class="product">
+<img src="images/grocery/cups.jpg" alt="Paper Cups">
+<h3>Paper Cups (100 pcs)</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹160</p>
+<button class="cart" onclick="addToCart('Paper Cups',160,'images/grocery/cups.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Paper Cups',160,'images/grocery/cups.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 131 -->
+<div class="product">
+<img src="images/grocery/spoons.jpg" alt="Plastic Spoons">
+<h3>Plastic Spoons (100 pcs)</h3>
+<p>⭐ 4.6</p>
+<p class="price">₹110</p>
+<button class="cart" onclick="addToCart('Plastic Spoons',110,'images/grocery/spoons.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Plastic Spoons',110,'images/grocery/spoons.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 132 -->
+<div class="product">
+<img src="images/grocery/forks.jpg" alt="Plastic Forks">
+<h3>Plastic Forks (100 pcs)</h3>
+<p>⭐ 4.6</p>
+<p class="price">₹115</p>
+<button class="cart" onclick="addToCart('Plastic Forks',115,'images/grocery/forks.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Plastic Forks',115,'images/grocery/forks.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 133 -->
+<div class="product">
+<img src="images/grocery/tomato-ketchup.jpg" alt="Ketchup">
+<h3>Tomato Ketchup 1kg</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹165</p>
+<button class="cart" onclick="addToCart('Tomato Ketchup 1kg',165,'images/grocery/tomato-ketchup.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Tomato Ketchup 1kg',165,'images/grocery/tomato-ketchup.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 134 -->
+<div class="product">
+<img src="images/grocery/jam.jpg" alt="Jam">
+<h3>Mixed Fruit Jam 500g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹180</p>
+<button class="cart" onclick="addToCart('Mixed Fruit Jam',180,'images/grocery/jam.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Mixed Fruit Jam',180,'images/grocery/jam.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 135 -->
+<div class="product">
+<img src="images/grocery/peanut-butter.jpg" alt="Peanut Butter">
+<h3>Peanut Butter 1kg</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹350</p>
+<button class="cart" onclick="addToCart('Peanut Butter 1kg',350,'images/grocery/peanut-butter.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Peanut Butter 1kg',350,'images/grocery/peanut-butter.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 136 -->
+<div class="product">
+<img src="images/grocery/honey.jpg" alt="Honey">
+<h3>Dabur Honey 1kg</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹420</p>
+<button class="cart" onclick="addToCart('Dabur Honey 1kg',420,'images/grocery/honey.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Dabur Honey 1kg',420,'images/grocery/honey.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 137 -->
+<div class="product">
+<img src="images/grocery/green-peas.jpg" alt="Green Peas">
+<h3>Green Peas 1kg</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹140</p>
+<button class="cart" onclick="addToCart('Green Peas 1kg',140,'images/grocery/green-peas.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Green Peas 1kg',140,'images/grocery/green-peas.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 138 -->
+<div class="product">
+<img src="images/grocery/sweet-corn.jpg" alt="Sweet Corn">
+<h3>Frozen Sweet Corn</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹155</p>
+<button class="cart" onclick="addToCart('Frozen Sweet Corn',155,'images/grocery/sweet-corn.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Frozen Sweet Corn',155,'images/grocery/sweet-corn.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 139 -->
+<div class="product">
+<img src="images/grocery/hash-browns.jpg" alt="Hash Browns">
+<h3>Frozen Hash Browns</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹275</p>
+<button class="cart" onclick="addToCart('Frozen Hash Browns',275,'images/grocery/hash-browns.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Frozen Hash Browns',275,'images/grocery/hash-browns.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 140 -->
+<div class="product">
+<img src="images/grocery/mozzarella.jpg" alt="Mozzarella Cheese">
+<h3>Mozzarella Cheese 500g</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹340</p>
+<button class="cart" onclick="addToCart('Mozzarella Cheese',340,'images/grocery/mozzarella.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Mozzarella Cheese',340,'images/grocery/mozzarella.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 141 -->
+<div class="product">
+<img src="images/grocery/pringles.jpg" alt="Pringles">
+<h3>Pringles Original Chips</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹199</p>
+<button class="cart" onclick="addToCart('Pringles Original Chips',199,'images/grocery/pringles.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Pringles Original Chips',199,'images/grocery/pringles.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 142 -->
+<div class="product">
+<img src="images/grocery/doritos.jpg" alt="Doritos">
+<h3>Doritos Nacho Chips</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹99</p>
+<button class="cart" onclick="addToCart('Doritos Nacho Chips',99,'images/grocery/doritos.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Doritos Nacho Chips',99,'images/grocery/doritos.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 143 -->
+<div class="product">
+<img src="images/grocery/lays.jpg" alt="Lays">
+<h3>Lays Classic Chips</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹20</p>
+<button class="cart" onclick="addToCart('Lays Classic Chips',20,'images/grocery/lays.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Lays Classic Chips',20,'images/grocery/lays.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 144 -->
+<div class="product">
+<img src="images/grocery/kurkure.jpg" alt="Kurkure">
+<h3>Kurkure Masala Munch</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹20</p>
+<button class="cart" onclick="addToCart('Kurkure Masala Munch',20,'images/grocery/kurkure.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Kurkure Masala Munch',20,'images/grocery/kurkure.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 145 -->
+<div class="product">
+<img src="images/grocery/bingo.jpg" alt="Bingo">
+<h3>Bingo Mad Angles</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹25</p>
+<button class="cart" onclick="addToCart('Bingo Mad Angles',25,'images/grocery/bingo.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Bingo Mad Angles',25,'images/grocery/bingo.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 146 -->
+<div class="product">
+<img src="images/grocery/monster.jpg" alt="Monster Energy">
+<h3>Monster Energy Drink</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹145</p>
+<button class="cart" onclick="addToCart('Monster Energy Drink',145,'images/grocery/monster.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Monster Energy Drink',145,'images/grocery/monster.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 147 -->
+<div class="product">
+<img src="images/grocery/gatorade.jpg" alt="Gatorade">
+<h3>Gatorade Sports Drink</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹50</p>
+<button class="cart" onclick="addToCart('Gatorade Sports Drink',50,'images/grocery/gatorade.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Gatorade Sports Drink',50,'images/grocery/gatorade.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 148 -->
+<div class="product">
+<img src="images/grocery/evian.jpg" alt="Evian Water">
+<h3>Evian Mineral Water</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹180</p>
+<button class="cart" onclick="addToCart('Evian Mineral Water',180,'images/grocery/evian.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Evian Mineral Water',180,'images/grocery/evian.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 149 -->
+<div class="product">
+<img src="images/grocery/sparkling-water.jpg" alt="Sparkling Water">
+<h3>Sparkling Water</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹120</p>
+<button class="cart" onclick="addToCart('Sparkling Water',120,'images/grocery/sparkling-water.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Sparkling Water',120,'images/grocery/sparkling-water.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 150 -->
+<div class="product">
+<img src="images/grocery/coconut-water.jpg" alt="Coconut Water">
+<h3>Coconut Water 1L</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹110</p>
+<button class="cart" onclick="addToCart('Coconut Water 1L',110,'images/grocery/coconut-water.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Coconut Water 1L',110,'images/grocery/coconut-water.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 151 -->
+<div class="product">
+<img src="images/grocery/organic-pasta.jpg" alt="Organic Pasta">
+<h3>Organic Pasta 500g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹225</p>
+<button class="cart" onclick="addToCart('Organic Pasta',225,'images/grocery/organic-pasta.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Organic Pasta',225,'images/grocery/organic-pasta.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 152 -->
+<div class="product">
+<img src="images/grocery/basmati-rice.jpg" alt="Premium Rice">
+<h3>Premium Basmati Rice 10kg</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹1199</p>
+<button class="cart" onclick="addToCart('Premium Basmati Rice 10kg',1199,'images/grocery/basmati-rice.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Premium Basmati Rice 10kg',1199,'images/grocery/basmati-rice.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 153 -->
+<div class="product">
+<img src="images/grocery/saffron.jpg" alt="Saffron">
+<h3>Pure Kashmiri Saffron</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹399</p>
+<button class="cart" onclick="addToCart('Pure Kashmiri Saffron',399,'images/grocery/saffron.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Pure Kashmiri Saffron',399,'images/grocery/saffron.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 154 -->
+<div class="product">
+<img src="images/grocery/oregano.jpg" alt="Oregano">
+<h3>Italian Oregano</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹145</p>
+<button class="cart" onclick="addToCart('Italian Oregano',145,'images/grocery/oregano.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Italian Oregano',145,'images/grocery/oregano.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 155 -->
+<div class="product">
+<img src="images/grocery/chilli-flakes.jpg" alt="Chilli Flakes">
+<h3>Chilli Flakes</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹125</p>
+<button class="cart" onclick="addToCart('Chilli Flakes',125,'images/grocery/chilli-flakes.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Chilli Flakes',125,'images/grocery/chilli-flakes.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 156 -->
+<div class="product">
+<img src="images/grocery/black-pepper.jpg" alt="Black Pepper">
+<h3>Black Pepper 250g</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹320</p>
+<button class="cart" onclick="addToCart('Black Pepper 250g',320,'images/grocery/black-pepper.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Black Pepper 250g',320,'images/grocery/black-pepper.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 157 -->
+<div class="product">
+<img src="images/grocery/cinnamon.jpg" alt="Cinnamon">
+<h3>Cinnamon Sticks</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹180</p>
+<button class="cart" onclick="addToCart('Cinnamon Sticks',180,'images/grocery/cinnamon.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Cinnamon Sticks',180,'images/grocery/cinnamon.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 158 -->
+<div class="product">
+<img src="images/grocery/cardamom.jpg" alt="Cardamom">
+<h3>Green Cardamom 100g</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹450</p>
+<button class="cart" onclick="addToCart('Green Cardamom',450,'images/grocery/cardamom.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Green Cardamom',450,'images/grocery/cardamom.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 159 -->
+<div class="product">
+<img src="images/grocery/cloves.jpg" alt="Cloves">
+<h3>Cloves 100g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹260</p>
+<button class="cart" onclick="addToCart('Cloves',260,'images/grocery/cloves.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Cloves',260,'images/grocery/cloves.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 160 -->
+<div class="product">
+<img src="images/grocery/bay-leaf.jpg" alt="Bay Leaf">
+<h3>Bay Leaf 100g</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹120</p>
+<button class="cart" onclick="addToCart('Bay Leaf',120,'images/grocery/bay-leaf.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Bay Leaf',120,'images/grocery/bay-leaf.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 161 -->
+<div class="product">
+<img src="images/grocery/rock-salt.jpg" alt="Rock Salt">
+<h3>Rock Salt 1kg</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹85</p>
+<button class="cart" onclick="addToCart('Rock Salt 1kg',85,'images/grocery/rock-salt.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Rock Salt 1kg',85,'images/grocery/rock-salt.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 162 -->
+<div class="product">
+<img src="images/grocery/pink-salt.jpg" alt="Pink Salt">
+<h3>Himalayan Pink Salt</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹160</p>
+<button class="cart" onclick="addToCart('Himalayan Pink Salt',160,'images/grocery/pink-salt.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Himalayan Pink Salt',160,'images/grocery/pink-salt.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 163 -->
+<div class="product">
+<img src="images/grocery/jaggery.jpg" alt="Jaggery">
+<h3>Organic Jaggery 1kg</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹120</p>
+<button class="cart" onclick="addToCart('Organic Jaggery 1kg',120,'images/grocery/jaggery.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Organic Jaggery 1kg',120,'images/grocery/jaggery.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 164 -->
+<div class="product">
+<img src="images/grocery/mishri.jpg" alt="Mishri">
+<h3>Mishri 500g</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹95</p>
+<button class="cart" onclick="addToCart('Mishri 500g',95,'images/grocery/mishri.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Mishri 500g',95,'images/grocery/mishri.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 165 -->
+<div class="product">
+<img src="images/grocery/raisins.jpg" alt="Raisins">
+<h3>Premium Raisins 500g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹280</p>
+<button class="cart" onclick="addToCart('Premium Raisins 500g',280,'images/grocery/raisins.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Premium Raisins 500g',280,'images/grocery/raisins.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 166 -->
+<div class="product">
+<img src="images/grocery/dates.jpg" alt="Dates">
+<h3>Premium Dates 500g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹350</p>
+<button class="cart" onclick="addToCart('Premium Dates 500g',350,'images/grocery/dates.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Premium Dates 500g',350,'images/grocery/dates.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 167 -->
+<div class="product">
+<img src="images/grocery/apricot.jpg" alt="Apricot">
+<h3>Dried Apricot 250g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹380</p>
+<button class="cart" onclick="addToCart('Dried Apricot 250g',380,'images/grocery/apricot.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Dried Apricot 250g',380,'images/grocery/apricot.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 168 -->
+<div class="product">
+<img src="images/grocery/figs.jpg" alt="Figs">
+<h3>Dried Figs 250g</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹420</p>
+<button class="cart" onclick="addToCart('Dried Figs 250g',420,'images/grocery/figs.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Dried Figs 250g',420,'images/grocery/figs.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 169 -->
+<div class="product">
+<img src="images/grocery/cornflour.jpg" alt="Corn Flour">
+<h3>Corn Flour 500g</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹65</p>
+<button class="cart" onclick="addToCart('Corn Flour 500g',65,'images/grocery/cornflour.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Corn Flour 500g',65,'images/grocery/cornflour.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 170 -->
+<div class="product">
+<img src="images/grocery/custard.jpg" alt="Custard Powder">
+<h3>Custard Powder</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹90</p>
+<button class="cart" onclick="addToCart('Custard Powder',90,'images/grocery/custard.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Custard Powder',90,'images/grocery/custard.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 171 -->
+<div class="product">
+<img src="images/grocery/choco-syrup.jpg" alt="Chocolate Syrup">
+<h3>Chocolate Syrup</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹180</p>
+<button class="cart" onclick="addToCart('Chocolate Syrup',180,'images/grocery/choco-syrup.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Chocolate Syrup',180,'images/grocery/choco-syrup.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 172 -->
+<div class="product">
+<img src="images/grocery/vanilla-essence.jpg" alt="Vanilla Essence">
+<h3>Vanilla Essence</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹95</p>
+<button class="cart" onclick="addToCart('Vanilla Essence',95,'images/grocery/vanilla-essence.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Vanilla Essence',95,'images/grocery/vanilla-essence.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 173 -->
+<div class="product">
+<img src="images/grocery/cocoa.jpg" alt="Cocoa Powder">
+<h3>Cocoa Powder</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹250</p>
+<button class="cart" onclick="addToCart('Cocoa Powder',250,'images/grocery/cocoa.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Cocoa Powder',250,'images/grocery/cocoa.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 174 -->
+<div class="product">
+<img src="images/grocery/popcorn-kernels.jpg" alt="Popcorn">
+<h3>Popcorn Kernels 1kg</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹160</p>
+<button class="cart" onclick="addToCart('Popcorn Kernels 1kg',160,'images/grocery/popcorn-kernels.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Popcorn Kernels 1kg',160,'images/grocery/popcorn-kernels.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 175 -->
+<div class="product">
+<img src="images/grocery/instant-soup.jpg" alt="Soup">
+<h3>Instant Soup Pack</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹75</p>
+<button class="cart" onclick="addToCart('Instant Soup Pack',75,'images/grocery/instant-soup.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Instant Soup Pack',75,'images/grocery/instant-soup.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 176 -->
+<div class="product">
+<img src="images/grocery/noodles-pack.jpg" alt="Noodles">
+<h3>Instant Noodles Pack</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹65</p>
+<button class="cart" onclick="addToCart('Instant Noodles Pack',65,'images/grocery/noodles-pack.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Instant Noodles Pack',65,'images/grocery/noodles-pack.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 177 -->
+<div class="product">
+<img src="images/grocery/pasta.jpg" alt="Pasta">
+<h3>Italian Pasta 500g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹140</p>
+<button class="cart" onclick="addToCart('Italian Pasta 500g',140,'images/grocery/pasta.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Italian Pasta 500g',140,'images/grocery/pasta.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 178 -->
+<div class="product">
+<img src="images/grocery/macaroni.jpg" alt="Macaroni">
+<h3>Macaroni Pasta</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹130</p>
+<button class="cart" onclick="addToCart('Macaroni Pasta',130,'images/grocery/macaroni.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Macaroni Pasta',130,'images/grocery/macaroni.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 179 -->
+<div class="product">
+<img src="images/grocery/vermicelli2.jpg" alt="Vermicelli">
+<h3>Roasted Vermicelli 500g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹85</p>
+<button class="cart" onclick="addToCart('Roasted Vermicelli',85,'images/grocery/vermicelli2.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Roasted Vermicelli',85,'images/grocery/vermicelli2.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 180 -->
+<div class="product">
+<img src="images/grocery/rice-noodles.jpg" alt="Rice Noodles">
+<h3>Rice Noodles 400g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹150</p>
+<button class="cart" onclick="addToCart('Rice Noodles 400g',150,'images/grocery/rice-noodles.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Rice Noodles 400g',150,'images/grocery/rice-noodles.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 181 -->
+<div class="product">
+<img src="images/grocery/green-tea.jpg" alt="Green Tea">
+<h3>Organic Green Tea</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹299</p>
+<button class="cart" onclick="addToCart('Organic Green Tea',299,'images/grocery/green-tea.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Organic Green Tea',299,'images/grocery/green-tea.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 182 -->
+<div class="product">
+<img src="images/grocery/black-tea.jpg" alt="Black Tea">
+<h3>Premium Black Tea</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹275</p>
+<button class="cart" onclick="addToCart('Premium Black Tea',275,'images/grocery/black-tea.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Premium Black Tea',275,'images/grocery/black-tea.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 183 -->
+<div class="product">
+<img src="images/grocery/herbal-tea.jpg" alt="Herbal Tea">
+<h3>Herbal Tea Pack</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹350</p>
+<button class="cart" onclick="addToCart('Herbal Tea Pack',350,'images/grocery/herbal-tea.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Herbal Tea Pack',350,'images/grocery/herbal-tea.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 184 -->
+<div class="product">
+<img src="images/grocery/espresso.jpg" alt="Coffee">
+<h3>Espresso Coffee</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹599</p>
+<button class="cart" onclick="addToCart('Espresso Coffee',599,'images/grocery/espresso.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Espresso Coffee',599,'images/grocery/espresso.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 185 -->
+<div class="product">
+<img src="images/grocery/hazelnut-coffee.jpg" alt="Hazelnut Coffee">
+<h3>Hazelnut Coffee</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹450</p>
+<button class="cart" onclick="addToCart('Hazelnut Coffee',450,'images/grocery/hazelnut-coffee.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Hazelnut Coffee',450,'images/grocery/hazelnut-coffee.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 186 -->
+<div class="product">
+<img src="images/grocery/energy-bar.jpg" alt="Energy Bar">
+<h3>Protein Energy Bar</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹80</p>
+<button class="cart" onclick="addToCart('Protein Energy Bar',80,'images/grocery/energy-bar.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Protein Energy Bar',80,'images/grocery/energy-bar.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 187 -->
+<div class="product">
+<img src="images/grocery/protein-powder.jpg" alt="Protein">
+<h3>Whey Protein 1kg</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹2499</p>
+<button class="cart" onclick="addToCart('Whey Protein 1kg',2499,'images/grocery/protein-powder.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Whey Protein 1kg',2499,'images/grocery/protein-powder.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 188 -->
+<div class="product">
+<img src="images/grocery/oats2.jpg" alt="Oats">
+<h3>Instant Oats 1kg</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹199</p>
+<button class="cart" onclick="addToCart('Instant Oats 1kg',199,'images/grocery/oats2.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Instant Oats 1kg',199,'images/grocery/oats2.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 189 -->
+<div class="product">
+<img src="images/grocery/muesli2.jpg" alt="Muesli">
+<h3>Crunchy Muesli</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹399</p>
+<button class="cart" onclick="addToCart('Crunchy Muesli',399,'images/grocery/muesli2.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Crunchy Muesli',399,'images/grocery/muesli2.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 190 -->
+<div class="product">
+<img src="images/grocery/cereal.jpg" alt="Cereal">
+<h3>Breakfast Cereal</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹325</p>
+<button class="cart" onclick="addToCart('Breakfast Cereal',325,'images/grocery/cereal.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Breakfast Cereal',325,'images/grocery/cereal.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 191 -->
+<div class="product">
+<img src="images/grocery/gift-hamper.jpg" alt="Gift Hamper">
+<h3>Premium Grocery Gift Hamper</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹1499</p>
+<button class="cart" onclick="addToCart('Premium Grocery Gift Hamper',1499,'images/grocery/gift-hamper.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Premium Grocery Gift Hamper',1499,'images/grocery/gift-hamper.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 192 -->
+<div class="product">
+<img src="images/grocery/fruit-basket.jpg" alt="Fruit Basket">
+<h3>Fresh Fruit Basket</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹799</p>
+<button class="cart" onclick="addToCart('Fresh Fruit Basket',799,'images/grocery/fruit-basket.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Fresh Fruit Basket',799,'images/grocery/fruit-basket.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 193 -->
+<div class="product">
+<img src="images/grocery/dryfruit-box.jpg" alt="Dry Fruits">
+<h3>Premium Dry Fruit Box</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹999</p>
+<button class="cart" onclick="addToCart('Premium Dry Fruit Box',999,'images/grocery/dryfruit-box.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Premium Dry Fruit Box',999,'images/grocery/dryfruit-box.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 194 -->
+<div class="product">
+<img src="images/grocery/olive-oil2.jpg" alt="Olive Oil">
+<h3>Imported Olive Oil 1L</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹899</p>
+<button class="cart" onclick="addToCart('Imported Olive Oil 1L',899,'images/grocery/olive-oil2.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Imported Olive Oil 1L',899,'images/grocery/olive-oil2.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 195 -->
+<div class="product">
+<img src="images/grocery/balsamic.jpg" alt="Balsamic Vinegar">
+<h3>Balsamic Vinegar</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹650</p>
+<button class="cart" onclick="addToCart('Balsamic Vinegar',650,'images/grocery/balsamic.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Balsamic Vinegar',650,'images/grocery/balsamic.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 196 -->
+<div class="product">
+<img src="images/grocery/pesto.jpg" alt="Pesto">
+<h3>Pesto Sauce</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹450</p>
+<button class="cart" onclick="addToCart('Pesto Sauce',450,'images/grocery/pesto.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Pesto Sauce',450,'images/grocery/pesto.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 197 -->
+<div class="product">
+<img src="images/grocery/taco-shell.jpg" alt="Taco Shells">
+<h3>Taco Shells</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹220</p>
+<button class="cart" onclick="addToCart('Taco Shells',220,'images/grocery/taco-shell.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Taco Shells',220,'images/grocery/taco-shell.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 198 -->
+<div class="product">
+<img src="images/grocery/tortilla.jpg" alt="Tortilla">
+<h3>Tortilla Wraps</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹240</p>
+<button class="cart" onclick="addToCart('Tortilla Wraps',240,'images/grocery/tortilla.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Tortilla Wraps',240,'images/grocery/tortilla.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 199 -->
+<div class="product">
+<img src="images/grocery/nachos.jpg" alt="Nachos">
+<h3>Mexican Nachos</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹180</p>
+<button class="cart" onclick="addToCart('Mexican Nachos',180,'images/grocery/nachos.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Mexican Nachos',180,'images/grocery/nachos.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 200 -->
+<div class="product">
+<img src="images/grocery/premium-combo.jpg" alt="Premium Combo">
+<h3>POMPEY Premium Grocery Combo</h3>
+<p>⭐ 5.0</p>
+<p class="price">₹1999</p>
+<button class="cart" onclick="addToCart('POMPEY Premium Grocery Combo',1999,'images/grocery/premium-combo.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('POMPEY Premium Grocery Combo',1999,'images/grocery/premium-combo.jpg')">Buy Now</button>
+</div>
+</div>
+
+<footer style="background:#131921;color:white;text-align:center;padding:25px;margin-top:40px;">
+<h3>POMPEY Fast Food Store</h3>
+<p>Fresh • Fast • Delicious</p>
+<p>© 2026 POMPEY. All Rights Reserved.</p>
+</footer>
+
+<script>
+
+// Load Cart
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+// Create Cart Counter
+const cartLink = document.querySelector('a[href="cart.html"]');
+cartLink.innerHTML = "🛒 Cart (<span id='cartCount'>0</span>)";
+
+// Update Cart Count
+function updateCartCount(){
+    document.getElementById("cartCount").innerText = cart.reduce((t,i)=>t+i.qty,0);
+}
+
+updateCartCount();
+
+// Add to Cart Function
+function addToCart(name,price,image){
+
+    let found = cart.find(item=>item.name===name);
+
+    if(found){
+        found.qty++;
+    }else{
+        cart.push({
+            name:name,
+            price:price,
+            image:image,
+            qty:1
+        });
+    }
+
+    localStorage.setItem("cart",JSON.stringify(cart));
+
+    updateCartCount();
+
+    alert(name + " added to cart!");
+
+}
+
+// Live Search
+const searchInput = document.getElementById("search");
+
+searchInput.addEventListener("keyup",function(){
+
+    let value = this.value.toLowerCase();
+
+    let products = document.querySelectorAll(".product");
+
+    products.forEach(product=>{
+
+        let text = product.innerText.toLowerCase();
+
+        if(text.includes(value)){
+            product.style.display="block";
+        }else{
+            product.style.display="none";
+        }
+
+    });
+
+});
+
+function increaseQty(btn){
+
+let qty=btn.parentElement.querySelector(".qty");
+
+qty.innerText=parseInt(qty.innerText)+1;
+
+}
+
+function decreaseQty(btn){
+
+let qty=btn.parentElement.querySelector(".qty");
+
+if(parseInt(qty.innerText)>1){
+
+qty.innerText=parseInt(qty.innerText)-1;
+
+}
+
+    }
+
+function toggleWish(icon){
+
+icon.classList.toggle("active");
+
+}
+
+function buyNow(name,price,image){
+
+localStorage.setItem("cart",JSON.stringify([{
+
+name:name,
+price:price,
+image:image,
+qty:1
+
+}]));
+
+window.location.href="checkout.html";
+
+}
+    
+</script>
+
+</body>
+</html>
+
+<div style="display:flex;justify-content:center;gap:8px;margin:10px 0;">
+
+<button onclick="decreaseQty(this)">−</button>
+
+<span class="qty">1</span>
+
+<button onclick="increaseQty(this)">+</button>
+
+</div>
+
+<p style="color:green;font-weight:bold;">
+🚚 Delivery in 20–30 mins
+</p>
+
+<p style="color:#ff9800;">
+★★★★★ (4.8)
+</p>
+
+
+    
