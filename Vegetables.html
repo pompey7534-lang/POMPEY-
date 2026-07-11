@@ -1,0 +1,1875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9DFDRNTM50"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-9DFDRNTM50');
+      </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>POMPEY VEGITABLES</title>
+
+<style>
+
+.qty{
+
+font-size:20px;
+
+font-weight:bold;
+
+padding:8px;
+
+width:30px;
+
+text-align:center;
+
+}
+
+.product button{
+
+margin:4px;
+
+}
+
+.product{
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+.product:hover{
+
+transform:translateY(-8px);
+
+transition:.3s;
+
+}
+
+.badge{
+position:absolute;
+top:10px;
+left:10px;
+background:red;
+color:white;
+padding:5px 10px;
+border-radius:20px;
+font-size:12px;
+font-weight:bold;
+}
+
+.discount{
+position:absolute;
+top:10px;
+right:10px;
+background:#28a745;
+color:white;
+padding:5px 10px;
+border-radius:20px;
+font-size:12px;
+font-weight:bold;
+}
+
+.wishlist{
+position:absolute;
+right:15px;
+bottom:15px;
+font-size:28px;
+cursor:pointer;
+color:#bbb;
+}
+
+.wishlist.active{
+color:red;
+}
+
+.buyNow{
+background:#ff9800;
+margin-top:8px;
+}
+
+.buyNow:hover{
+background:#f57c00;
+}
+
+.offer{
+color:#28a745;
+font-weight:bold;
+margin-top:8px;
+}
+
+    
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f3f3f3;
+}
+
+/* HEADER */
+
+header{
+background:#131921;
+padding:15px 20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+.logo{
+color:#fff;
+font-size:28px;
+font-weight:bold;
+}
+
+.logo span{
+color:#ff9900;
+}
+
+.search-box{
+display:flex;
+flex:1;
+margin:0 20px;
+}
+
+.search-box input{
+width:100%;
+padding:12px;
+font-size:16px;
+border:none;
+outline:none;
+border-radius:6px 0 0 6px;
+}
+
+.search-box button{
+padding:12px 18px;
+background:#ff9900;
+border:none;
+cursor:pointer;
+font-size:18px;
+border-radius:0 6px 6px 0;
+}
+
+nav{
+display:flex;
+gap:15px;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+font-weight:bold;
+}
+
+.hero{
+height:280px;
+background:url("grocery");
+background-size:cover;
+background-position:center;
+display:flex;
+justify-content:center;
+align-items:center;
+color:white;
+font-size:45px;
+font-weight:bold;
+text-shadow:2px 2px 5px black;
+}
+
+.products{
+
+width:95%;
+
+max-width:1400px;
+
+margin:30px auto;
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+gap:20px;
+
+}
+
+.product{
+
+background:white;
+
+border-radius:12px;
+
+padding:15px;
+
+box-shadow:0 5px 12px rgba(0,0,0,.15);
+
+text-align:center;
+
+transition:.3s;
+
+}
+
+.product:hover{
+
+transform:translateY(-6px);
+
+}
+
+.product img{
+
+width:100%;
+
+height:180px;
+
+object-fit:cover;
+
+border-radius:10px;
+
+}
+
+.product h3{
+
+margin:10px 0;
+
+}
+
+.price{
+
+font-size:22px;
+
+color:#e53935;
+
+font-weight:bold;
+
+margin:10px 0;
+
+}
+
+button{
+
+padding:10px 18px;
+
+border:none;
+
+background:#28a745;
+
+color:white;
+
+font-size:16px;
+
+border-radius:6px;
+
+cursor:pointer;
+
+}
+
+button:hover{
+
+background:#218838;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+
+POM<span>PEY</span>
+
+</div>
+
+<div class="search-box">
+
+<input
+type="text"
+id="search"
+placeholder="Search vegetables...">
+
+<button>🔍</button>
+
+</div>
+
+<nav>
+
+<a href="index.html">Home</a>
+
+<a href="cart.html">🛒 Cart</a>
+
+<a href="dashboard.html">Dashboard</a>
+
+</nav>
+
+</header>
+
+<div class="hero">
+
+Welcome to POMPEY VEGITABLES Corner
+
+</div>
+
+<div class="products">
+
+  <!-- Product 1 -->
+<div class="product">
+<span class="discount">10% OFF</span>
+<img src="images/vegetables/potato.jpg" alt="Potato">
+<h3>Potato 1kg</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹35</p>
+<button class="cart" onclick="addToCart('Potato 1kg',35,'images/vegetables/potato.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Potato 1kg',35,'images/vegetables/potato.jpg')">Buy Now</button>
+</div>
+
+<div class="product">
+<span class="discount">12% OFF</span>
+<img src="images/vegetables/onion.jpg" alt="Onion">
+<h3>Onion 1kg</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹40</p>
+<button class="cart" onclick="addToCart('Onion 1kg',40,'images/vegetables/onion.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Onion 1kg',40,'images/vegetables/onion.jpg')">Buy Now</button>
+</div>
+
+<div class="product">
+<span class="discount">15% OFF</span>
+<img src="images/vegetables/tomato.jpg" alt="Tomato">
+<h3>Tomato 1kg</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹45</p>
+<button class="cart" onclick="addToCart('Tomato 1kg',45,'images/vegetables/tomato.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Tomato 1kg',45,'images/vegetables/tomato.jpg')">Buy Now</button>
+</div>
+
+<div class="product">
+<span class="discount">8% OFF</span>
+<img src="images/vegetables/carrot.jpg" alt="Carrot">
+<h3>Carrot 1kg</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹60</p>
+<button class="cart" onclick="addToCart('Carrot 1kg',60,'images/vegetables/carrot.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Carrot 1kg',60,'images/vegetables/carrot.jpg')">Buy Now</button>
+</div>
+
+<div class="product">
+<img src="images/vegetables/cabbage.jpg" alt="Cabbage">
+<h3>Cabbage 1pc</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹30</p>
+<button class="cart" onclick="addToCart('Cabbage',30,'images/vegetables/cabbage.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Cabbage',30,'images/vegetables/cabbage.jpg')">Buy Now</button>
+</div>
+
+<div class="product">
+<img src="images/vegetables/cauliflower.jpg" alt="Cauliflower">
+<h3>Cauliflower 1pc</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹45</p>
+<button class="cart" onclick="addToCart('Cauliflower',45,'images/vegetables/cauliflower.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Cauliflower',45,'images/vegetables/cauliflower.jpg')">Buy Now</button>
+</div>
+
+<div class="product">
+<img src="images/vegetables/spinach.jpg" alt="Spinach">
+<h3>Spinach 250g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹25</p>
+<button class="cart" onclick="addToCart('Spinach',25,'images/vegetables/spinach.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Spinach',25,'images/vegetables/spinach.jpg')">Buy Now</button>
+</div>
+
+<div class="product">
+<img src="images/vegetables/brinjal.jpg" alt="Brinjal">
+<h3>Brinjal 1kg</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹55</p>
+<button class="cart" onclick="addToCart('Brinjal',55,'images/vegetables/brinjal.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Brinjal',55,'images/vegetables/brinjal.jpg')">Buy Now</button>
+</div>
+
+<div class="product">
+<img src="images/vegetables/ladyfinger.jpg" alt="Lady Finger">
+<h3>Lady Finger 500g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹40</p>
+<button class="cart" onclick="addToCart('Lady Finger',40,'images/vegetables/ladyfinger.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Lady Finger',40,'images/vegetables/ladyfinger.jpg')">Buy Now</button>
+</div>
+
+<div class="product">
+<img src="images/vegetables/capsicum.jpg" alt="Capsicum">
+<h3>Capsicum 500g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹70</p>
+<button class="cart" onclick="addToCart('Capsicum',70,'images/vegetables/capsicum.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Capsicum',70,'images/vegetables/capsicum.jpg')">Buy Now</button>
+</div>
+
+<!-- Continue similarly -->
+
+<div class="product"><img src="images/vegetables/peas.jpg"><h3>Green Peas 500g</h3><p>⭐4.8</p><p class="price">₹65</p><button class="cart" onclick="addToCart('Green Peas',65,'images/vegetables/peas.jpg')">Add to Cart</button><button class="buy" onclick="buyNow('Green Peas',65,'images/vegetables/peas.jpg')">Buy Now</button></div>
+
+<div class="product"><img src="images/vegetables/beans.jpg"><h3>Beans 500g</h3><p>⭐4.7</p><p class="price">₹55</p><button class="cart" onclick="addToCart('Beans',55,'images/vegetables/beans.jpg')">Add to Cart</button><button class="buy" onclick="buyNow('Beans',55,'images/vegetables/beans.jpg')">Buy Now</button></div>
+
+<div class="product"><img src="images/vegetables/cucumber.jpg"><h3>Cucumber 1kg</h3><p>⭐4.8</p><p class="price">₹40</p><button class="cart" onclick="addToCart('Cucumber',40,'images/vegetables/cucumber.jpg')">Add to Cart</button><button class="buy" onclick="buyNow('Cucumber',40,'images/vegetables/cucumber.jpg')">Buy Now</button></div>
+
+<div class="product"><img src="images/vegetables/radish.jpg"><h3>Radish 1kg</h3><p>⭐4.7</p><p class="price">₹35</p><button class="cart" onclick="addToCart('Radish',35,'images/vegetables/radish.jpg')">Add to Cart</button><button class="buy" onclick="buyNow('Radish',35,'images/vegetables/radish.jpg')">Buy Now</button></div>
+
+<div class="product"><img src="images/vegetables/beetroot.jpg"><h3>Beetroot 1kg</h3><p>⭐4.8</p><p class="price">₹55</p><button class="cart" onclick="addToCart('Beetroot',55,'images/vegetables/beetroot.jpg')">Add to Cart</button><button class="buy" onclick="buyNow('Beetroot',55,'images/vegetables/beetroot.jpg')">Buy Now</button></div>
+
+<div class="product"><img src="images/vegetables/broccoli.jpg"><h3>Broccoli 250g</h3><p>⭐4.9</p><p class="price">₹95</p><button class="cart" onclick="addToCart('Broccoli',95,'images/vegetables/broccoli.jpg')">Add to Cart</button><button class="buy" onclick="buyNow('Broccoli',95,'images/vegetables/broccoli.jpg')">Buy Now</button></div>
+
+<div class="product"><img src="images/vegetables/mushroom.jpg"><h3>Mushroom 200g</h3><p>⭐4.8</p><p class="price">₹90</p><button class="cart" onclick="addToCart('Mushroom',90,'images/vegetables/mushroom.jpg')">Add to Cart</button><button class="buy" onclick="buyNow('Mushroom',90,'images/vegetables/mushroom.jpg')">Buy Now</button></div>
+
+<div class="product"><img src="images/vegetables/bottle-gourd.jpg"><h3>Bottle Gourd</h3><p>⭐4.7</p><p class="price">₹35</p><button class="cart" onclick="addToCart('Bottle Gourd',35,'images/vegetables/bottle-gourd.jpg')">Add to Cart</button><button class="buy" onclick="buyNow('Bottle Gourd',35,'images/vegetables/bottle-gourd.jpg')">Buy Now</button></div>
+
+<div class="product"><img src="images/vegetables/bitter-gourd.jpg"><h3>Bitter Gourd</h3><p>⭐4.6</p><p class="price">₹60</p><button class="cart" onclick="addToCart('Bitter Gourd',60,'images/vegetables/bitter-gourd.jpg')">Add to Cart</button><button class="buy" onclick="buyNow('Bitter Gourd',60,'images/vegetables/bitter-gourd.jpg')">Buy Now</button></div>
+
+<div class="product"><img src="images/vegetables/pumpkin.jpg"><h3>Pumpkin 1kg</h3><p>⭐4.8</p><p class="price">₹40</p><button class="cart" onclick="addToCart('Pumpkin',40,'images/vegetables/pumpkin.jpg')">Add to Cart</button><button class="buy" onclick="buyNow('Pumpkin',40,'images/vegetables/pumpkin.jpg')">Buy Now</button></div>
+<!-- Product 21 -->
+<div class="product">
+<img src="images/vegetables/ridge-gourd.jpg" alt="Ridge Gourd">
+<h3>Ridge Gourd 500g</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹45</p>
+<button class="cart" onclick="addToCart('Ridge Gourd',45,'images/vegetables/ridge-gourd.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Ridge Gourd',45,'images/vegetables/ridge-gourd.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 22 -->
+<div class="product">
+<img src="images/vegetables/sponge-gourd.jpg" alt="Sponge Gourd">
+<h3>Sponge Gourd 500g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹42</p>
+<button class="cart" onclick="addToCart('Sponge Gourd',42,'images/vegetables/sponge-gourd.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Sponge Gourd',42,'images/vegetables/sponge-gourd.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 23 -->
+<div class="product">
+<img src="images/vegetables/ash-gourd.jpg" alt="Ash Gourd">
+<h3>Ash Gourd 1kg</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹38</p>
+<button class="cart" onclick="addToCart('Ash Gourd',38,'images/vegetables/ash-gourd.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Ash Gourd',38,'images/vegetables/ash-gourd.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 24 -->
+<div class="product">
+<img src="images/vegetables/turnip.jpg" alt="Turnip">
+<h3>Turnip 500g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹40</p>
+<button class="cart" onclick="addToCart('Turnip',40,'images/vegetables/turnip.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Turnip',40,'images/vegetables/turnip.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 25 -->
+<div class="product">
+<img src="images/vegetables/sweet-potato.jpg" alt="Sweet Potato">
+<h3>Sweet Potato 1kg</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹55</p>
+<button class="cart" onclick="addToCart('Sweet Potato',55,'images/vegetables/sweet-potato.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Sweet Potato',55,'images/vegetables/sweet-potato.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 26 -->
+<div class="product">
+<img src="images/vegetables/raw-banana.jpg" alt="Raw Banana">
+<h3>Raw Banana 500g</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹35</p>
+<button class="cart" onclick="addToCart('Raw Banana',35,'images/vegetables/raw-banana.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Raw Banana',35,'images/vegetables/raw-banana.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 27 -->
+<div class="product">
+<img src="images/vegetables/green-chilli.jpg" alt="Green Chilli">
+<h3>Green Chilli 250g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹30</p>
+<button class="cart" onclick="addToCart('Green Chilli',30,'images/vegetables/green-chilli.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Green Chilli',30,'images/vegetables/green-chilli.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 28 -->
+<div class="product">
+<img src="images/vegetables/red-chilli.jpg" alt="Red Chilli">
+<h3>Fresh Red Chilli 250g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹40</p>
+<button class="cart" onclick="addToCart('Fresh Red Chilli',40,'images/vegetables/red-chilli.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Fresh Red Chilli',40,'images/vegetables/red-chilli.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 29 -->
+<div class="product">
+<img src="images/vegetables/ginger.jpg" alt="Ginger">
+<h3>Ginger 250g</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹45</p>
+<button class="cart" onclick="addToCart('Ginger',45,'images/vegetables/ginger.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Ginger',45,'images/vegetables/ginger.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 30 -->
+<div class="product">
+<img src="images/vegetables/garlic.jpg" alt="Garlic">
+<h3>Garlic 500g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹95</p>
+<button class="cart" onclick="addToCart('Garlic',95,'images/vegetables/garlic.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Garlic',95,'images/vegetables/garlic.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 31 -->
+<div class="product">
+<img src="images/vegetables/coriander.jpg" alt="Coriander">
+<h3>Coriander Leaves</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹20</p>
+<button class="cart" onclick="addToCart('Coriander Leaves',20,'images/vegetables/coriander.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Coriander Leaves',20,'images/vegetables/coriander.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 32 -->
+<div class="product">
+<img src="images/vegetables/mint.jpg" alt="Mint">
+<h3>Mint Leaves</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹15</p>
+<button class="cart" onclick="addToCart('Mint Leaves',15,'images/vegetables/mint.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Mint Leaves',15,'images/vegetables/mint.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 33 -->
+<div class="product">
+<img src="images/vegetables/curry-leaves.jpg" alt="Curry Leaves">
+<h3>Curry Leaves</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹10</p>
+<button class="cart" onclick="addToCart('Curry Leaves',10,'images/vegetables/curry-leaves.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Curry Leaves',10,'images/vegetables/curry-leaves.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 34 -->
+<div class="product">
+<img src="images/vegetables/drumstick.jpg" alt="Drumstick">
+<h3>Drumstick 500g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹70</p>
+<button class="cart" onclick="addToCart('Drumstick',70,'images/vegetables/drumstick.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Drumstick',70,'images/vegetables/drumstick.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 35 -->
+<div class="product">
+<img src="images/vegetables/corn.jpg" alt="Sweet Corn">
+<h3>Sweet Corn 2 pcs</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹50</p>
+<button class="cart" onclick="addToCart('Sweet Corn',50,'images/vegetables/corn.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Sweet Corn',50,'images/vegetables/corn.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 36 -->
+<div class="product">
+<img src="images/vegetables/lettuce.jpg" alt="Lettuce">
+<h3>Fresh Lettuce</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹65</p>
+<button class="cart" onclick="addToCart('Fresh Lettuce',65,'images/vegetables/lettuce.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Fresh Lettuce',65,'images/vegetables/lettuce.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 37 -->
+<div class="product">
+<img src="images/vegetables/celery.jpg" alt="Celery">
+<h3>Celery 200g</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹85</p>
+<button class="cart" onclick="addToCart('Celery',85,'images/vegetables/celery.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Celery',85,'images/vegetables/celery.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 38 -->
+<div class="product">
+<img src="images/vegetables/zucchini.jpg" alt="Zucchini">
+<h3>Zucchini 500g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹120</p>
+<button class="cart" onclick="addToCart('Zucchini',120,'images/vegetables/zucchini.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Zucchini',120,'images/vegetables/zucchini.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 39 -->
+<div class="product">
+<img src="images/vegetables/red-cabbage.jpg" alt="Red Cabbage">
+<h3>Red Cabbage</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹75</p>
+<button class="cart" onclick="addToCart('Red Cabbage',75,'images/vegetables/red-cabbage.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Red Cabbage',75,'images/vegetables/red-cabbage.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 40 -->
+<div class="product">
+<img src="images/vegetables/cherry-tomato.jpg" alt="Cherry Tomato">
+<h3>Cherry Tomato 250g</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹90</p>
+<button class="cart" onclick="addToCart('Cherry Tomato',90,'images/vegetables/cherry-tomato.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Cherry Tomato',90,'images/vegetables/cherry-tomato.jpg')">Buy Now</button>
+</div>
+<!-- Product 41 -->
+<div class="product">
+<img src="images/vegetables/baby-corn.jpg" alt="Baby Corn">
+<h3>Baby Corn 200g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹65</p>
+<button class="cart" onclick="addToCart('Baby Corn',65,'images/vegetables/baby-corn.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Baby Corn',65,'images/vegetables/baby-corn.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 42 -->
+<div class="product">
+<img src="images/vegetables/spring-onion.jpg" alt="Spring Onion">
+<h3>Spring Onion</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹30</p>
+<button class="cart" onclick="addToCart('Spring Onion',30,'images/vegetables/spring-onion.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Spring Onion',30,'images/vegetables/spring-onion.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 43 -->
+<div class="product">
+<img src="images/vegetables/leek.jpg" alt="Leek">
+<h3>Leek 250g</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹90</p>
+<button class="cart" onclick="addToCart('Leek',90,'images/vegetables/leek.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Leek',90,'images/vegetables/leek.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 44 -->
+<div class="product">
+<img src="images/vegetables/parsley.jpg" alt="Parsley">
+<h3>Parsley Leaves</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹55</p>
+<button class="cart" onclick="addToCart('Parsley Leaves',55,'images/vegetables/parsley.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Parsley Leaves',55,'images/vegetables/parsley.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 45 -->
+<div class="product">
+<img src="images/vegetables/kale.jpg" alt="Kale">
+<h3>Kale Leaves</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹110</p>
+<button class="cart" onclick="addToCart('Kale Leaves',110,'images/vegetables/kale.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Kale Leaves',110,'images/vegetables/kale.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 46 -->
+<div class="product">
+<img src="images/vegetables/choy.jpg" alt="Bok Choy">
+<h3>Bok Choy</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹95</p>
+<button class="cart" onclick="addToCart('Bok Choy',95,'images/vegetables/choy.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Bok Choy',95,'images/vegetables/choy.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 47 -->
+<div class="product">
+<img src="images/vegetables/arugula.jpg" alt="Arugula">
+<h3>Arugula</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹120</p>
+<button class="cart" onclick="addToCart('Arugula',120,'images/vegetables/arugula.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Arugula',120,'images/vegetables/arugula.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 48 -->
+<div class="product">
+<img src="images/vegetables/chives.jpg" alt="Chives">
+<h3>Fresh Chives</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹80</p>
+<button class="cart" onclick="addToCart('Fresh Chives',80,'images/vegetables/chives.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Fresh Chives',80,'images/vegetables/chives.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 49 -->
+<div class="product">
+<img src="images/vegetables/fenugreek.jpg" alt="Fenugreek">
+<h3>Fenugreek Leaves</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹20</p>
+<button class="cart" onclick="addToCart('Fenugreek Leaves',20,'images/vegetables/fenugreek.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Fenugreek Leaves',20,'images/vegetables/fenugreek.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 50 -->
+<div class="product">
+<img src="images/vegetables/amaranth.jpg" alt="Amaranth">
+<h3>Amaranth Greens</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹25</p>
+<button class="cart" onclick="addToCart('Amaranth Greens',25,'images/vegetables/amaranth.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Amaranth Greens',25,'images/vegetables/amaranth.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 51 -->
+<div class="product">
+<img src="images/vegetables/cluster-beans.jpg" alt="Cluster Beans">
+<h3>Cluster Beans 500g</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹60</p>
+<button class="cart" onclick="addToCart('Cluster Beans',60,'images/vegetables/cluster-beans.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Cluster Beans',60,'images/vegetables/cluster-beans.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 52 -->
+<div class="product">
+<img src="images/vegetables/broad-beans.jpg" alt="Broad Beans">
+<h3>Broad Beans 500g</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹75</p>
+<button class="cart" onclick="addToCart('Broad Beans',75,'images/vegetables/broad-beans.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Broad Beans',75,'images/vegetables/broad-beans.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 53 -->
+<div class="product">
+<img src="images/vegetables/ivy-gourd.jpg" alt="Ivy Gourd">
+<h3>Ivy Gourd 500g</h3>
+<p>⭐ 4.6</p>
+<p class="price">₹55</p>
+<button class="cart" onclick="addToCart('Ivy Gourd',55,'images/vegetables/ivy-gourd.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Ivy Gourd',55,'images/vegetables/ivy-gourd.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 54 -->
+<div class="product">
+<img src="images/vegetables/snake-gourd.jpg" alt="Snake Gourd">
+<h3>Snake Gourd</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹45</p>
+<button class="cart" onclick="addToCart('Snake Gourd',45,'images/vegetables/snake-gourd.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Snake Gourd',45,'images/vegetables/snake-gourd.jpg')">Buy Now</button>
+  </div>
+
+  <!-- Product 55 -->
+<div class="product">
+<img src="images/vegetables/yam.jpg" alt="Yam">
+<h3>Elephant Yam 1kg</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹85</p>
+<button class="cart" onclick="addToCart('Elephant Yam',85,'images/vegetables/yam.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Elephant Yam',85,'images/vegetables/yam.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 56 -->
+<div class="product">
+<img src="images/vegetables/taro.jpg" alt="Taro Root">
+<h3>Taro Root 500g</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹65</p>
+<button class="cart" onclick="addToCart('Taro Root',65,'images/vegetables/taro.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Taro Root',65,'images/vegetables/taro.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 57 -->
+<div class="product">
+<img src="images/vegetables/lotus-root.jpg" alt="Lotus Root">
+<h3>Lotus Root 500g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹120</p>
+<button class="cart" onclick="addToCart('Lotus Root',120,'images/vegetables/lotus-root.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Lotus Root',120,'images/vegetables/lotus-root.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 58 -->
+<div class="product">
+<img src="images/vegetables/green-garlic.jpg" alt="Green Garlic">
+<h3>Green Garlic</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹35</p>
+<button class="cart" onclick="addToCart('Green Garlic',35,'images/vegetables/green-garlic.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Green Garlic',35,'images/vegetables/green-garlic.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 59 -->
+<div class="product">
+<img src="images/vegetables/red-spinach.jpg" alt="Red Spinach">
+<h3>Red Spinach</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹30</p>
+<button class="cart" onclick="addToCart('Red Spinach',30,'images/vegetables/red-spinach.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Red Spinach',30,'images/vegetables/red-spinach.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 60 -->
+<div class="product">
+<img src="images/vegetables/mixed-salad.jpg" alt="Mixed Salad">
+<h3>Mixed Salad Pack</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹149</p>
+<button class="cart" onclick="addToCart('Mixed Salad Pack',149,'images/vegetables/mixed-salad.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Mixed Salad Pack',149,'images/vegetables/mixed-salad.jpg')">Buy Now</button>
+</div>
+<!-- Product 61 -->
+<div class="product">
+<img src="images/vegetables/white-radish.jpg" alt="White Radish">
+<h3>White Radish 1kg</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹38</p>
+<button class="cart" onclick="addToCart('White Radish',38,'images/vegetables/white-radish.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('White Radish',38,'images/vegetables/white-radish.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 62 -->
+<div class="product">
+<img src="images/vegetables/yellow-capsicum.jpg" alt="Yellow Capsicum">
+<h3>Yellow Capsicum 250g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹95</p>
+<button class="cart" onclick="addToCart('Yellow Capsicum',95,'images/vegetables/yellow-capsicum.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Yellow Capsicum',95,'images/vegetables/yellow-capsicum.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 63 -->
+<div class="product">
+<img src="images/vegetables/red-capsicum.jpg" alt="Red Capsicum">
+<h3>Red Capsicum 250g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹99</p>
+<button class="cart" onclick="addToCart('Red Capsicum',99,'images/vegetables/red-capsicum.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Red Capsicum',99,'images/vegetables/red-capsicum.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 64 -->
+<div class="product">
+<img src="images/vegetables/green-capsicum.jpg" alt="Green Capsicum">
+<h3>Green Capsicum 500g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹65</p>
+<button class="cart" onclick="addToCart('Green Capsicum',65,'images/vegetables/green-capsicum.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Green Capsicum',65,'images/vegetables/green-capsicum.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 65 -->
+<div class="product">
+<img src="images/vegetables/raw-papaya.jpg" alt="Raw Papaya">
+<h3>Raw Papaya 1pc</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹45</p>
+<button class="cart" onclick="addToCart('Raw Papaya',45,'images/vegetables/raw-papaya.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Raw Papaya',45,'images/vegetables/raw-papaya.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 66 -->
+<div class="product">
+<img src="images/vegetables/raw-mango.jpg" alt="Raw Mango">
+<h3>Raw Mango 500g</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹80</p>
+<button class="cart" onclick="addToCart('Raw Mango',80,'images/vegetables/raw-mango.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Raw Mango',80,'images/vegetables/raw-mango.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 67 -->
+<div class="product">
+<img src="images/vegetables/banana-flower.jpg" alt="Banana Flower">
+<h3>Banana Flower</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹55</p>
+<button class="cart" onclick="addToCart('Banana Flower',55,'images/vegetables/banana-flower.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Banana Flower',55,'images/vegetables/banana-flower.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 68 -->
+<div class="product">
+<img src="images/vegetables/banana-stem.jpg" alt="Banana Stem">
+<h3>Banana Stem</h3>
+<p>⭐ 4.6</p>
+<p class="price">₹40</p>
+<button class="cart" onclick="addToCart('Banana Stem',40,'images/vegetables/banana-stem.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Banana Stem',40,'images/vegetables/banana-stem.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 69 -->
+<div class="product">
+<img src="images/vegetables/french-beans.jpg" alt="French Beans">
+<h3>French Beans 500g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹75</p>
+<button class="cart" onclick="addToCart('French Beans',75,'images/vegetables/french-beans.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('French Beans',75,'images/vegetables/french-beans.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 70 -->
+<div class="product">
+<img src="images/vegetables/green-pepper.jpg" alt="Green Pepper">
+<h3>Green Pepper 250g</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹120</p>
+<button class="cart" onclick="addToCart('Green Pepper',120,'images/vegetables/green-pepper.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Green Pepper',120,'images/vegetables/green-pepper.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 71 -->
+<div class="product">
+<img src="images/vegetables/fennel.jpg" alt="Fennel">
+<h3>Fresh Fennel</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹90</p>
+<button class="cart" onclick="addToCart('Fresh Fennel',90,'images/vegetables/fennel.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Fresh Fennel',90,'images/vegetables/fennel.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 72 -->
+<div class="product">
+<img src="images/vegetables/artichoke.jpg" alt="Artichoke">
+<h3>Artichoke</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹180</p>
+<button class="cart" onclick="addToCart('Artichoke',180,'images/vegetables/artichoke.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Artichoke',180,'images/vegetables/artichoke.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 73 -->
+<div class="product">
+<img src="images/vegetables/asparagus.jpg" alt="Asparagus">
+<h3>Asparagus 250g</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹220</p>
+<button class="cart" onclick="addToCart('Asparagus',220,'images/vegetables/asparagus.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Asparagus',220,'images/vegetables/asparagus.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 74 -->
+<div class="product">
+<img src="images/vegetables/endive.jpg" alt="Endive">
+<h3>Endive</h3>
+<p>⭐ 4.6</p>
+<p class="price">₹140</p>
+<button class="cart" onclick="addToCart('Endive',140,'images/vegetables/endive.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Endive',140,'images/vegetables/endive.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 75 -->
+<div class="product">
+<img src="images/vegetables/rhubarb.jpg" alt="Rhubarb">
+<h3>Rhubarb</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹250</p>
+<button class="cart" onclick="addToCart('Rhubarb',250,'images/vegetables/rhubarb.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Rhubarb',250,'images/vegetables/rhubarb.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 76 -->
+<div class="product">
+<img src="images/vegetables/watercress.jpg" alt="Watercress">
+<h3>Watercress</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹95</p>
+<button class="cart" onclick="addToCart('Watercress',95,'images/vegetables/watercress.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Watercress',95,'images/vegetables/watercress.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 77 -->
+<div class="product">
+<img src="images/vegetables/microgreens.jpg" alt="Microgreens">
+<h3>Microgreens Pack</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹160</p>
+<button class="cart" onclick="addToCart('Microgreens Pack',160,'images/vegetables/microgreens.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Microgreens Pack',160,'images/vegetables/microgreens.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 78 -->
+<div class="product">
+<img src="images/vegetables/romaine.jpg" alt="Romaine Lettuce">
+<h3>Romaine Lettuce</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹75</p>
+<button class="cart" onclick="addToCart('Romaine Lettuce',75,'images/vegetables/romaine.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Romaine Lettuce',75,'images/vegetables/romaine.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 79 -->
+<div class="product">
+<img src="images/vegetables/iceberg.jpg" alt="Iceberg Lettuce">
+<h3>Iceberg Lettuce</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹85</p>
+<button class="cart" onclick="addToCart('Iceberg Lettuce',85,'images/vegetables/iceberg.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Iceberg Lettuce',85,'images/vegetables/iceberg.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 80 -->
+<div class="product">
+<img src="images/vegetables/mixed-herbs.jpg" alt="Mixed Herbs">
+<h3>Mixed Herbs Pack</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹110</p>
+<button class="cart" onclick="addToCart('Mixed Herbs Pack',110,'images/vegetables/mixed-herbs.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Mixed Herbs Pack',110,'images/vegetables/mixed-herbs.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 81 -->
+<div class="product">
+<img src="images/vegetables/chayote.jpg" alt="Chayote">
+<h3>Chayote 500g</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹70</p>
+<button class="cart" onclick="addToCart('Chayote',70,'images/vegetables/chayote.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Chayote',70,'images/vegetables/chayote.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 82 -->
+<div class="product">
+<img src="images/vegetables/celeriac.jpg" alt="Celeriac">
+<h3>Celeriac 500g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹145</p>
+<button class="cart" onclick="addToCart('Celeriac',145,'images/vegetables/celeriac.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Celeriac',145,'images/vegetables/celeriac.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 83 -->
+<div class="product">
+<img src="images/vegetables/parsnip.jpg" alt="Parsnip">
+<h3>Parsnip 500g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹120</p>
+<button class="cart" onclick="addToCart('Parsnip',120,'images/vegetables/parsnip.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Parsnip',120,'images/vegetables/parsnip.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 84 -->
+<div class="product">
+<img src="images/vegetables/scallion.jpg" alt="Scallion">
+<h3>Scallion</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹45</p>
+<button class="cart" onclick="addToCart('Scallion',45,'images/vegetables/scallion.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Scallion',45,'images/vegetables/scallion.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 85 -->
+<div class="product">
+<img src="images/vegetables/shallots.jpg" alt="Shallots">
+<h3>Shallots 500g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹95</p>
+<button class="cart" onclick="addToCart('Shallots',95,'images/vegetables/shallots.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Shallots',95,'images/vegetables/shallots.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 86 -->
+<div class="product">
+<img src="images/vegetables/purple-cabbage.jpg" alt="Purple Cabbage">
+<h3>Purple Cabbage</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹80</p>
+<button class="cart" onclick="addToCart('Purple Cabbage',80,'images/vegetables/purple-cabbage.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Purple Cabbage',80,'images/vegetables/purple-cabbage.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 87 -->
+<div class="product">
+<img src="images/vegetables/yellow-beet.jpg" alt="Yellow Beet">
+<h3>Yellow Beetroot</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹110</p>
+<button class="cart" onclick="addToCart('Yellow Beetroot',110,'images/vegetables/yellow-beet.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Yellow Beetroot',110,'images/vegetables/yellow-beet.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 88 -->
+<div class="product">
+<img src="images/vegetables/purple-carrot.jpg" alt="Purple Carrot">
+<h3>Purple Carrot 500g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹95</p>
+<button class="cart" onclick="addToCart('Purple Carrot',95,'images/vegetables/purple-carrot.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Purple Carrot',95,'images/vegetables/purple-carrot.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 89 -->
+<div class="product">
+<img src="images/vegetables/white-onion.jpg" alt="White Onion">
+<h3>White Onion 1kg</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹48</p>
+<button class="cart" onclick="addToCart('White Onion',48,'images/vegetables/white-onion.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('White Onion',48,'images/vegetables/white-onion.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 90 -->
+<div class="product">
+<img src="images/vegetables/red-onion.jpg" alt="Red Onion">
+<h3>Red Onion 1kg</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹45</p>
+<button class="cart" onclick="addToCart('Red Onion',45,'images/vegetables/red-onion.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Red Onion',45,'images/vegetables/red-onion.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 91 -->
+<div class="product">
+<img src="images/vegetables/green-onion.jpg" alt="Green Onion">
+<h3>Green Onion</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹35</p>
+<button class="cart" onclick="addToCart('Green Onion',35,'images/vegetables/green-onion.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Green Onion',35,'images/vegetables/green-onion.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 92 -->
+<div class="product">
+<img src="images/vegetables/fresh-peas.jpg" alt="Fresh Peas">
+<h3>Fresh Peas 1kg</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹120</p>
+<button class="cart" onclick="addToCart('Fresh Peas',120,'images/vegetables/fresh-peas.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Fresh Peas',120,'images/vegetables/fresh-peas.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 93 -->
+<div class="product">
+<img src="images/vegetables/edamame.jpg" alt="Edamame">
+<h3>Edamame 500g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹180</p>
+<button class="cart" onclick="addToCart('Edamame',180,'images/vegetables/edamame.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Edamame',180,'images/vegetables/edamame.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 94 -->
+<div class="product">
+<img src="images/vegetables/lima-beans.jpg" alt="Lima Beans">
+<h3>Lima Beans 500g</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹140</p>
+<button class="cart" onclick="addToCart('Lima Beans',140,'images/vegetables/lima-beans.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Lima Beans',140,'images/vegetables/lima-beans.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 95 -->
+<div class="product">
+<img src="images/vegetables/snow-peas.jpg" alt="Snow Peas">
+<h3>Snow Peas 250g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹160</p>
+<button class="cart" onclick="addToCart('Snow Peas',160,'images/vegetables/snow-peas.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Snow Peas',160,'images/vegetables/snow-peas.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 96 -->
+<div class="product">
+<img src="images/vegetables/sugar-snap-peas.jpg" alt="Sugar Snap Peas">
+<h3>Sugar Snap Peas</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹170</p>
+<button class="cart" onclick="addToCart('Sugar Snap Peas',170,'images/vegetables/sugar-snap-peas.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Sugar Snap Peas',170,'images/vegetables/sugar-snap-peas.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 97 -->
+<div class="product">
+<img src="images/vegetables/bamboo-shoot.jpg" alt="Bamboo Shoot">
+<h3>Bamboo Shoot</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹190</p>
+<button class="cart" onclick="addToCart('Bamboo Shoot',190,'images/vegetables/bamboo-shoot.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Bamboo Shoot',190,'images/vegetables/bamboo-shoot.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 98 -->
+<div class="product">
+<img src="images/vegetables/seaweed.jpg" alt="Seaweed">
+<h3>Edible Seaweed Pack</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹250</p>
+<button class="cart" onclick="addToCart('Edible Seaweed',250,'images/vegetables/seaweed.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Edible Seaweed',250,'images/vegetables/seaweed.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 99 -->
+<div class="product">
+<img src="images/vegetables/okra-premium.jpg" alt="Premium Okra">
+<h3>Premium Okra 500g</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹65</p>
+<button class="cart" onclick="addToCart('Premium Okra',65,'images/vegetables/okra-premium.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Premium Okra',65,'images/vegetables/okra-premium.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 100 -->
+<div class="product">
+<img src="images/vegetables/vegetable-combo.jpg" alt="Vegetable Combo">
+<h3>POMPEY Fresh Vegetable Combo</h3>
+<p>⭐ 5.0</p>
+<p class="price">₹499</p>
+<button class="cart" onclick="addToCart('POMPEY Fresh Vegetable Combo',499,'images/vegetables/vegetable-combo.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('POMPEY Fresh Vegetable Combo',499,'images/vegetables/vegetable-combo.jpg')">Buy Now</button>
+</div>
+<!-- Product 101 -->
+<div class="product">
+<img src="images/vegetables/malabar-spinach.jpg" alt="Malabar Spinach">
+<h3>Malabar Spinach 250g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹35</p>
+<button class="cart" onclick="addToCart('Malabar Spinach',35,'images/vegetables/malabar-spinach.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Malabar Spinach',35,'images/vegetables/malabar-spinach.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 102 -->
+<div class="product">
+<img src="images/vegetables/mustard-greens.jpg" alt="Mustard Greens">
+<h3>Mustard Greens</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹30</p>
+<button class="cart" onclick="addToCart('Mustard Greens',30,'images/vegetables/mustard-greens.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Mustard Greens',30,'images/vegetables/mustard-greens.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 103 -->
+<div class="product">
+<img src="images/vegetables/collard-greens.jpg" alt="Collard Greens">
+<h3>Collard Greens</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹75</p>
+<button class="cart" onclick="addToCart('Collard Greens',75,'images/vegetables/collard-greens.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Collard Greens',75,'images/vegetables/collard-greens.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 104 -->
+<div class="product">
+<img src="images/vegetables/chinese-cabbage.jpg" alt="Chinese Cabbage">
+<h3>Chinese Cabbage</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹95</p>
+<button class="cart" onclick="addToCart('Chinese Cabbage',95,'images/vegetables/chinese-cabbage.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Chinese Cabbage',95,'images/vegetables/chinese-cabbage.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 105 -->
+<div class="product">
+<img src="images/vegetables/bell-pepper-mix.jpg" alt="Bell Pepper Mix">
+<h3>Bell Pepper Mix Pack</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹149</p>
+<button class="cart" onclick="addToCart('Bell Pepper Mix',149,'images/vegetables/bell-pepper-mix.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Bell Pepper Mix',149,'images/vegetables/bell-pepper-mix.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 106 -->
+<div class="product">
+<img src="images/vegetables/green-zucchini.jpg" alt="Green Zucchini">
+<h3>Green Zucchini 500g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹110</p>
+<button class="cart" onclick="addToCart('Green Zucchini',110,'images/vegetables/green-zucchini.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Green Zucchini',110,'images/vegetables/green-zucchini.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 107 -->
+<div class="product">
+<img src="images/vegetables/yellow-zucchini.jpg" alt="Yellow Zucchini">
+<h3>Yellow Zucchini 500g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹120</p>
+<button class="cart" onclick="addToCart('Yellow Zucchini',120,'images/vegetables/yellow-zucchini.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Yellow Zucchini',120,'images/vegetables/yellow-zucchini.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 108 -->
+<div class="product">
+<img src="images/vegetables/cherry-peppers.jpg" alt="Cherry Peppers">
+<h3>Cherry Peppers 250g</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹130</p>
+<button class="cart" onclick="addToCart('Cherry Peppers',130,'images/vegetables/cherry-peppers.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Cherry Peppers',130,'images/vegetables/cherry-peppers.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 109 -->
+<div class="product">
+<img src="images/vegetables/fresh-herbs.jpg" alt="Fresh Herbs">
+<h3>Fresh Herbs Combo</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹99</p>
+<button class="cart" onclick="addToCart('Fresh Herbs Combo',99,'images/vegetables/fresh-herbs.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Fresh Herbs Combo',99,'images/vegetables/fresh-herbs.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 110 -->
+<div class="product">
+<img src="images/vegetables/salad-kit.jpg" alt="Salad Kit">
+<h3>Fresh Salad Kit</h3>
+<p>⭐ 5.0</p>
+<p class="price">₹199</p>
+<button class="cart" onclick="addToCart('Fresh Salad Kit',199,'images/vegetables/salad-kit.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Fresh Salad Kit',199,'images/vegetables/salad-kit.jpg')">Buy Now</button>
+</div>
+<!-- Product 111 -->
+<div class="product">
+<img src="images/vegetables/green-lettuce.jpg" alt="Green Lettuce">
+<h3>Green Lettuce</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹65</p>
+<button class="cart" onclick="addToCart('Green Lettuce',65,'images/vegetables/green-lettuce.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Green Lettuce',65,'images/vegetables/green-lettuce.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 112 -->
+<div class="product">
+<img src="images/vegetables/red-lettuce.jpg" alt="Red Lettuce">
+<h3>Red Lettuce</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹75</p>
+<button class="cart" onclick="addToCart('Red Lettuce',75,'images/vegetables/red-lettuce.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Red Lettuce',75,'images/vegetables/red-lettuce.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 113 -->
+<div class="product">
+<img src="images/vegetables/green-cabbage.jpg" alt="Green Cabbage">
+<h3>Green Cabbage</h3>
+<p>⭐ 4.7</p>
+<p class="price">₹35</p>
+<button class="cart" onclick="addToCart('Green Cabbage',35,'images/vegetables/green-cabbage.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Green Cabbage',35,'images/vegetables/green-cabbage.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 114 -->
+<div class="product">
+<img src="images/vegetables/mini-carrots.jpg" alt="Mini Carrots">
+<h3>Mini Carrots 500g</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹95</p>
+<button class="cart" onclick="addToCart('Mini Carrots',95,'images/vegetables/mini-carrots.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Mini Carrots',95,'images/vegetables/mini-carrots.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 115 -->
+<div class="product">
+<img src="images/vegetables/organic-spinach.jpg" alt="Organic Spinach">
+<h3>Organic Spinach</h3>
+<p>⭐ 5.0</p>
+<p class="price">₹55</p>
+<button class="cart" onclick="addToCart('Organic Spinach',55,'images/vegetables/organic-spinach.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Organic Spinach',55,'images/vegetables/organic-spinach.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 116 -->
+<div class="product">
+<img src="images/vegetables/organic-broccoli.jpg" alt="Organic Broccoli">
+<h3>Organic Broccoli</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹125</p>
+<button class="cart" onclick="addToCart('Organic Broccoli',125,'images/vegetables/organic-broccoli.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Organic Broccoli',125,'images/vegetables/organic-broccoli.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 117 -->
+<div class="product">
+<img src="images/vegetables/fresh-celery.jpg" alt="Fresh Celery">
+<h3>Fresh Celery</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹90</p>
+<button class="cart" onclick="addToCart('Fresh Celery',90,'images/vegetables/fresh-celery.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Fresh Celery',90,'images/vegetables/fresh-celery.jpg')">Buy Now</button>
+</div>
+
+  <!-- Product 118 -->
+<div class="product">
+<img src="images/vegetables/organic-cucumber.jpg" alt="Organic Cucumber">
+<h3>Organic Cucumber 1kg</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹60</p>
+<button class="cart" onclick="addToCart('Organic Cucumber',60,'images/vegetables/organic-cucumber.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Organic Cucumber',60,'images/vegetables/organic-cucumber.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 119 -->
+<div class="product">
+<img src="images/vegetables/vegetable-basket.jpg" alt="Vegetable Basket">
+<h3>Family Vegetable Basket</h3>
+<p>⭐ 5.0</p>
+<p class="price">₹699</p>
+<button class="cart" onclick="addToCart('Family Vegetable Basket',699,'images/vegetables/vegetable-basket.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Family Vegetable Basket',699,'images/vegetables/vegetable-basket.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 120 -->
+<div class="product">
+<img src="images/vegetables/premium-vegetable-pack.jpg" alt="Premium Vegetable Pack">
+<h3>Premium Vegetable Pack</h3>
+<p>⭐ 5.0</p>
+<p class="price">₹999</p>
+<button class="cart" onclick="addToCart('Premium Vegetable Pack',999,'images/vegetables/premium-vegetable-pack.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Premium Vegetable Pack',999,'images/vegetables/premium-vegetable-pack.jpg')">Buy Now</button>
+</div>
+<!-- Product 121 -->
+<div class="product">
+<img src="images/vegetables/organic-tomato.jpg" alt="Organic Tomato">
+<h3>Organic Tomato 1kg</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹70</p>
+<button class="cart" onclick="addToCart('Organic Tomato',70,'images/vegetables/organic-tomato.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Organic Tomato',70,'images/vegetables/organic-tomato.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 122 -->
+<div class="product">
+<img src="images/vegetables/organic-potato.jpg" alt="Organic Potato">
+<h3>Organic Potato 1kg</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹55</p>
+<button class="cart" onclick="addToCart('Organic Potato',55,'images/vegetables/organic-potato.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Organic Potato',55,'images/vegetables/organic-potato.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 123 -->
+<div class="product">
+<img src="images/vegetables/organic-onion.jpg" alt="Organic Onion">
+<h3>Organic Onion 1kg</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹60</p>
+<button class="cart" onclick="addToCart('Organic Onion',60,'images/vegetables/organic-onion.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Organic Onion',60,'images/vegetables/organic-onion.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 124 -->
+<div class="product">
+<img src="images/vegetables/organic-brinjal.jpg" alt="Organic Brinjal">
+<h3>Organic Brinjal 500g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹65</p>
+<button class="cart" onclick="addToCart('Organic Brinjal',65,'images/vegetables/organic-brinjal.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Organic Brinjal',65,'images/vegetables/organic-brinjal.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 125 -->
+<div class="product">
+<img src="images/vegetables/organic-ladyfinger.jpg" alt="Organic Lady Finger">
+<h3>Organic Lady Finger 500g</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹68</p>
+<button class="cart" onclick="addToCart('Organic Lady Finger',68,'images/vegetables/organic-ladyfinger.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Organic Lady Finger',68,'images/vegetables/organic-ladyfinger.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 126 -->
+<div class="product">
+<img src="images/vegetables/organic-beans.jpg" alt="Organic Beans">
+<h3>Organic Beans 500g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹90</p>
+<button class="cart" onclick="addToCart('Organic Beans',90,'images/vegetables/organic-beans.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Organic Beans',90,'images/vegetables/organic-beans.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 127 -->
+<div class="product">
+<img src="images/vegetables/organic-peas.jpg" alt="Organic Peas">
+<h3>Organic Green Peas 500g</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹110</p>
+<button class="cart" onclick="addToCart('Organic Green Peas',110,'images/vegetables/organic-peas.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Organic Green Peas',110,'images/vegetables/organic-peas.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 128 -->
+<div class="product">
+<img src="images/vegetables/organic-cauliflower.jpg" alt="Organic Cauliflower">
+<h3>Organic Cauliflower</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹75</p>
+<button class="cart" onclick="addToCart('Organic Cauliflower',75,'images/vegetables/organic-cauliflower.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Organic Cauliflower',75,'images/vegetables/organic-cauliflower.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 129 -->
+<div class="product">
+<img src="images/vegetables/organic-cabbage.jpg" alt="Organic Cabbage">
+<h3>Organic Cabbage</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹60</p>
+<button class="cart" onclick="addToCart('Organic Cabbage',60,'images/vegetables/organic-cabbage.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Organic Cabbage',60,'images/vegetables/organic-cabbage.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 130 -->
+<div class="product">
+<img src="images/vegetables/pompey-vegetable-box.jpg" alt="POMPEY Vegetable Box">
+<h3>POMPEY Premium Vegetable Box</h3>
+<p>⭐ 5.0</p>
+<p class="price">₹899</p>
+<button class="cart" onclick="addToCart('POMPEY Premium Vegetable Box',899,'images/vegetables/pompey-vegetable-box.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('POMPEY Premium Vegetable Box',899,'images/vegetables/pompey-vegetable-box.jpg')">Buy Now</button>
+</div>
+<!-- Product 131 -->
+<div class="product">
+<img src="images/vegetables/organic-carrot.jpg" alt="Organic Carrot">
+<h3>Organic Carrot 1kg</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹85</p>
+<button class="cart" onclick="addToCart('Organic Carrot',85,'images/vegetables/organic-carrot.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Organic Carrot',85,'images/vegetables/organic-carrot.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 132 -->
+<div class="product">
+<img src="images/vegetables/organic-beetroot.jpg" alt="Organic Beetroot">
+<h3>Organic Beetroot 1kg</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹80</p>
+<button class="cart" onclick="addToCart('Organic Beetroot',80,'images/vegetables/organic-beetroot.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Organic Beetroot',80,'images/vegetables/organic-beetroot.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 133 -->
+<div class="product">
+<img src="images/vegetables/organic-radish.jpg" alt="Organic Radish">
+<h3>Organic Radish 1kg</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹55</p>
+<button class="cart" onclick="addToCart('Organic Radish',55,'images/vegetables/organic-radish.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Organic Radish',55,'images/vegetables/organic-radish.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 134 -->
+<div class="product">
+<img src="images/vegetables/organic-garlic.jpg" alt="Organic Garlic">
+<h3>Organic Garlic 500g</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹140</p>
+<button class="cart" onclick="addToCart('Organic Garlic',140,'images/vegetables/organic-garlic.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Organic Garlic',140,'images/vegetables/organic-garlic.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 135 -->
+<div class="product">
+<img src="images/vegetables/organic-ginger.jpg" alt="Organic Ginger">
+<h3>Organic Ginger 500g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹130</p>
+<button class="cart" onclick="addToCart('Organic Ginger',130,'images/vegetables/organic-ginger.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Organic Ginger',130,'images/vegetables/organic-ginger.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 136 -->
+<div class="product">
+<img src="images/vegetables/organic-green-chilli.jpg" alt="Organic Green Chilli">
+<h3>Organic Green Chilli 250g</h3>
+<p>⭐ 4.8</p>
+<p class="price">₹40</p>
+<button class="cart" onclick="addToCart('Organic Green Chilli',40,'images/vegetables/organic-green-chilli.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Organic Green Chilli',40,'images/vegetables/organic-green-chilli.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 137 -->
+<div class="product">
+<img src="images/vegetables/organic-coriander.jpg" alt="Organic Coriander">
+<h3>Organic Coriander Leaves</h3>
+<p>⭐ 5.0</p>
+<p class="price">₹25</p>
+<button class="cart" onclick="addToCart('Organic Coriander Leaves',25,'images/vegetables/organic-coriander.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Organic Coriander Leaves',25,'images/vegetables/organic-coriander.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 138 -->
+<div class="product">
+<img src="images/vegetables/organic-mint.jpg" alt="Organic Mint">
+<h3>Organic Mint Leaves</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹20</p>
+<button class="cart" onclick="addToCart('Organic Mint Leaves',20,'images/vegetables/organic-mint.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Organic Mint Leaves',20,'images/vegetables/organic-mint.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 139 -->
+<div class="product">
+<img src="images/vegetables/farm-fresh-combo.jpg" alt="Farm Fresh Combo">
+<h3>Farm Fresh Combo Pack</h3>
+<p>⭐ 5.0</p>
+<p class="price">₹599</p>
+<button class="cart" onclick="addToCart('Farm Fresh Combo Pack',599,'images/vegetables/farm-fresh-combo.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Farm Fresh Combo Pack',599,'images/vegetables/farm-fresh-combo.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 140 -->
+<div class="product">
+<img src="images/vegetables/family-combo.jpg" alt="Family Combo">
+<h3>Family Fresh Vegetable Combo</h3>
+<p>⭐ 5.0</p>
+<p class="price">₹799</p>
+<button class="cart" onclick="addToCart('Family Fresh Vegetable Combo',799,'images/vegetables/family-combo.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Family Fresh Vegetable Combo',799,'images/vegetables/family-combo.jpg')">Buy Now</button>
+</div>
+<!-- Product 141 -->
+<div class="product">
+<img src="images/vegetables/chef-mix.jpg" alt="Chef Mix">
+<h3>Chef's Choice Vegetable Mix</h3>
+<p>⭐ 5.0</p>
+<p class="price">₹349</p>
+<button class="cart" onclick="addToCart('Chef Choice Vegetable Mix',349,'images/vegetables/chef-mix.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Chef Choice Vegetable Mix',349,'images/vegetables/chef-mix.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 142 -->
+<div class="product">
+<img src="images/vegetables/soup-mix.jpg" alt="Soup Mix">
+<h3>Fresh Soup Mix</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹199</p>
+<button class="cart" onclick="addToCart('Fresh Soup Mix',199,'images/vegetables/soup-mix.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Fresh Soup Mix',199,'images/vegetables/soup-mix.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 143 -->
+<div class="product">
+<img src="images/vegetables/stir-fry-mix.jpg" alt="Stir Fry Mix">
+<h3>Stir Fry Vegetable Mix</h3>
+<p>⭐ 4.9</p>
+<p class="price">₹229</p>
+<button class="cart" onclick="addToCart('Stir Fry Vegetable Mix',229,'images/vegetables/stir-fry-mix.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Stir Fry Vegetable Mix',229,'images/vegetables/stir-fry-mix.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 144 -->
+<div class="product">
+<img src="images/vegetables/salad-premium.jpg" alt="Premium Salad">
+<h3>Premium Salad Pack</h3>
+<p>⭐ 5.0</p>
+<p class="price">₹249</p>
+<button class="cart" onclick="addToCart('Premium Salad Pack',249,'images/vegetables/salad-premium.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Premium Salad Pack',249,'images/vegetables/salad-premium.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 145 -->
+<div class="product">
+<img src="images/vegetables/diet-pack.jpg" alt="Diet Pack">
+<h3>Healthy Diet Vegetable Pack</h3>
+<p>⭐ 5.0</p>
+<p class="price">₹399</p>
+<button class="cart" onclick="addToCart('Healthy Diet Vegetable Pack',399,'images/vegetables/diet-pack.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Healthy Diet Vegetable Pack',399,'images/vegetables/diet-pack.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 146 -->
+<div class="product">
+<img src="images/vegetables/fitness-pack.jpg" alt="Fitness Pack">
+<h3>Fitness Veg Combo</h3>
+<p>⭐ 5.0</p>
+<p class="price">₹449</p>
+<button class="cart" onclick="addToCart('Fitness Veg Combo',449,'images/vegetables/fitness-pack.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Fitness Veg Combo',449,'images/vegetables/fitness-pack.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 147 -->
+<div class="product">
+<img src="images/vegetables/premium-organic-box.jpg" alt="Organic Box">
+<h3>Premium Organic Box</h3>
+<p>⭐ 5.0</p>
+<p class="price">₹999</p>
+<button class="cart" onclick="addToCart('Premium Organic Box',999,'images/vegetables/premium-organic-box.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Premium Organic Box',999,'images/vegetables/premium-organic-box.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 148 -->
+<div class="product">
+<img src="images/vegetables/festival-box.jpg" alt="Festival Box">
+<h3>Festival Vegetable Box</h3>
+<p>⭐ 5.0</p>
+<p class="price">₹899</p>
+<button class="cart" onclick="addToCart('Festival Vegetable Box',899,'images/vegetables/festival-box.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Festival Vegetable Box',899,'images/vegetables/festival-box.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 149 -->
+<div class="product">
+<img src="images/vegetables/monthly-pack.jpg" alt="Monthly Pack">
+<h3>Monthly Fresh Vegetable Pack</h3>
+<p>⭐ 5.0</p>
+<p class="price">₹1999</p>
+<button class="cart" onclick="addToCart('Monthly Fresh Vegetable Pack',1999,'images/vegetables/monthly-pack.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('Monthly Fresh Vegetable Pack',1999,'images/vegetables/monthly-pack.jpg')">Buy Now</button>
+</div>
+
+<!-- Product 150 -->
+<div class="product">
+<img src="images/vegetables/pompey-premium-box.jpg" alt="POMPEY Premium">
+<span class="badge">Best Seller</span>
+<h3>POMPEY Ultimate Premium Vegetable Box</h3>
+<p>⭐ 5.0 (2500+ Reviews)</p>
+<p class="price">₹2499 <del>₹2999</del></p>
+<button class="cart" onclick="addToCart('POMPEY Ultimate Premium Vegetable Box',2499,'images/vegetables/pompey-premium-box.jpg')">Add to Cart</button>
+<button class="buy" onclick="buyNow('POMPEY Ultimate Premium Vegetable Box',2499,'images/vegetables/pompey-premium-box.jpg')">Buy Now</button>
+</div>
+
+</div>
+
+<footer style="background:#131921;color:white;text-align:center;padding:25px;margin-top:40px;">
+<h3>POMPEY vegetables  Store</h3>
+<p>Fresh • Fast • Delicious</p>
+<p>© 2026 POMPEY. All Rights Reserved.</p>
+</footer>
+
+<script>
+
+// Load Cart
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+// Create Cart Counter
+const cartLink = document.querySelector('a[href="cart.html"]');
+cartLink.innerHTML = "🛒 Cart (<span id='cartCount'>0</span>)";
+
+// Update Cart Count
+function updateCartCount(){
+    document.getElementById("cartCount").innerText = cart.reduce((t,i)=>t+i.qty,0);
+}
+
+updateCartCount();
+
+// Add to Cart Function
+function addToCart(name,price,image){
+
+    let found = cart.find(item=>item.name===name);
+
+    if(found){
+        found.qty++;
+    }else{
+        cart.push({
+            name:name,
+            price:price,
+            image:image,
+            qty:1
+        });
+    }
+
+    localStorage.setItem("cart",JSON.stringify(cart));
+
+    updateCartCount();
+
+    alert(name + " added to cart!");
+
+}
+
+// Live Search
+const searchInput = document.getElementById("search");
+
+searchInput.addEventListener("keyup",function(){
+
+    let value = this.value.toLowerCase();
+
+    let products = document.querySelectorAll(".product");
+
+    products.forEach(product=>{
+
+        let text = product.innerText.toLowerCase();
+
+        if(text.includes(value)){
+            product.style.display="block";
+        }else{
+            product.style.display="none";
+        }
+
+    });
+
+});
+
+function increaseQty(btn){
+
+let qty=btn.parentElement.querySelector(".qty");
+
+qty.innerText=parseInt(qty.innerText)+1;
+
+}
+
+function decreaseQty(btn){
+
+let qty=btn.parentElement.querySelector(".qty");
+
+if(parseInt(qty.innerText)>1){
+
+qty.innerText=parseInt(qty.innerText)-1;
+
+}
+
+    }
+
+function toggleWish(icon){
+
+icon.classList.toggle("active");
+
+}
+
+function buyNow(name,price,image){
+
+localStorage.setItem("cart",JSON.stringify([{
+
+name:name,
+price:price,
+image:image,
+qty:1
+
+}]));
+
+window.location.href="checkout.html";
+
+}
+    
+</script>
+
+</body>
+</html>
+
+<div style="display:flex;justify-content:center;gap:8px;margin:10px 0;">
+
+<button onclick="decreaseQty(this)">−</button>
+
+<span class="qty">1</span>
+
+<button onclick="increaseQty(this)">+</button>
+
+</div>
+
+<p style="color:green;font-weight:bold;">
+🚚 Delivery in 20–30 mins
+</p>
+
+<p style="color:#ff9800;">
+★★★★★ (4.8)
+</p>
+
+
+    
