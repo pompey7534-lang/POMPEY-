@@ -111,7 +111,15 @@ grid-template-columns:1fr;
 }
 
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
+<script>
+(function(){
+    emailjs.init({
+        publicKey: "tyImw1I225Ru0rAJT"
+    });
+})();
+</script>
 </head>
 
 <body>
@@ -401,6 +409,24 @@ alert("Order Placed Successfully!");
 window.location.href="orders.html";
 
 }
-
+emailjs.send(
+"template_p7wcmzg",
+"template_p7wcmzg",
+{
+customer_name: customerName,
+customer_phone: customerPhone,
+customer_address: customerAddress,
+order_items: orderDetails,
+order_total: totalAmount,
+payment_method: paymentMethod,
+order_time: new Date().toLocaleString()
+}
+)
+.then(function(response){
+    console.log("Email sent successfully", response);
+})
+.catch(function(error){
+    console.log("Email failed", error);
+});
     </script>
 </body></html>
