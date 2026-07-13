@@ -454,15 +454,15 @@ order_time:
 new Date().toLocaleString()
 
 })
-.then(function(){
 
-console.log("Order email sent");
-
+.then(function(response){
+    alert("Email sent successfully!");
+    console.log(response);
 })
 .catch(function(error){
-
-console.log("Email error:", error.text || error);
-
+    alert(JSON.stringify(error));
+    console.log(error);
+});
 alert("Email failed: " + (error.text || "Unknown error"));
 
 });
