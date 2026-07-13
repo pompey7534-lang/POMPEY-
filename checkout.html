@@ -1,0 +1,522 @@
+import { db } from "./firebase-config.js";
+
+import {
+  collection,
+  addDoc,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>POMPEY Secure Checkout</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f5f5f5;
+}
+
+header{
+background:#0d6efd;
+color:white;
+padding:18px;
+text-align:center;
+font-size:24px;
+font-weight:bold;
+}
+
+.container{
+width:95%;
+max-width:1200px;
+margin:25px auto;
+display:grid;
+grid-template-columns:2fr 1fr;
+gap:20px;
+}
+
+.card{
+background:#fff;
+padding:20px;
+border-radius:12px;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+h2{
+margin-bottom:15px;
+color:#0d6efd;
+}
+
+input,
+textarea,
+select{
+width:100%;
+padding:12px;
+margin:10px 0;
+border:1px solid #ccc;
+border-radius:8px;
+font-size:16px;
+}
+
+textarea{
+height:90px;
+resize:none;
+}
+
+.order-item{
+display:flex;
+justify-content:space-between;
+padding:10px 0;
+border-bottom:1px solid #ddd;
+}
+
+.summary p{
+display:flex;
+justify-content:space-between;
+margin:10px 0;
+font-size:17px;
+}
+
+.summary h3{
+display:flex;
+justify-content:space-between;
+margin-top:20px;
+color:#0d6efd;
+font-size:22px;
+}
+
+button{
+width:100%;
+padding:15px;
+margin-top:20px;
+background:#28a745;
+color:white;
+font-size:18px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+}
+
+button:hover{
+background:#218838;
+}
+
+@media(max-width:768px){
+
+.container{
+grid-template-columns:1fr;
+}
+
+}
+
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script>
+(function(){
+    emailjs.init({
+        publicKey: "tyImw1I225Ru0rAJT"
+    });
+})();
+</script>
+</head>
+
+<body>
+
+<header>
+
+POMPEY Secure Checkout
+
+</header>
+
+<div class="container">
+
+<!-- LEFT SIDE -->
+
+<div class="card">
+
+<h2>Delivery Address</h2>
+
+<form id="checkoutForm">
+
+<input
+type="text"
+id="name"
+placeholder="Full Name"
+required>
+
+<input
+type="tel"
+id="mobile"
+placeholder="Mobile Number"
+required>
+
+<input
+type="email"
+id="email"
+placeholder="Email Address"
+required>
+
+<textarea
+id="address"
+placeholder="Complete Address"
+required></textarea>
+
+<input
+type="text"
+id="city"
+placeholder="City"
+required>
+
+<input
+type="text"
+id="state"
+placeholder="State"
+required>
+
+<input
+type="text"
+id="pincode"
+placeholder="Pincode"
+required>
+
+<h2>Payment Method</h2>
+
+<select id="payment">
+
+<option>Cash on Delivery</option>
+
+<option>UPI (Razorpay)</option>
+
+<option>Credit Card</option>
+
+<option>Debit Card</option>
+
+<option>Net Banking</option>
+
+<option>Wallet</option>
+
+</select>
+
+<button type="submit">
+
+Place Order
+
+</button>
+
+</form>
+
+</div>
+
+<!-- RIGHT SIDE -->
+
+<div class="card">
+
+<h2>Order Summary</h2>
+
+<div id="summary">
+
+<!-- Products will appear here -->
+
+</div>
+
+<hr><br>
+
+<div class="summary">
+
+<p>
+
+<span>Products Total</span>
+
+<span>
+₹<span id="subtotal">0</span>
+</span>
+
+</p>
+
+<p>
+
+<span>Delivery Charge</span>
+
+<span>₹20</span>
+
+</p>
+
+<p>
+
+<span>GST (2%)</span>
+
+<span>
+₹<span id="gst">0</span>
+</span>
+
+</p>
+
+<hr><br>
+
+<h3>
+
+<span>Grand Total</span>
+
+<span>
+₹<span id="grandTotal">0</span>
+</span>
+
+</h3>
+
+</div>
+
+</div>
+
+</div>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+let subtotal = 0;
+
+cart.forEach(item=>{
+    subtotal += item.price * item.qty;
+});
+
+const deliveryCharge = 20;
+const gst = subtotal * 0.02;
+const grandTotal = subtotal + deliveryCharge + gst;
+
+document.getElementById("subtotal").innerHTML = subtotal.toFixed(2);
+document.getElementById("gst").innerHTML = gst.toFixed(2);
+document.getElementById("grandTotal").innerHTML = grandTotal.toFixed(2);
+
+// Display products
+let summary = document.getElementById("summary");
+
+cart.forEach(item=>{
+
+summary.innerHTML += `
+<div class="order-item">
+<span>${item.name} × ${item.qty}</span>
+<span>₹${item.price * item.qty}</span>
+</div>
+`;
+
+});
+
+document.getElementById("checkoutForm").addEventListener("submit",function(e){
+
+e.preventDefault();
+
+const paymentMethod =
+document.getElementById("payment").value;
+
+if(paymentMethod=="Cash on Delivery"){
+
+saveOrder("Cash on Delivery");
+
+return;
+
+}
+
+const options={
+
+key:"rzp_test_TBXDEp17mpy2hf",
+
+amount:Math.round(grandTotal*100),
+
+currency:"INR",
+
+name:"POMPEY",
+
+description:"Shopping Order",
+
+handler:function(response){
+
+saveOrder("Razorpay",response.razorpay_payment_id);
+
+},
+
+prefill:{
+
+name:document.getElementById("name").value,
+
+email:document.getElementById("email").value,
+
+contact:document.getElementById("mobile").value
+
+},
+
+theme:{
+color:"#0d6efd"
+}
+
+};
+
+const rzp=new Razorpay(options);
+
+rzp.open();
+
+});
+
+async function saveOrder(payment, paymentId = "") {
+
+  try {
+
+    const orderData = {
+
+      customerName: document.getElementById("name").value,
+      mobile: document.getElementById("mobile").value,
+      email: document.getElementById("email").value,
+      address: document.getElementById("address").value,
+      city: document.getElementById("city").value,
+      state: document.getElementById("state").value,
+      pincode: document.getElementById("pincode").value,
+
+      paymentMethod: payment,
+      paymentId: paymentId,
+
+      items: cart,
+
+      subtotal: subtotal,
+      deliveryCharge: deliveryCharge,
+      gst: gst,
+      total: grandTotal,
+
+      status: "Confirmed",
+
+      createdAt: serverTimestamp()
+
+    };
+
+    const docRef = await addDoc(
+      collection(db, "orders"),
+      orderData
+    );
+
+  let orderDetails = "";
+
+cart.forEach(item => {
+  orderDetails +=
+    `${item.name} × ${item.qty} = ₹${item.price * item.qty}\n`;
+});
+
+emailjs.send(
+  "service_90hoa3s",
+  "template_p7wcmzg",
+  {
+    order_id: docRef.id,
+
+    customer_name: orderData.customerName,
+
+    customer_phone: orderData.mobile,
+
+    customer_address:
+      orderData.address + ", " +
+      orderData.city + ", " +
+      orderData.state + " - " +
+      orderData.pincode,
+
+    order_items: orderDetails,
+
+    order_total: grandTotal.toFixed(2),
+
+    payment_method: payment,
+
+    order_time: new Date().toLocaleString()
+  }
+)
+.then(() => {
+  console.log("Email sent successfully");
+})
+.catch((error) => {
+  console.error("Email failed:", error);
+});
+    
+    alert("Order Placed Successfully!\nOrder ID: " + docRef.id);
+
+    localStorage.removeItem("cart");
+
+    window.location.href = "orders.html";
+
+  } catch (err) {
+
+    console.error(err);
+
+    alert("Failed to save order.");
+
+  }
+
+    }
+
+
+// SEND EMAIL NOTIFICATION TO POMPEY OWNER
+
+let orderDetails = "";
+
+cart.forEach(item=>{
+    orderDetails += 
+    item.name + " × " + item.qty +
+    " = ₹" + (item.price * item.qty) + "\n";
+});
+
+
+emailjs.send(
+"service_90hoa3s",
+"template_p7wcmzg",
+{
+customer_name:
+document.getElementById("name").value,
+
+customer_phone:
+document.getElementById("mobile").value,
+
+customer_address:
+document.getElementById("address").value +
+", " +
+document.getElementById("city").value +
+", " +
+document.getElementById("state").value +
+" - " +
+document.getElementById("pincode").value,
+
+order_items:
+orderDetails,
+
+order_total:
+grandTotal.toFixed(2),
+
+payment_method:
+payment,
+
+order_time:
+new Date().toLocaleString()
+
+})
+.then(function(){
+
+console.log("Order email sent");
+
+})
+.catch(function(error){
+
+console.log("Email error:", error.text || error);
+
+alert("Email failed: " + (error.text || "Unknown error"));
+
+});
+localStorage.removeItem("cart");
+
+alert("Order Placed Successfully!");
+
+window.location.href="orders.html";
+}
+    </script>
+</body></html>
