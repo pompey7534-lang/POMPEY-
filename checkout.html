@@ -367,12 +367,11 @@ rzp.open();
 
 });
 
-async function saveOrder(payment, paymentId = "") {
+  async function saveOrder(payment, paymentId = "") {
 
   try {
 
     const orderData = {
-
       customerName: document.getElementById("name").value,
       mobile: document.getElementById("mobile").value,
       email: document.getElementById("email").value,
@@ -392,54 +391,58 @@ async function saveOrder(payment, paymentId = "") {
       total: grandTotal,
 
       status: "Confirmed",
-
       createdAt: serverTimestamp()
-
     };
 
+    // Save order to Firestore
     const docRef = await addDoc(
       collection(db, "orders"),
       orderData
     );
 
-  let orderDetails = "";
+    // Prepare order details
+    let orderDetails = "";
 
-cart.forEach(item => {
-  orderDetails +=
-    `${item.name} × ${item.qty} = ₹${item.price * item.qty}\n`;
-});
+    cart.forEach(item => {
+      orderDetails +=
+        `${item.name} × ${item.qty} = ₹${item.price * item.qty}\n`;
+    });
 
-emailjs.send(
-  "service_90hoa3s",
-  "template_p7wcmzg",
-  {
-    order_id: docRef.id,
+    // Send email
+    await emailjs.send(
+      "service_90hoa3s",
+      "template_p7wcmzg",
+      {
+        order_id: docRef.id,
+        customer_name: orderData.customerName,
+        customer_phone: orderData.mobile,
+        customer_address:
+          orderData.address + ", " +
+          orderData.city + ", " +
+          orderData.state + " - " +
+          orderData.pincode,
+        order_items: orderDetails,
+        order_total: grandTotal.toFixed(2),
+        payment_method: payment,
+        order_time: new Date().toLocaleString()
+      }
+    );
 
-    customer_name: orderData.customerName,
+    localStorage.removeItem("cart");
 
-    customer_phone: orderData.mobile,
+    alert("✅ Order Placed Successfully!\nOrder ID: " + docRef.id);
 
-    customer_address:
-      orderData.address + ", " +
-      orderData.city + ", " +
-      orderData.state + " - " +
-      orderData.pincode,
+    window.location.href = "orders.html";
 
-    order_items: orderDetails,
+  } catch (error) {
 
-    order_total: grandTotal.toFixed(2),
+    console.error("Save Order Error:", error);
 
-    payment_method: payment,
+    alert("Error: " + error.message);
 
-    order_time: new Date().toLocaleString()
   }
-)
-.then(() => {
-  console.log("Email sent successfully");
-})
-.catch((error) => {
-  console.error("Email failed:", error);
-});
+
+  }
     
     alert("Order Placed Successfully!\nOrder ID: " + docRef.id);
 
