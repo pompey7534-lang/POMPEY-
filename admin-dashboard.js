@@ -1,3 +1,8 @@
+let todayOrders = 0;
+
+const today = new Date().toDateString();
+
+let allOrders = [];
 import {
 collection,
 getDocs,
@@ -21,6 +26,24 @@ snapshot.forEach((doc) => {
 
     const order = doc.data();
 
+    allOrders.push({
+id: doc.id,
+...order
+});
+
+if(order.createdAt?.toDate){
+
+const orderDate =
+order.createdAt.toDate().toDateString();
+
+if(orderDate===today){
+
+todayOrders++;
+
+}
+
+}
+    
     totalOrders++;
 
     totalSales += Number(order.total || 0);
@@ -65,6 +88,8 @@ snapshot.forEach((doc) => {
 
 document.getElementById("totalOrders").textContent = totalOrders;
 
+document.getElementById("todayOrders").textContent=todayOrders;
+
 document.getElementById("totalSales").textContent =
 "₹" + totalSales.toFixed(2);
 window.updateStatus = async function(orderId, status){
@@ -89,3 +114,59 @@ window.updateStatus = async function(orderId, status){
     }
 
 }
+document.getElementById("search")
+.addEventListener("input",function(){
+
+const value=this.value.toLowerCase();
+
+const rows=
+document.querySelectorAll("#ordersTable tr");
+
+rows.forEach(row=>{
+
+if(row.innerText.toLowerCase().includes(value)){
+
+row.style.display="";
+
+}else{
+
+row.style.display="none";
+
+}
+
+});
+
+});
+window.printOrders=function(){
+
+window.print();
+
+                                         }
+
+window.exportCSV=function(){
+
+let csv="Customer,Mobile,Total,Status\n";
+
+allOrders.forEach(order=>{
+
+csv+=`${order.customerName},${order.mobile},${order.total},${order.status}\n`;
+
+});
+
+const blob=new Blob([csv],{type:"text/csv"});
+
+const link=document.createElement("a");
+
+link.href=URL.createObjectURL(blob);
+
+link.download="POMPEY_Orders.csv";
+
+link.click();
+
+                                          }
+
+setInterval(()=>{
+
+location.reload();
+
+},30000);
