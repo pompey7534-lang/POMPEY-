@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>POMPEY Secure Checkout</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
 
 <style>
 
@@ -20,11 +24,12 @@ background:#f5f5f5;
 
 header{
 background:#0d6efd;
-color:white;
+color:#fff;
 padding:18px;
-text-align:center;
-font-size:24px;
+font-size:28px;
 font-weight:bold;
+text-align:center;
+box-shadow:0 4px 10px rgba(0,0,0,.15);
 }
 
 .container{
@@ -51,72 +56,91 @@ color:#0d6efd;
 input,
 textarea,
 select{
+
 width:100%;
 padding:12px;
 margin:10px 0;
 border:1px solid #ccc;
 border-radius:8px;
 font-size:16px;
+
 }
 
 textarea{
-height:90px;
+height:100px;
 resize:none;
 }
 
 .order-item{
+
 display:flex;
 justify-content:space-between;
 padding:10px 0;
 border-bottom:1px solid #ddd;
+
 }
 
 .summary p{
+
 display:flex;
 justify-content:space-between;
 margin:10px 0;
 font-size:17px;
+
 }
 
 .summary h3{
+
 display:flex;
 justify-content:space-between;
 margin-top:20px;
+font-size:24px;
 color:#0d6efd;
-font-size:22px;
+
 }
 
 button{
+
 width:100%;
 padding:15px;
 margin-top:20px;
 background:#28a745;
-color:white;
-font-size:18px;
 border:none;
 border-radius:8px;
+font-size:18px;
+color:white;
 cursor:pointer;
+
 }
 
 button:hover{
+
 background:#218838;
+
 }
 
 @media(max-width:768px){
 
 .container{
+
 grid-template-columns:1fr;
+
 }
 
 }
 
 </style>
+
+<!-- EmailJS -->
+
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
+<!-- Razorpay -->
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
 </head>
-
-<body>
+    </body>
 
 <header>
 
@@ -126,54 +150,25 @@ POMPEY Secure Checkout
 
 <div class="container">
 
-<!-- LEFT SIDE -->
-
 <div class="card">
 
 <h2>Delivery Address</h2>
 
 <form id="checkoutForm">
 
-<input
-type="text"
-id="name"
-placeholder="Full Name"
-required>
+<input type="text" id="name" placeholder="Full Name" required>
 
-<input
-type="tel"
-id="mobile"
-placeholder="Mobile Number"
-required>
+<input type="tel" id="mobile" placeholder="Mobile Number" required>
 
-<input
-type="email"
-id="email"
-placeholder="Email Address"
-required>
+<input type="email" id="email" placeholder="Email Address" required>
 
-<textarea
-id="address"
-placeholder="Complete Address"
-required></textarea>
+<textarea id="address" placeholder="Complete Address" required></textarea>
 
-<input
-type="text"
-id="city"
-placeholder="City"
-required>
+<input type="text" id="city" placeholder="City" required>
 
-<input
-type="text"
-id="state"
-placeholder="State"
-required>
+<input type="text" id="state" placeholder="State" required>
 
-<input
-type="text"
-id="pincode"
-placeholder="Pincode"
-required>
+<input type="text" id="pincode" placeholder="Pincode" required>
 
 <h2>Payment Method</h2>
 
@@ -183,17 +178,9 @@ required>
 
 <option>UPI (Razorpay)</option>
 
-<option>Credit Card</option>
-
-<option>Debit Card</option>
-
-<option>Net Banking</option>
-
-<option>Wallet</option>
-
 </select>
 
-<button type="submit">
+    <button type="submit">
 
 Place Order
 
@@ -203,17 +190,11 @@ Place Order
 
 </div>
 
-<!-- RIGHT SIDE -->
-
 <div class="card">
 
 <h2>Order Summary</h2>
 
-<div id="summary">
-
-<!-- Products will appear here -->
-
-</div>
+<div id="summary"></div>
 
 <hr><br>
 
@@ -223,9 +204,7 @@ Place Order
 
 <span>Products Total</span>
 
-<span>
-₹<span id="subtotal">0</span>
-</span>
+<span>₹<span id="subtotal">0</span></span>
 
 </p>
 
@@ -241,9 +220,7 @@ Place Order
 
 <span>GST (2%)</span>
 
-<span>
-₹<span id="gst">0</span>
-</span>
+<span>₹<span id="gst">0</span></span>
 
 </p>
 
@@ -253,9 +230,7 @@ Place Order
 
 <span>Grand Total</span>
 
-<span>
-₹<span id="grandTotal">0</span>
-</span>
+<span>₹<span id="grandTotal">0</span></span>
 
 </h3>
 
@@ -264,7 +239,7 @@ Place Order
 </div>
 
 </div>
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    
 <script type="module">
 
 import { db } from "./firebase-config.js";
@@ -275,10 +250,12 @@ addDoc,
 serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
+// EmailJS
 emailjs.init({
     publicKey:"tyImw1I225Ru0rAJT"
 });
 
+// Cart
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 let subtotal = 0;
@@ -291,42 +268,12 @@ const deliveryCharge = 20;
 const gst = subtotal * 0.02;
 const grandTotal = subtotal + deliveryCharge + gst;
 
+// Summary
 document.getElementById("subtotal").textContent = subtotal.toFixed(2);
 document.getElementById("gst").textContent = gst.toFixed(2);
 document.getElementById("grandTotal").textContent = grandTotal.toFixed(2);
 
-let summary = document.getElementById("summary");
-
-cart.forEach(item=>{
-
-summary.innerHTML += `
-<div class="order-item">
-<span>${item.name} × ${item.qty}</span>
-<span>₹${item.price*item.qty}</span>
-</div>`;
-
-});
-  
-
-
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-let subtotal = 0;
-
-cart.forEach(item=>{
-    subtotal += item.price * item.qty;
-});
-
-const deliveryCharge = 20;
-const gst = subtotal * 0.02;
-const grandTotal = subtotal + deliveryCharge + gst;
-
-document.getElementById("subtotal").innerHTML = subtotal.toFixed(2);
-document.getElementById("gst").innerHTML = gst.toFixed(2);
-document.getElementById("grandTotal").innerHTML = grandTotal.toFixed(2);
-
-// Display products
-let summary = document.getElementById("summary");
+const summary = document.getElementById("summary");
 
 cart.forEach(item=>{
 
@@ -334,25 +281,22 @@ summary.innerHTML += `
 <div class="order-item">
 <span>${item.name} × ${item.qty}</span>
 <span>₹${item.price * item.qty}</span>
-</div>
-`;
+</div>`;
 
 });
 
+// Checkout button
 document.getElementById("checkoutForm").addEventListener("submit",function(e){
 
 e.preventDefault();
 
-const paymentMethod =
-document.getElementById("payment").value;
+const payment=document.getElementById("payment").value;
 
-if(paymentMethod=="Cash on Delivery"){
+if(payment==="Cash on Delivery"){
 
 saveOrder("Cash on Delivery");
 
-return;
-
-}
+}else{
 
 const options={
 
@@ -388,165 +332,109 @@ color:"#0d6efd"
 
 };
 
-const rzp=new Razorpay(options);
+new Razorpay(options).open();
 
-rzp.open();
+}
 
 });
+async function saveOrder(paymentMethod, paymentId=""){
 
-  async function saveOrder(payment, paymentId = "") {
+try{
 
-  try {
+const orderData={
 
-    const orderData = {
-      customerName: document.getElementById("name").value,
-      mobile: document.getElementById("mobile").value,
-      email: document.getElementById("email").value,
-      address: document.getElementById("address").value,
-      city: document.getElementById("city").value,
-      state: document.getElementById("state").value,
-      pincode: document.getElementById("pincode").value,
+customerName:document.getElementById("name").value,
+mobile:document.getElementById("mobile").value,
+email:document.getElementById("email").value,
 
-      paymentMethod: payment,
-      paymentId: paymentId,
+address:document.getElementById("address").value,
+city:document.getElementById("city").value,
+state:document.getElementById("state").value,
+pincode:document.getElementById("pincode").value,
 
-      items: cart,
+paymentMethod:paymentMethod,
+paymentId:paymentId,
 
-      subtotal: subtotal,
-      deliveryCharge: deliveryCharge,
-      gst: gst,
-      total: grandTotal,
+items:cart,
 
-      status: "Confirmed",
-      createdAt: serverTimestamp()
-    };
+subtotal:subtotal,
+deliveryCharge:deliveryCharge,
+gst:gst,
+total:grandTotal,
 
-    // Save order to Firestore
-    const docRef = await addDoc(
-      collection(db, "orders"),
-      orderData
-    );
+status:"Confirmed",
 
-    // Prepare order details
-    let orderDetails = "";
+createdAt:serverTimestamp()
 
-    cart.forEach(item => {
-      orderDetails +=
-        `${item.name} × ${item.qty} = ₹${item.price * item.qty}\n`;
-    });
+};
 
-    // Send email
-    await emailjs.send(
-      "service_90hoa3s",
-      "template_p7wcmzg",
-      {
-        order_id: docRef.id,
-        customer_name: orderData.customerName,
-        customer_phone: orderData.mobile,
-        customer_address:
-          orderData.address + ", " +
-          orderData.city + ", " +
-          orderData.state + " - " +
-          orderData.pincode,
-        order_items: orderDetails,
-        order_total: grandTotal.toFixed(2),
-        payment_method: payment,
-        order_time: new Date().toLocaleString()
-      }
-    );
+// Save to Firestore
+const docRef=await addDoc(
+collection(db,"orders"),
+orderData
+);
 
-    localStorage.removeItem("cart");
-
-    alert("✅ Order Placed Successfully!\nOrder ID: " + docRef.id);
-
-    window.location.href = "orders.html";
-
-  } catch (error) {
-
-    console.error("Save Order Error:", error);
-
-    alert("Error: " + error.message);
-
-  }
-
-  }
-    
-    alert("Order Placed Successfully!\nOrder ID: " + docRef.id);
-
-    localStorage.removeItem("cart");
-
-    window.location.href = "orders.html";
-
-  } catch (err) {
-
-    console.error(err);
-
-    alert("Failed to save order.");
-
-  }
-
-    }
-
-
-// SEND EMAIL NOTIFICATION TO POMPEY OWNER
-
-let orderDetails = "";
+// Prepare product list
+let orderItems="";
 
 cart.forEach(item=>{
-    orderDetails += 
-    item.name + " × " + item.qty +
-    " = ₹" + (item.price * item.qty) + "\n";
+
+orderItems+=`${item.name} × ${item.qty} = ₹${item.price*item.qty}\n`;
+
 });
 
+// Send Email
+await emailjs.send(
 
-emailjs.send(
 "service_90hoa3s",
-"template_p7wcmzg",
-{
-customer_name:
-document.getElementById("name").value,
 
-customer_phone:
-document.getElementById("mobile").value,
+"template_p7wcmzg",
+
+{
+
+order_id:docRef.id,
+
+customer_name:orderData.customerName,
+
+customer_phone:orderData.mobile,
 
 customer_address:
-document.getElementById("address").value +
-", " +
-document.getElementById("city").value +
-", " +
-document.getElementById("state").value +
-" - " +
-document.getElementById("pincode").value,
+orderData.address+", "+
+orderData.city+", "+
+orderData.state+" - "+
+orderData.pincode,
 
-order_items:
-orderDetails,
+order_items:orderItems,
 
-order_total:
-grandTotal.toFixed(2),
+order_total:grandTotal.toFixed(2),
 
-payment_method:
-payment,
+payment_method:paymentMethod,
 
-order_time:
-new Date().toLocaleString()
+order_time:new Date().toLocaleString()
 
-})
-.then(function(){
+}
 
-console.log("Order email sent");
+);
 
-})
-.catch(function(error){
-
-console.log("Email error:", error.text || error);
-
-alert("Email failed: " + (error.text || "Unknown error"));
-
-});
 localStorage.removeItem("cart");
 
-alert("Order Placed Successfully!");
+alert("✅ Order Placed Successfully!\n\nOrder ID: "+docRef.id);
 
 window.location.href="orders.html";
+
 }
-    
+
+catch(error){
+
+console.error(error);
+
+alert("Order Failed\n\n"+error.message);
+
+}
+
+    }
+ </script>
+
+</body>
+</html>   
+
