@@ -113,21 +113,7 @@ grid-template-columns:1fr;
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
-<script type="module">
-  import { db } from "./firebase-config.js";
 
-import {
-collection,
-addDoc,
-serverTimestamp
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-  
-(function(){
-    emailjs.init({
-        publicKey: "tyImw1I225Ru0rAJT"
-    });
-})();
-</script>
 </head>
 
 <body>
@@ -279,7 +265,48 @@ Place Order
 
 </div>
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script type="module">
 
+import { db } from "./firebase-config.js";
+
+import {
+collection,
+addDoc,
+serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+emailjs.init({
+    publicKey:"tyImw1I225Ru0rAJT"
+});
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+let subtotal = 0;
+
+cart.forEach(item=>{
+    subtotal += item.price * item.qty;
+});
+
+const deliveryCharge = 20;
+const gst = subtotal * 0.02;
+const grandTotal = subtotal + deliveryCharge + gst;
+
+document.getElementById("subtotal").textContent = subtotal.toFixed(2);
+document.getElementById("gst").textContent = gst.toFixed(2);
+document.getElementById("grandTotal").textContent = grandTotal.toFixed(2);
+
+let summary = document.getElementById("summary");
+
+cart.forEach(item=>{
+
+summary.innerHTML += `
+<div class="order-item">
+<span>${item.name} × ${item.qty}</span>
+<span>₹${item.price*item.qty}</span>
+</div>`;
+
+});
+  
 <script>
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
