@@ -113,12 +113,17 @@ grid-template-columns:1fr;
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
-<script>
-(function(){
+<script type="module">
+    import { db } from "./firebase-config.js";
+
+import {
+  collection,
+  addDoc,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
     emailjs.init({
-        publicKey: "tyImw1I225Ru0rAJT"
-    });
-})();
+    publicKey: "tyImw1I225Ru0rAJT"
+});
 </script>
 </head>
 
@@ -273,19 +278,9 @@ Place Order
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
 <script>
-
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-let subtotal = 0;
-
-cart.forEach(item=>{
-    subtotal += item.price * item.qty;
-});
-
-const deliveryCharge = 20;
-const gst = subtotal * 0.02;
-const grandTotal = subtotal + deliveryCharge + gst;
-
+document.getElementById("subtotal").textContent = subtotal.toFixed(2);
+document.getElementById("gst").textContent = gst.toFixed(2);
+document.getElementById("grandTotal").textContent = grandTotal.toFixed(2);
 document.getElementById("subtotal").innerHTML = subtotal.toFixed(2);
 document.getElementById("gst").innerHTML = gst.toFixed(2);
 document.getElementById("grandTotal").innerHTML = grandTotal.toFixed(2);
@@ -393,34 +388,30 @@ async function saveOrder(payment, paymentId = "") {
       collection(db, "orders"),
       orderData
     );
+let orderItems = "";
 
-    alert("Order Placed Successfully!\nOrder ID: " + docRef.id);
-
-    localStorage.removeItem("cart");
-
-    window.location.href = "orders.html";
-
-  } catch (err) {
-
-    console.error(err);
-
-    alert("Failed to save order.");
-
-  }
-
-    }
-
-
-// SEND EMAIL NOTIFICATION TO POMPEY OWNER
-
-let orderDetails = "";
-
-cart.forEach(item=>{
-    orderDetails += 
-    item.name + " × " + item.qty +
-    " = ₹" + (item.price * item.qty) + "\n";
+cart.forEach(item => {
+    orderItems += `${item.name} × ${item.qty} = ₹${item.price * item.qty}\n`;
 });
 
+await emailjs.send(
+    "service_90hoa3s",
+    "template_p7wcmzg",
+    {
+        order_id: docRef.id,
+        customer_name: orderData.customerName,
+        customer_phone: orderData.mobile,
+        customer_address:
+            orderData.address + ", " +
+            orderData.city + ", " +
+            orderData.state + " - " +
+            orderData.pincode,
+        order_items: orderItems,
+        order_total: grandTotal.toFixed(2),
+        payment_method: paymentMethod,
+        order_time: new Date().toLocaleString()
+    }
+);
 
 emailjs.send(
 "service_90hoa3s",
@@ -462,15 +453,8 @@ new Date().toLocaleString()
 .catch(function(error){
     alert(JSON.stringify(error));
     console.log(error);
-});
 alert("Email failed: " + (error.text || "Unknown error"));
-
-});
-localStorage.removeItem("cart");
-
-alert("Order Placed Successfully!");
-
-window.location.href="orders.html";
-}
-    </script>
+    ]
+    ]
+</script>
 </body></html>
