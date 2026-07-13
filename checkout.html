@@ -1,3 +1,10 @@
+import { db } from "./firebase-config.js";
+
+import {
+  collection,
+  addDoc,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -359,48 +366,58 @@ rzp.open();
 
 });
 
-function saveOrder(payment,paymentId=""){
+async function saveOrder(payment, paymentId = "") {
 
-let orders =
-JSON.parse(localStorage.getItem("orders")) || [];
+  try {
 
-orders.push({
+    const orderData = {
 
-paymentId:paymentId,
+      customerName: document.getElementById("name").value,
+      mobile: document.getElementById("mobile").value,
+      email: document.getElementById("email").value,
+      address: document.getElementById("address").value,
+      city: document.getElementById("city").value,
+      state: document.getElementById("state").value,
+      pincode: document.getElementById("pincode").value,
 
-name:document.getElementById("name").value,
+      paymentMethod: payment,
+      paymentId: paymentId,
 
-mobile:document.getElementById("mobile").value,
+      items: cart,
 
-email:document.getElementById("email").value,
+      subtotal: subtotal,
+      deliveryCharge: deliveryCharge,
+      gst: gst,
+      total: grandTotal,
 
-address:document.getElementById("address").value,
+      status: "Confirmed",
 
-city:document.getElementById("city").value,
+      createdAt: serverTimestamp()
 
-state:document.getElementById("state").value,
+    };
 
-pincode:document.getElementById("pincode").value,
+    const docRef = await addDoc(
+      collection(db, "orders"),
+      orderData
+    );
 
-payment:payment,
+    alert("Order Placed Successfully!\nOrder ID: " + docRef.id);
 
-items:cart,
+    localStorage.removeItem("cart");
 
-subtotal:subtotal,
+    window.location.href = "orders.html";
 
-delivery:deliveryCharge,
+  } catch (err) {
 
-gst:gst,
+    console.error(err);
 
-total:grandTotal,
+    alert("Failed to save order.");
 
-status:"Confirmed",
+  }
 
-date:new Date().toLocaleString()
+    }
 
-});
 
-localStorage.setItem("orders",JSON.stringify(orders));
 // SEND EMAIL NOTIFICATION TO POMPEY OWNER
 
 let orderDetails = "";
