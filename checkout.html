@@ -401,6 +401,45 @@ async function saveOrder(payment, paymentId = "") {
       orderData
     );
 
+  let orderDetails = "";
+
+cart.forEach(item => {
+  orderDetails +=
+    `${item.name} × ${item.qty} = ₹${item.price * item.qty}\n`;
+});
+
+emailjs.send(
+  "service_90hoa3s",
+  "template_p7wcmzg",
+  {
+    order_id: docRef.id,
+
+    customer_name: orderData.customerName,
+
+    customer_phone: orderData.mobile,
+
+    customer_address:
+      orderData.address + ", " +
+      orderData.city + ", " +
+      orderData.state + " - " +
+      orderData.pincode,
+
+    order_items: orderDetails,
+
+    order_total: grandTotal.toFixed(2),
+
+    payment_method: payment,
+
+    order_time: new Date().toLocaleString()
+  }
+)
+.then(() => {
+  console.log("Email sent successfully");
+})
+.catch((error) => {
+  console.error("Email failed:", error);
+});
+    
     alert("Order Placed Successfully!\nOrder ID: " + docRef.id);
 
     localStorage.removeItem("cart");
